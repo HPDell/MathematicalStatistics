@@ -1,0 +1,19 @@
+{
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "xelatex",
+            "tools": [
+                "xelatex"
+            ]
+        },{
+            "name": "xelatex-full",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ],
+    "pasteImage.path": "${currentFileDir}/${currentFileNameWithoutExt}/image"
+}

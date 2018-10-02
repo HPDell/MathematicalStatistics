@@ -1,0 +1,86 @@
+%------------------------------------------------------------------------------
+% Ctex
+%------------------------------------------------------------------------------
+\setcounter{secnumdepth}{7}
+\ctexset{
+    section = {
+        format = \Large\bfseries\raggedright
+    },
+    paragraph = {
+        name = {(,)},
+        number = \arabic{paragraph},
+        numbering = true
+    },
+    subparagraph = {
+        name = {(,)},
+        number = \alph{subparagraph},
+        numbering = true,
+        beforeskip = 0pt
+    }
+}
+
+%------------------------------------------------------------------------------
+% Unicode math
+%------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+\setmainfont{XITS}
+\setmathfont[bold-style = ISO]{XITS Math}
+
+
+%------------------------------------------------------------------------------
+% Minted
+%------------------------------------------------------------------------------
+\usepackage{minted}
+\setminted{
+    autogobble = true,
+    linenos=true,
+    frame=lines,
+    framesep=2mm,
+    fontsize=\scriptsize,
+    breaklines=true
+}
+\setminted[py]{
+    python3=true,
+}
+\setmintedinline{
+    fontsize=\normalsize
+}
+
+%------------------------------------------------------------------------------
+% Add new functions
+%------------------------------------------------------------------------------
+\usepackage{graphicx}
+\usepackage{subfig}
+% \usepackage{tikz}
+\usepackage{multicol}
+
+%------------------------------------------------------------------------------
+% Define new macros
+%------------------------------------------------------------------------------
+\newcommand{\diff}{\symrm{d }}
+\newcommand{\cpi}{\symrm{\pi}}
+\newcommand{\trans}{^\symrm{T}}
+\newcommand{\highlight}[1]{\textbf{\alert{#1}}}
+\newcommand{\done}{\ooalign{$\square$ \cr \raisebox{3pt}{\scriptsize{$√$}}}}
+\newcommand{\undone}{\ooalign{$\square$ \cr \raisebox{3pt}{}}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\ddfrac}[2]{\displaystyle{\frac{\displaystyle{#1}}{\displaystyle{#2}}}}
+
+%------------------------------------------------------------------------------
+% Format setting
+%------------------------------------------------------------------------------
+\usepackage[left=1.91cm, right=1.91cm, top=2.54cm, bottom=2.54cm]{geometry}
+\hypersetup{colorlinks=true,bookmarksnumbered=true}
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\setlength{\abovecaptionskip}{0cm}
+\setlength{\belowcaptionskip}{-0.5\baselineskip}
+\usepackage[inline]{enumitem}
+\setlist{topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt,itemjoin=\quad\quad}
+%% 脚注每页重新标号
+\usepackage[perpage]{footmisc}
+% \setcounter{secnumdepth}{3}
