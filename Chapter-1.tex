@@ -111,6 +111,75 @@ $B_1,B_2,\cdots,B_n$为$\Omega$的一个划分，$P(A) > 0,P(B_i)>0$，则
 
 \subsection{随机变量及其分布}
 
+\paragraph{随机变量} 设随机试验的样本空间  $ \Omega = {\omega} $, $ \xi = \xi(\omega) $
+是定义在样本空间 $ \Omega $ 上的\textbf{实值单值函数}，称 $ \xi = \xi(\omega) $ 是随机变量。
+
+\subparagraph{随机变量和普通函数的区别}
+\begin{itemize}
+    \item 定义域不同：随机变量定义在样本空间 $ \Omega $ 上，定义域可以是数也可以不是数；
+    而普通函数是定义在实数域上。
+    \item 随机变量函数的取值在试验之前无法确定，且取值有一定的概率；而普通函数却没有。
+\end{itemize}
+
+\subparagraph{随机变量的分类}
+\begin{itemize}
+    \item 离散型随机变量
+    \item 连续型随机变量
+    \item 混合型随机变量
+\end{itemize}
+
+\paragraph{分布函数} 设 $ X $ 是一个随机变量， $ x $ 是任意实数，称函数 \begin{equation}
+    \label{equ:分布函数定义}
+    F(x) = P\{X < x\} \quad (-\infty < x < +\infty)
+\end{equation}
+为 $ X $ 的分布函数。分布函数 $ F(x) $ 的值就表示 $ X $ 落在区间 $ (-\infty,x] $ 上的概率。
+
+\subparagraph{特点} 
+\begin{itemize}
+    \item 分布函数完整描述了随机变量的统计规律性
+    \item 分布函数是一个普通实值函数 
+\end{itemize}
+
+\subparagraph{性质} 以下三条性质是判断函数是否是分布函数的充要条件。
+\begin{itemize}
+    \item 单调不减
+    \item  $ 0 \leqslant F(x) \leqslant 1 $ 且 \begin{align}
+        \begin{split}
+            F(-\infty) &= \lim_{x \rightarrow -\infty} F(x) = 0 \\
+            F(+\infty) &= \lim_{x \rightarrow +\infty} F(x) = 1
+        \end{split}
+    \end{align}
+    \item 右连续性 $ 0 \leqslant F(x) \leqslant 1 $ 且 \begin{align}
+        \begin{split}
+            F(x - 0) &= \lim_{x \rightarrow x - 0} F(y) = F(x) \\
+            F(x + 0) &= \lim_{x \rightarrow x + 0} F(y) = F(x)
+        \end{split}
+    \end{align}
+\end{itemize}
+
+\subparagraph{常用的概率公式}
+\begin{itemize}
+    \item  $ P(a < X \leqslant b) = P(X \leqslant b) - P(X \leqslant a) = F(b) - F(a) $ 
+    \item  $ P(X = x_0) = P(X \leqslant x_0) - P(X < x_0) = F(x_0) - F(x_0 - 0) $ 
+    \item  $ P(X \geqslant x_0) = 1 - P(X < x_0) = 1 - F(x_0 - 0) $ 
+    \item  $ P(X > x_0) = 1 - P(X \leqslant x_0) = 1 - F(x_0) $ 
+\end{itemize}
+
+\subsubsection{离散型随机变量及其分布}
+
+\paragraph{离散型随机变量} 若随机变量 $ X $ 的全部可能取值是有限个或可列无限多个，
+则称此随机变量是离散型随机变量。
+
+\paragraph{分布律} 设离散型随机变量 $ X $ 的所有可能取值为 $ x_k,k=(1,2,\cdots) $ ，
+ $ X $ 取各个可能值的概率为 $ P(X = x_k) = p_k $ ， $ p_k $ 满足
+\begin{itemize}
+    \item  $ p_k \geqslant 0 $ 
+    \item  $ \sum_{k=1}^\infty p_k = 1 $ 
+\end{itemize}
+则称 $ p_k $ 为离散型随机变量X的概率分布或分布律。
+
+\subsubsection{连续型随机变量及其分布}
+
 \subsection{随机向量及其分布}
 
 \subsection{边缘分布}
