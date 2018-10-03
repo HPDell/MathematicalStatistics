@@ -6,9 +6,9 @@
 设 $\Omega$ 是样本空间， $\mathcal{F}$ 是由 $\Omega$ 的一些子集构成的集类，如果满足下列条件
 \begin{itemize}
     \item $\Omega \in \mathcal{F}$
-    \item 若 $A\in\mathcal{F}$，则 $\overline\ A\in\mathcal{F}$
+    \item 若 $A\in\mathcal{F}$，则 $\bar{A}\in\mathcal{F}$
     \item 若 $A_1,A_2\ \,\cdots,A_n,\cdots\in\mathcal{F}$，则
-    \[ \bigcup_{n=1}^\infty A_n\ \in\mathcal{F} \]
+     $$ \bigcup_{n=1}^\infty A_n\ \in\mathcal{F} $$ 
 \end{itemize}
 则 $\mathcal{F}$ 是一个事件域，每个时间发生的概率大小为 $P$，三元体$(\Omega,\mathcal{F},P)$就构成一个概率空间。
 
@@ -16,11 +16,11 @@
 \begin{itemize}
     \item $P(\phi)=0$
 	\item 可列可加性：如果$A_i\in\mathcal{F}(i=1,2,\cdots,n)$且$A_i\ A_j=\phi(i\neq\ j)$，则
-    \[P(\bigcup_{i=1}^n A_i )=\sum_{i=1}^n P(A_i ) \]
+     $$ P\left(\bigcup_{i=1}^n A_i \right)=\sum_{i=1}^n P(A_i )  $$ 
     \item 设$A\in\mathcal{F}$，则有$P(A)=1-P(\bar{A})$
-    \item 设$A\in\mathcal{F},B\in\mathcal{F}$，如果$A\supset B$，则$P(A-B)=P(A)-P(B)，P(A)\geq P(B)$
+    \item 设$A\in\mathcal{F},B\in\mathcal{F}$，如果$A\supset B$，则$P(A-B)=P(A)-P(B),P(A)\geq P(B)$
     \item 设$A\in\mathcal{F},B\in\mathcal{F}$，则
-    \[P(A\cup\ B)=P(A)+P(B)-P(AB)\le\ P(A)+P(B)\]
+     $$ P(A\cup B)=P(A)+P(B)-P(AB)\le\ P(A)+P(B) $$ 
     可以推广到$n$个事件的情况
 \end{itemize}
 
@@ -34,7 +34,7 @@
     \item 对于任意一个事件 $B$，$P(B|A) \geqslant 0$
     \item $P(\Omega | A)=1$
     \item 设$B_1,B_2,\cdots$互不相容，则 \begin{equation}
-        P(\bigcup_{i=1}^\infty B_i |A) = \sum_{i=1}^\infty P(B_i,A)
+        P\left(\left. \bigcup_{i=1}^\infty B_i \right| A \right) = \sum_{i=1}^\infty P(B_i,A)
     \end{equation}
     \item $P(\bar{B} |A) = 1 - P(B|A)$
 \end{itemize}
@@ -149,7 +149,7 @@ $B_1,B_2,\cdots,B_n$为$\Omega$的一个划分，$P(A) > 0,P(B_i)>0$，则
             F(+\infty) &= \lim_{x \rightarrow +\infty} F(x) = 1
         \end{split}
     \end{align}
-    \item 右连续性 $ 0 \leqslant F(x) \leqslant 1 $ 且 \begin{align}
+    \item 右（左）连续性：\begin{align}
         \begin{split}
             F(x - 0) &= \lim_{x \rightarrow x - 0} F(y) = F(x) \\
             F(x + 0) &= \lim_{x \rightarrow x + 0} F(y) = F(x)
