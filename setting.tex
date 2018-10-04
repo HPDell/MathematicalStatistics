@@ -68,6 +68,20 @@
 \newcommand{\Cov}{\mathrm{Cov}}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\ddfrac}[2]{\displaystyle{\frac{\displaystyle{#1}}{\displaystyle{#2}}}}
+\newlength{\subparitemindent}
+\newlength{\paritemindent}
+\setlength{\paritemindent}{3.5em}
+\setlength{\subparitemindent}{5.5em}
+\newenvironment{paritemize}{
+    \begin{itemize}[leftmargin=\paritemindent]
+}{
+    \end{itemize}
+}
+\newenvironment{subparitemize}{
+    \begin{itemize}[leftmargin=\subparitemindent]
+}{
+    \end{itemize}
+}
 
 %------------------------------------------------------------------------------
 % Format setting
