@@ -191,7 +191,7 @@ $B_1,B_2,\cdots,B_n$为$\Omega$的一个划分，$P(A) > 0,P(B_i)>0$，则
 \subparagraph{泊松分布}  分布律  $$ P(X=k) = \frac{\lambda^k}{k!}e^{-\lambda} \quad k = 0,1,2,\cdots $$ 
 其中  $ \lambda $ 是常数。记为  $ X \sim P(\lambda) $ 。
 泊松分布在管理科学、运筹学以及自然科学的某些问题中都占有重要的地位。 
-\begin{itemize}[leftmargin=\paritemindent]
+\begin{itemize}[leftmargin=\subparitemindent]
     \item 排队问题：在一段时间内窗口等待服务的顾客人数
     \item 生物存活的个数
     \item 放射的粒子数
@@ -223,6 +223,24 @@ $$ F(x) = \int_{-\infty}^x f(t)\diff t $$
         P{X \in G} = \int_G f(x) \diff x
     \end{equation}
 \end{itemize}
+
+\paragraph{常见的连续型随机变量的分布}
+
+\subparagraph{均匀分布}  $ X $ 的概率密度为：
+\begin{equation}
+    f(x) = \left\{ \begin{array}{ll}
+        \ddfrac{1}{b-a}, & x \in (a,b) \\
+        0, & x \in (-\infty, a] \cup [b, \infty)
+    \end{array} \right.
+\end{equation}
+则称 $ X $ 服从 $ (a,b) $ 上的均匀分布，记为 $ X \sim U(a,b) $ 。分布函数为
+\begin{equation}
+    F(x) = \int_{-\infty}^x f(t) \diff t = \left\{ \begin{array}{ll}
+        0, & x < a \\
+        \ddfrac{x-a}{b-a}, & a \leqslant x < b  \\
+        1, & x \geqslant b
+    \end{array} \right.
+\end{equation}
 
 \subsection{随机向量及其分布}
 
