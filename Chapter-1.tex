@@ -220,7 +220,7 @@ $$ F(x) = \int_{-\infty}^x f(t)\diff t $$
     \item  $ P(a \leqslant X \leqslant b) = P(a < X \leqslant b) = P(a \leqslant X < b) = P(a < X < b) $ 
     \item 若已知连续型随机变量 $ X $ 的密度函数为 $ f(x) $ ，则 $ X $ 在任意区间 $ G $ 上取值的概率为
     \begin{equation}
-        P{X \in G} = \int_G f(x) \diff x
+        P\{X \in G\} = \int_G f(x) \diff x
     \end{equation}
 \end{itemize}
 
@@ -242,7 +242,71 @@ $$ F(x) = \int_{-\infty}^x f(t)\diff t $$
     \end{array} \right.
 \end{equation}
 
+\subparagraph{指数分布} $ X $ 的概率密度为：
+\begin{equation}
+    f(x) = \left\{ \begin{array}{ll}
+        \lambda e^{-\lambda x} & x \geqslant 0 \\
+        0 & x < 0
+    \end{array} \right.
+\end{equation}
+则称 $ X $ 服从参数为 $ \lambda $ 的指数分布，记为 $ X \sim E(\lambda) $ 。分布函数为
+\begin{equation}
+    F(x) = \left\{ \begin{array}{ll}
+        1 - \lambda e^{-\lambda x} & x \geqslant 0 \\
+        0 & x < 0
+    \end{array} \right.
+\end{equation}
+
+\subparagraph{正态分布} $ X $ 的概率密度为：
+\begin{equation}
+    f(x) = \frac{1}{\sqrt{2\pi} \sigma} e ^{- \frac{(x-\mu)^2}{2 \sigma^2}} \quad -\infty < x < \infty
+\end{equation}
+其中 $ \mu $ 和 $ \sigma $ 时常数，且 $ \sigma > 0 $ ，
+则称 $ X $ 服从参数为 $ \mu, \sigma $ 的正态分布，或高斯分布，记为 $ X \sim N(\mu, \sigma^2) $ 。
+
+\paragraph{正态分布}
+\subparagraph{图形特点} 正态分布的密度曲线时一条关于 $ \mu $ 对称的钟形曲线，特点是：
+“两头小，中间大，左右对称”
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ \mu $ 决定了图形的中心位置
+    \item $ \sigma $ 决定了图形中峰的陡峭程度
+\end{itemize}
+
+\subparagraph{标准正态分布} $ \mu = 0, \sigma = 1 $ 的分布被称为标准正态分布，
+其密度函数和分布函数常用 $ \phi(x) $ 和 $ \Phi(x) $ 表示
+$$ \phi(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} $$
+
+\subparagraph{定理} 设 $ X \sim N(\mu, \sigma^2) $ ，则 $ Y = \frac{X-\mu}{\sigma} \sim N(0,1) $
+
+
 \subsection{随机向量及其分布}
+
+\paragraph{$ n $ 维随机向量} 设 $ (\Omega, \mathcal{F}, P) $ 是一概率空间，
+$ \xi_{1}{(\omega)} , \xi_{2}{(\omega)} , \cdots , \xi_{n}{(\omega)}  $ 是定义在这个概率空间上的 $ n $ 个随机变量，
+称 $ \xi(\omega) = (\xi_{1}{(\omega)} , \xi_{2}{(\omega)} , \cdots , \xi_{n}{(\omega)}) $ 为 $ n $ 维随机向量。
+
+\paragraph{$ n $ 维随机向量的联合分布} 称 $ n $ 元函数
+$$ F_{X_1 , X_2 , \cdots , X_n }(x_{1} , x_{2} , \cdots , x_{n}) = P(\xi_{1} \leqslant x_1 , \xi_{2} \leqslant x_2 , \cdots , \xi_{n} \leqslant x_n ) $$
+为随机向量 $ \xi = (\xi_1, \xi_2, \cdots, \xi_n) $ 的联合分布函数。
+
+\subparagraph{二维随机变量分布函数的几何意义}
+将二维随机变量 $ (X,Y) $ 看平面上随机点的坐标，$ (X,Y) $ 落在区域 $ \{ x < x_2, y < y_2 \} $ 中的概率为 $ F_{X,Y}(x,y) $
+
+\subparagraph{分布函数的性质} 
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 单调不减
+    \item $ 0 < F < 1 $
+    \item 对于任意 $ x,y $ 有 \begin{align}
+        F(x, -\infty) & = \lim_{y \rightarrow -\infty} F(x,y) = 0 \\
+        F(-\infty, y) & = \lim_{x \rightarrow -\infty} F(x,y) = 0
+    \end{align}
+    \item 右连续
+\end{itemize}
+
+\subsubsection{离散型随机向量}
+
+\subsubsection{连续型随机向量}
+
 
 \subsection{边缘分布}
 
