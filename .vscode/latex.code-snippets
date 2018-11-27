@@ -19,7 +19,7 @@
 		"prefix": "itemizepar",
 		"body": [
 			"\\begin{itemize}[leftmargin=\\paritemindent]",
-			"\t$1",
+			"\t\\item $1",
 			"\\end{itemize}",
 			"$0"
 		]
@@ -28,7 +28,7 @@
 		"prefix": "itemizesubpar",
 		"body": [
 			"\\begin{itemize}[leftmargin=\\subparitemindent]",
-			"\t$1",
+			"\t\\item $1",
 			"\\end{itemize}",
 			"$0"
 		]
