@@ -207,7 +207,7 @@ $$ F_{X_1 , X_2 , \cdots , X_n }(x_{1} , x_{2} , \cdots , x_{n}) = P(\xi_{1} \le
 为 $ \xi $ 的分布列。
 
 \subparagraph{分布列的性质} 
-\begin{itemize}[leftmargin=\paritemindent]
+\begin{itemize}[leftmargin=\subparitemindent]
     \item $ p_{i_{1} , i_{2} , \cdots , i_{n} } \geqslant 0 $
     \item $ \sum_{i_{1} , i_{2} , \cdots , i_{n} } p_{i_{1} , i_{2} , \cdots , i_{n} } = 1 $
 \end{itemize}
@@ -267,4 +267,40 @@ $$ (X,Y) \sim N(\mu_1, \mu_2, \sigma_1, \sigma_2, \rho) $$
 $$ F_X(x) = P\{ X \leqslant x \} = P\{ X \leqslant x, Y < \infty \} = F(x,\infty) $$
 同理 $$ F_Y(y) = F(\infty,y) $$
 
+\paragraph{边缘分布率} 
+\begin{align}
+    P\{ X = x_i \} & = \sum_{j=1}^{\infty} P\{ X = x_i, Y = y_j \} \\
+    P\{ Y = y_i \} & = \sum_{j=1}^{\infty} P\{ X = x_j, Y = y_i \}
+\end{align}
+
+\paragraph{边缘概率密度}
+\begin{align}
+    f_X(x) & = \int_{-\infty}^{\infty} f(x,y)\diff y \\
+    f_Y(y) & = \int_{-\infty}^{\infty} f(x,y)\diff x
+\end{align}
+
+\paragraph{二元正态分布的性质}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 二维正态分布的两个边际分布都是一维正态分布
+    \item 两个边缘分布中的参数与二元正态分布中的常数 $ \rho $ 无关
+    \item 如果 $ (X_1, Y_1) \sim N(\mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho_1) $ ，
+    $ (X_2, Y_2) \sim N(\mu_1, \mu_2, \sigma_1^2, \sigma_2^2, \rho_2) $ ，则 $ (X_1, Y_1) $ 与 $ (X_2, Y_2) $ 的分布不相同，
+    但是 $ X_1 $ 与 $ X_2 $ 分布相同， $ Y_1 $ 与 $ Y_2 $ 分布相同。
+    \item 一般来讲不能由边缘分布求联合分布
+\end{itemize}
+
 \subsection{条件分布}
+
+\paragraph{离散型} 设 $ (\xi, \eta) $ 是离散型随机向量，他的联合分布为 $$ p_ij = P(\xi = x_i, \eta = y_j) $$
+若已知 $ P(\xi = x_i) > 0 $ ，则在 $ \xi = x_i $ 下，事件 $ \eta = y_j $ 的条件概率为
+$$ P\{ \eta = y_j | \xi = x_i \} = \frac{P\{\xi = x_i, \eta = y_j\}}{P\{ \xi = x_i \}} = \ddfrac{p_{ij}}{\sum_j p_{ij}} $$
+称为 $ \eta $ 关于 $ \xi $ 的条件分布。
+
+\paragraph{连续型} 设 $ (\xi, \eta) $ 是连续随机向量，他的联合密度为 $ f(x,y) $
+若已知 $ p_1(x) > 0 $ 则称
+$$ F(y|x) = P\{ \eta < y | \xi = x \} = \ddfrac{\int_{-\infty}^{y} f(x,v) \diff v}{f_1(x)} = \int_{-\infty}^{y} \frac{f(x,v)}{f_1(x)} \diff v $$
+称为 $ \eta $ 关于 $ \xi $ 的条件分布。
+
+\paragraph{二元正态分布} 设随机向量 $ (\xi, \eta) $ 服从正态分布，则在 $ \xi = x $ 的条件下，
+$ \eta $ 的条件分布也是正态分布，其中第一个参数是 $ x $ 的线性函数，第二个参数与 $ x $ 无关。
+$$ N\left( b + r \frac{\sigma_2}{\sigma_1} (x - a), \sigma_2^2 (1-r^2) \right) $$
