@@ -13,7 +13,7 @@
     },
     subparagraph = {
         name = {(,)},
-        number = \alph{subparagraph},
+        number = \roman{subparagraph},
         numbering = true,
         beforeskip = 0pt
     }
@@ -55,6 +55,7 @@
 \usepackage{subfig}
 % \usepackage{tikz}
 \usepackage{multicol}
+\usepackage{booktabs}
 
 %------------------------------------------------------------------------------
 % Define new macros
@@ -68,6 +69,20 @@
 \newcommand{\Cov}{\mathrm{Cov}}
 \newcommand{\Var}{\mathrm{Var}}
 \newcommand{\ddfrac}[2]{\displaystyle{\frac{\displaystyle{#1}}{\displaystyle{#2}}}}
+\newlength{\subparitemindent}
+\newlength{\paritemindent}
+\setlength{\paritemindent}{3em}
+\setlength{\subparitemindent}{5em}
+\newenvironment{paritemize}{
+    \begin{itemize}[leftmargin=\paritemindent]
+}{
+    \end{itemize}
+}
+\newenvironment{subparitemize}{
+    \begin{itemize}[leftmargin=\subparitemindent]
+}{
+    \end{itemize}
+}
 
 %------------------------------------------------------------------------------
 % Format setting
@@ -84,3 +99,5 @@
 %% 脚注每页重新标号
 \usepackage[perpage]{footmisc}
 % \setcounter{secnumdepth}{3}
+% 积分号样式
+\usepackage[fourier]{varint}

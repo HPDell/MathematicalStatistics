@@ -1,0 +1,106 @@
+\section{概率空间}
+
+\paragraph{样本空间与事件域}
+设 $\Omega$ 是样本空间， $\mathcal{F}$ 是由 $\Omega$ 的一些子集构成的集类，如果满足下列条件
+\begin{itemize}[leftmargin=\paritemindent]
+    \item $\Omega \in \mathcal{F}$
+    \item 若 $A\in\mathcal{F}$，则 $\bar{A}\in\mathcal{F}$
+    \item 若 $A_1,A_2\ \,\cdots,A_n,\cdots\in\mathcal{F}$，则
+     $$ \bigcup_{n=1}^\infty A_n\ \in\mathcal{F} $$ 
+\end{itemize}
+则 $\mathcal{F}$ 是一个事件域，每个时间发生的概率大小为 $P$，三元体$(\Omega,\mathcal{F},P)$就构成一个概率空间。
+
+\paragraph{概率的性质}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item $P(\phi)=0$
+	\item 可列可加性：如果$A_i\in\mathcal{F}(i=1,2,\cdots,n)$且$A_i\ A_j=\phi(i\neq\ j)$，则
+     $$ P\left(\bigcup_{i=1}^n A_i \right)=\sum_{i=1}^n P(A_i )  $$ 
+    \item 设$A\in\mathcal{F}$，则有$P(A)=1-P(\bar{A})$
+    \item 设$A\in\mathcal{F},B\in\mathcal{F}$，如果$A\supset B$，则$P(A-B)=P(A)-P(B),P(A)\geq P(B)$
+    \item 设$A\in\mathcal{F},B\in\mathcal{F}$，则
+     $$ P(A\cup B)=P(A)+P(B)-P(AB)\le\ P(A)+P(B) $$ 
+    可以推广到$n$个事件的情况
+\end{itemize}
+
+\paragraph{条件概率} 设$A,B$是两个随机事件，且$P(A)>0$，则称
+\begin{equation}
+    P(B | A)=\frac{P(AB)}{P(A)}
+\end{equation}
+为在事件$A$发生的条件下，事件$B$发生的概率。
+
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 对于任意一个事件 $B$，$P(B|A) \geqslant 0$
+    \item $P(\Omega | A)=1$
+    \item 设$B_1,B_2,\cdots$互不相容，则 \begin{equation}
+        P\left(\left. \bigcup_{i=1}^\infty B_i \right| A \right) = \sum_{i=1}^\infty P(B_i,A)
+    \end{equation}
+    \item $P(\bar{B} |A) = 1 - P(B|A)$
+\end{itemize}
+
+\subparagraph{乘法公式} 设 $A,B \supset \Omega$，当 $P(A) > 0$ 由
+\begin{equation*}
+    P(B|A) = \frac{P(AB)}{P(A)}
+\end{equation*} 得到 \begin{equation}
+    P(AB) = P(B|A)P(A) = P(A|B)P(B)
+\end{equation} 推广得到
+\begin{equation}
+    P(A_1,A_2, \cdots ,A_n) = P(A_1)P(A_2|A_1)P(A_3|A_2A_1) \cdots
+    P(A_{n}|A_1A_2\cdots A_{n-1})
+\end{equation}
+
+\subparagraph{全概率公式} 设随机试验 $E$ 的样本空间为 $\Omega$， $A$ 为 $E$ 的任意一事件，
+$B_1,B_2,\cdots,B_n$ 为 $\Omega$ 的一个划分，且 $P(B_i) > 0$, 则
+\begin{equation}
+    P(A) = P(A|B_1)P(B_1) + P(A|B_2)P(B_2) + \cdots + P(A|B_n)P(B_n)
+\end{equation}
+在较复杂情况下直接计算$P(A)$不易，但 $A$总是伴随着某些$B_i$ 出现，适当地去构造这一组 $B_i$往往可以使问题简化。
+
+\subparagraph{贝叶斯公式} 设随机试验 $E$ 的样本空间为 $\Omega$，$A \subset \Omega$，
+$B_1,B_2,\cdots,B_n$为$\Omega$的一个划分，$P(A) > 0,P(B_i)>0$，则
+\begin{equation}
+    P(B_i|A) = \frac{P(AB_i)}{P(A)} = \ddfrac{
+        P(A|B_i)P(B_i)
+    }{
+        \sum_{i=1}^n P(A|B_i)P(B_i)
+    }
+\end{equation}
+它是在观察到事件$A$已发生的条件下，寻找导致$A$发 生的每个原因的概率。
+
+\paragraph{事件的独立性}
+\subparagraph{两个事件}设 $A,B$ 是两个事件，如果如下等式成立 
+\begin{equation}
+    P(AB) = P(A)P(B)
+\end{equation}
+则称事件 $A,B$ 相互独立。
+
+\subparagraph{三个事件} 对于 $A,B,C$ 三个事件,如果如下等式成立
+\begin{align}
+    \begin{split}
+        P(AB) & = P(A)P(B) \\
+        P(AC) & = P(A)P(C) \\
+        P(BC) & = P(B)P(C) 
+    \end{split}
+\end{align}
+则称 $A,B,C$ 两两独立；如果满足
+\begin{equation}
+    P(ABC) = P(A)P(B)P(C)
+\end{equation}
+则称 $A,B,C$ 互相独立。
+
+\subparagraph{多个事件} 设 $A_1,A_2,\cdots,A_n$ 是 $n$ 个事件，若对任意的 $k(2 \leqslant k \leqslant n)$
+和任意一组 $ 1 \leqslant i_1 < i_2 < \cdots < i_k \leqslant n $ 都有
+\begin{equation}
+    P(A_{i_1}, A_{i_2}, \cdots, A_{i_k}) = P(A_{i_1})P(A_{i_2})\cdots P(A_{i_k})
+\end{equation}
+成立，则称 $n$ 个事件 $A_1,A_2,\cdots,A_n$ 相互独立.
+
+\subparagraph{可数无穷多个} 对于事件序列 $A_1,A_2,\cdots,A_n,\cdots$ 若他们之间任意有限个事件独立，
+则称事件序列 $A_1$, $A_2$, $\cdots$, $A_n$, $\cdots$ 独立。
+
+\subparagraph{事件独立的性质} 若 $A_1,A_2,\cdots,A_n$ 独立，则
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $A_1',A_2',\cdots,A_n'$ 独立，其中 $A_k' = A_k \wedge \bar{A}_k $
+    \item 将事件 $A_1,A_2,\cdots,A_n$ 分成 $k$ 组，
+    设 $B_1,B_2,\cdots,B_n$ 分别由第 $1,2,\cdots,k$ 组内的 $A_i$ 经过并、积、差、求余等运算所得，
+    则 $B_1,B_2,\cdots,B_n$ 独立。
+\end{itemize}

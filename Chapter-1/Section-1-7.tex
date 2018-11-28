@@ -1,0 +1,83 @@
+\section{极限定理}
+
+\subsection{大数定律}
+
+以 $ \mu_n $ 记实验中 $ A $ 出现的次数，
+当 $ n \rightarrow \infty $ 时，频率 $ \frac{1}{n}\mu_n $ 趋近于常数 $ P(A) $。
+已知
+\begin{align*}
+    E(\mu_n / n) & = P(A) = p \\
+    D(\mu_n / n) & = \frac{pq}{n}
+\end{align*}
+标准化变量 $$ \xi_n = \frac{\mu_n - np}{\sqrt{npq}} $$ 则
+\begin{equation}
+    \lim_{n \rightarrow \infty} P\left\{ \xi_n < x \right\} = 
+    \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-\frac{t^2}{2}} \diff t
+\end{equation}
+
+\paragraph{切比雪夫大数定律} 设 $ X_1, X_2, \cdots $ 是两两不相关（相互独立）的随机变量序列，他们都有有限方差，
+并且方差有共同的上界，即 $ D(X_i) \leqslant C, i = 1,2,\cdots $ ，则对 $ \forall \epsilon > 0 $ ，
+\begin{equation}
+    \lim_{n\rightarrow \infty} 
+    P\left\{ \left| \frac{1}{n} \sum_{i=1}^{n} X_i - \frac{1}{n} E(X_i) \right| < \epsilon \right\} = 1
+\end{equation}
+
+\paragraph{独立同分布下的大数定律} 设 $ X_1, X_2, \cdots $ 是独立同分布的随机变量序列，
+且 $ E(X_i) = \mu, D(X_i) = \sigma^2, i = 1,2,\cdots $ ，则对任意给 $ \epsilon > 0 $
+\begin{equation}
+    \lim_{n\rightarrow\infty} P\left\{ \left| \frac{1}{n} \sum_{i=1}^{n}X_i - \mu \right| < \epsilon \right\} = 1
+\end{equation}
+
+\paragraph{伯努利大数定律} 设 $ \mu_n $ 是 $ n $ 重伯努利实验中事件 $ A $ 发生的次数， $ p $ 是事件 $ A $ 发生的概率，
+引入
+\begin{equation*}
+    X_i = \left\{\begin{array}{ll}
+        1, & \text{如果第 $ i $ 次实验 $ A $ 发生} \\
+        0, & \text{其他}
+    \end{array}\right.
+\end{equation*}
+则
+$$ \mu_n = \sum_{i=1}^{n}X_i $$
+有
+$$ \frac{\mu_n}{n} = \frac{1}{n} \sum_{i=1}^{n}X_i $$ 是事件 $ A $ 发生的频率。
+设 $ p $ 是事件 $ A $ 发生的概率，则对任给的 $ \epsilon > 0 $，有
+\begin{align}
+    \lim_{n \rightarrow \infty} P\left\{ \left| \frac{\mu_n}{n} - p \right| < \epsilon \right\} & = 1 \\
+    \lim_{n \rightarrow \infty} P\left\{ \left| \frac{\mu_n}{n} - p \right| \geqslant \epsilon \right\} & = 0 \\
+\end{align}
+表明，当重复实验次数$ n $充分大时，事件$ A $发生的频率$ \frac{\mu_n}{n} $与事件$ A $的概率$ p $有较大偏差的概率很小。
+
+\subsection{中心极限定理} 
+
+\paragraph{随机变量序列的标准化随机变量} $ n $ 个随机变量序列 $ X_1, X_2, \cdots, X_n $ 的标准化随机变量
+\begin{equation}
+    Z_n = \ddfrac{
+        \sum_{k=1}^{n} X_k - E\left( \sum_{k=1}^{n} X_k \right)
+    }{
+        \sqrt{D\left(\sum_{k=1}^{n} X_k\right)}
+    }
+\end{equation}
+
+\paragraph{林德贝格—莱维定理} 设 $ X_1, X_2, \cdots $ 是独立同分布的随机变量序列，
+且 $ E(X_i) = \mu $ ， $ D(X_i) = \sigma^2 $ ， $ i = 1, 2, \cdots $ 则
+\begin{equation}
+    \lim_{n\rightarrow\infty} 
+    P\left\{ \frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma \sqrt{n}} \leqslant x \right\}
+    = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} \diff t
+\end{equation}
+表明当$ n $充分大时，$ n $个具有期望和方差的独立同分布随机变量之和近似服从正态分布。
+
+\paragraph{棣莫弗—拉普拉斯极限定理} 设 $ \mu_n $ 是 $ n $ 次伯努利实验中事件 $ A $ 出现的次数，
+$ 0 < p < 1 $ ，则对任意有限区间 $ [a,b] $
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 当 $$ a \leqslant x_k = \frac{k - np}{\sqrt{npq}} \leqslant b $$ 及 $ n \rightarrow \infty $ 时，
+    一致有
+    \begin{equation}
+        \ddfrac{P\left\{ \mu_n = k \right\}}{\frac{1}{\sqrt{npq}}\frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x_k^2}} \rightarrow 1
+    \end{equation}
+    \item 当 $ n \rightarrow \infty $ 时，一致有
+    \begin{equation}
+        P\left\{ a \leqslant \frac{\mu_n - np}{\sqrt{npq}} < b \right\} \rightarrow \int_{a}^{b}\phi_x \diff x
+    \end{equation}
+    其中 $$ \phi(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} $$
+\end{itemize}

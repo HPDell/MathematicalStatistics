@@ -1,0 +1,136 @@
+\section{特征函数}
+
+\paragraph{复随机变量} 设 $ X,Y $ 是概率空间 $ \{ \Omega, \mathcal{F}, P \} $
+上的实随机变量，则 $ Z = X + \symrm{}{i}Y $ 称为复随机变量。
+
+\subparagraph{独立性} 如果 $ (X_1,Y_1), (X_2,Y_2), \cdots, (X_n,Y_n) $ 互相独立，
+就称复随机变量 $ X_1 + \symrm{i} Y_1, X_2 + \symrm{i} Y_2, \cdots, X_n + \symrm{i} Y_n $ 互相独立。
+
+\subparagraph{期望} $ E(Z) = E(X) + \symrm{i} E(Y) $
+
+\paragraph{特征函数} 设 $ X $ 的分布函数为 $ F_X(x) $ 称
+\begin{equation}
+    \phi(t) = E(e^{\symrm{i}tX}) = \int_{-\infty}^{\infty}e^{\symrm{i}tx}\diff F(x) = \left\{
+    \begin{array}{l}
+        \displaystyle{\sum_{j=1}^{\infty} e^{\symrm{i}tx_j}p_j} \\
+        \displaystyle{\int_{-\infty}^{\infty} e^{\symrm{i}tx} f(x) \diff x}
+    \end{array}
+    \right.
+\end{equation}
+为 $ X $ 的特征函数。
+
+\subparagraph{存在性} 因为 $ e^{\symrm{i}tx} = \cos tx + \symrm{i} \sin tx $
+即 $ \left| e^{\symrm{i}tx} \right| = 1 $ 则 $ E(e^{\symrm{i}tx}) $ 总存在。
+
+\subparagraph{性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ \phi(0) = 1 $, $ \left| \phi(t) \right| \leqslant \phi(0) $, $ \phi(-t) = \overline{\phi(t)} $
+    \item 特征函数 $ \phi(t) $ 在 $ \mathbb{R} $ 上一致连续
+    \item 特征函数 $ \phi(t) $ 非负定，对 $ \forall t_1, t_2, \cdots, t_n \in \mathbb{R} $ 
+    及 $ \forall a_1, a_2, \cdots, a_n \in \mathbb{C} $ 
+    \begin{equation}
+        \sum_{k=1,j=1}^{n} \phi(t_k - t_j) a_k \overline{a_j} \geqslant 0
+    \end{equation}
+    \item 设 $ a,b $ 是常数， $ Y = aX + b $ 则
+    \begin{equation}
+        \phi_Y(t) = e^{\symrm{i}tx} \phi_X(at)
+    \end{equation}
+    \item 随机变量 $ X,Y $ 独立，则
+    \begin{equation}
+        \phi_{X+Y}(t) = \phi_X(t)\phi_Y(t)
+    \end{equation}
+    可以推广至多个：随机变量 $ X_1, X_2, \cdots, X_n $ 相互独立，则
+    \begin{equation}
+        \phi_{\sum_{i=1}^{n}X_i} (t) = \prod_{i=1}^{n} \phi_{X_i}(t)
+    \end{equation}
+    \item 设随机变量的 $ n $ 阶原点矩存在，则他的特征函数可以微分 $ n $ 次，且
+    \begin{align}
+        E(X^k) & = (-\symrm{i})^k \phi_X^{(k)}(0) \\
+        \phi^{(k)}(0) & = \symrm{i}^k E(X^k)
+    \end{align}
+    其中
+    \begin{equation}
+        \phi^{(k)}(t) = \frac{\diff ^k}{\diff t^k} \int_{-\infty}^{\infty} e^{\symrm{i}tx} \diff F(x)
+    \end{equation}
+    \item 特征函数的凸组合式特征函数。设 $ \{ \phi_n \} $ 是特征函数，若 $ \lambda_n \geqslant 0, \sum \lambda_n = 1 $
+    则称 $ \sum \lambda_n \phi_n $ 也是特征函数。
+    \item 特征函数的乘积也是特征函数。 $ \prod \phi_n $ 是独立和 $ \sum X_n $ 的特征函数。
+    \item 唯一性定理：分布函数由其特征函数唯一确定。
+    \item 逆转公式：若特征函数 $ \phi(t) $ 绝对可积且相应的分布函数 $ F(x) $ 可导且导函数连续，则有
+    \begin{equation}
+        F'(x) = f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-\symrm{i}tx} \phi(t) \diff t
+    \end{equation}
+    对于任意分布函数，有
+    \begin{equation}
+        F(x_2) - F(x_1) = \lim_{T \rightarrow \infty} \frac{1}{2\pi}
+        \int_{-T}^{T} \frac{e^{-\symrm{i}tx_1} - e^{-\symrm{i}tx_2}}{\symrm{i}t}\phi(t) \diff t
+    \end{equation}
+\end{itemize}
+
+\paragraph{多元特征函数} 若随机向量 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的分布函数为 $ F(x_1, x_2, \cdots, x_n) $ ，
+特征函数为
+\begin{equation}
+    \phi(t_1, t_2, \cdots, t_n) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty}
+    e^{\symrm{i}(t_{1}x + t_{2}x^2 + \cdots + t_{n}x^{n} )} \diff F(x_1, x_2, \cdots, x_n)
+    = E(e^{\symrm{i}\symbf{t}^{\symrm{T}}X})
+\end{equation}
+
+\subparagraph{性质} 
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 在 $ \mathbb{R}^n $ 中一致连续，且
+    \begin{align}
+        \left| \phi(t_1, t_2, \cdots, t_n) \right| & \leqslant \phi(0,0,\cdots,0) = 1 \\
+        \phi(-t_1, -t_2, \cdots, -t_n) & = \overline{\phi(t_1, t_2, \cdots, t_n)}
+    \end{align}
+    \item 如果 $ \phi(t_1, t_2, \cdots, t_n) $ 是 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的特征函数，则
+    $ \eta = a_{1}\xi_1 + a_{2}\xi_2 + \cdots + a_{n}\xi_{n} $ 的特征函数为
+    \begin{equation}
+        \phi_\eta(t) = \phi_\xi(a_1\symbf{t}, a_2\symbf{t}, \cdots, a_n\symbf{t}) = \phi_\xi (\symbf{ta})
+    \end{equation}
+    \item 如果 $ E(\xi_1^{k_1} \xi_2^{k_2} \cdots \xi_n^{k_n}) $ 存在，则
+    \begin{eqnarray}
+        E(\xi_1^{k_1} \xi_2^{k_2} \cdots \xi_n^{k_n}) = i^{-\sum_{j=1}^{n}k_j}
+        \left[ \frac{
+            \partial^{k_1 + k_2 + \cdots + k_n} \phi(t_1, t_2, \cdots, t_n)
+        }{
+            \partial t_1^{k_1} \partial t_2^{k_2} \cdots \partial t_n^{k_n}
+        } \right]_{t_1 = t_2 = \cdots = t_n = 0}
+    \end{eqnarray}
+    \item 如果 $ \phi(t_1, t_2, \cdots, t_n) $ 是 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的特征函数，
+    则 $ k(k < n) $ 维随机变量的特征函数是
+    \begin{equation}
+        \phi_{1, 2, \cdots, k} \leqslant \phi(t_1, t_2, \cdots, t_n, 0, \cdots, 0)
+    \end{equation}
+    \item 逆转公式：如果 $ \phi(t_1, t_2, \cdots, t_n) $ 是 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的特征函数，
+    而 $ F(x_1, x_2, \cdots, x_n) $ 是它的分布函数，则
+    \begin{equation}
+        P\left\{ a_k < \xi_k < b_k \right\} 
+        = \lim_{T_j \rightarrow \infty} \frac{1}{(2\pi)^n}
+        \int_{-T_1}^{T_1} \int_{-T_2}^{T_2} \cdots \int_{-T_n}^{T_n}
+        \prod_{k=1}^{n} \frac{
+            e^{-\symrm{i}t_ka_k} - e^{-\symrm{i}t_kb_k}
+        }{
+            \symrm{i}t_k
+        } \cdot \phi(t_1, t_2, \cdots, t_n) \diff t_1, \diff t_2, \cdots, \diff t_n
+    \end{equation}
+    其中，$ k = 1, 2, \cdots, n $ , $ a_k $ 和 $ b_k $ 都是任意实数，但满足 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 落在平行体
+    $ a_k \leqslant \xi_k \leqslant b_k, k = 1, 2, \cdots, n $ 的面上的概率为零。
+    \item 如果 $ \phi(t_1, t_2, \cdots, t_n) $ 是 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的特征函数，
+    而 $ \xi_j $ 的特征函数为 $ \phi_j(t) $ 则随机变量 $ \xi_1, \xi_2, \cdots, \xi_n $ 相互独立的重要条件为
+    \begin{equation}
+        \phi(t_1, t_2, \cdots, t_n) = \phi_{\xi_1}(t_1) \phi_{\xi_2}(t_2) \cdots \phi_{\xi_n}(t_n)
+    \end{equation}
+    \item 设随机向量 $ \xi = (\xi_1, \xi_2, \cdots, \xi_n) $, $ \eta = (\eta_1, \eta_2, \cdots, \eta_m) $
+    的特征函数分别为 $ \phi_1(t_1, t_2, \cdots, t_n) $, $\phi_2(u_1, u_2, \cdots, u_m) $，
+    则 $ \xi $ 与 $ \eta $ 独立的充分必要条件是
+    \begin{equation}
+        \phi(t_1, t_2, \cdots, t_n, u_1, u_2, \cdots, u_m) = \phi_1(t_1, t_2, \cdots, t_n) \phi_2(u_1, u_2, \cdots, u_m)
+    \end{equation}
+    \item 连续性定理：若特征函数列 $ \{ f_k(t_1, t_2, \cdots, t_n) \} $ 收敛于某个连续函数 $ f(t_1, t_2, \cdots, t_n) $ ，
+    则函数 $ f(t_1, t_2, \cdots, t_n) $ 一定为某个分布函数所对应的特征函数。
+    \item 随机向量 $ X = (X_1, X_2, \cdots, X_n) $ 的特征函数为 $ \phi_X(t) $ ，
+    则随机变量 $ Y = \symbf{A}X + \symbf{B} $ 的特征函数是
+    \begin{equation}
+        \phi_Y(t) = \phi_X(\symbf{A}^{\symrm{T}}\symbf{t})e^{\symrm{i}\symbf{t}\symbf{B}}
+    \end{equation}
+\end{itemize}

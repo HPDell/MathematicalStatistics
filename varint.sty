@@ -1,0 +1,457 @@
+%%
+%% This is file `varint.sty',
+%%
+%%\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{varint}[2012/01/09 v1.0 Non-standard LaTeX package]
+
+\DeclareOption{uppi}       {\let\vari@uppi=u}
+\DeclareOption{smalluppi}  {\let\vari@uppi=s}
+\DeclareOption{txuppi}     {\let\vari@uppi=t}
+\DeclareOption{noint}      {\let\vari@upint@=n}
+\DeclareOption{esint}      {\let\vari@upint@=u \chardef\vari@upint=0}
+\DeclareOption{euler}      {\let\vari@upint@=u \chardef\vari@upint=1}
+\DeclareOption{fourier}    {\let\vari@upint@=u \chardef\vari@upint=2}
+\DeclareOption{kepler}     {\let\vari@upint@=u \chardef\vari@upint=3}
+\DeclareOption{lucida}     {\let\vari@upint@=u \chardef\vari@upint=4}
+\DeclareOption{mathabx}    {\let\vari@upint@=u \chardef\vari@upint=5}
+\DeclareOption{mathdesign} {\let\vari@upint@=u \chardef\vari@upint=6}
+\DeclareOption{mtpro2}     {\let\vari@upint@=u \chardef\vari@upint=7}
+\DeclareOption{nopi}       {\let\vari@uppi=n}
+\DeclareOption{tau}        {\let\vari@tau=t}
+\DeclareOption{partial}    {\let\vari@partial=p}
+\DeclareOption{partialu}   {\let\vari@partial=l}
+\DeclareOption{mathscr}    {\let\vari@mathscr=m}
+\DeclareOption{mathscrf}   {\let\vari@mathscr=f}
+\DeclareOption{mathbb}     {\let\vari@mathbb=b}
+\DeclareOption{mathcal}    {\let\vari@mathcal=m}
+\DeclareOption{mathfrak}   {\let\vari@mathfrak=m}
+\DeclareOption{overparen}  {\let\vari@overparen=w}
+\DeclareOption{brace}      {\let\vari@brace=f}
+\DeclareOption{nouppi}     {\let\vari@uppi=n}
+\DeclareOption{comma}      {\let\vari@comma=c}
+\ExecuteOptions{nouppi,esint}
+\ProcessOptions*\relax
+
+\def\hmmax{0}     % default 3
+\def\bmmax{0}     % default 4
+
+\@ifpackageloaded{amsmath} {}{\RequirePackage{amsmath}}
+\@ifpackageloaded{bm}      {}{\RequirePackage{bm}}
+\@ifpackageloaded{etoolbox}{}{\RequirePackage{etoolbox}}
+
+\def\WarningIfLoaded@varint#1#2{%
+  \AtBeginDocument{\@ifpackageloaded{#2}{\PackageWarning{#1}{%
+        Package '#2' shouldn't be used in conjonction with
+        package #1,}}{}}}
+
+\ifx\vari@uppi n\relax
+\else\undef{\uppi}
+\ifx\vari@uppi t\relax
+    \PackageInfo{varint}{Using txfonts for upright Greek}
+    \DeclareFontFamily{OML}{la@txmia}{\skewchar\font127 }
+    \DeclareFontShape{OML}{la@txmia}{m} {n}{<-> txmia}{}
+    \DeclareFontShape{OML}{la@txmia}{b} {n}{<-> txbmia}{}
+    \DeclareFontShape{OML}{la@txmia}{bx}{n}{<->ssub * la@txmia/b/it}{}
+    \DeclareSymbolFont{la@txmia}{OML}{la@txmia}{m}{n}
+    \SetSymbolFont{la@txmia}{bold}{OML}{la@txmia}{b}{n}
+    \DeclareMathSymbol{\uppi}{\mathord}{la@txmia}{25}
+\else\ifx\vari@uppi u\relax
+    \PackageInfo{varint}{Using Adobe Symbol for upright Greek}
+    \DeclareFontFamily{OML}{la@psy}{}
+    \DeclareFontShape{OML}{la@psy}{m}{n}{<->psyr}{}
+    \DeclareSymbolFont{ugrf@m}{OML}{la@psy}{m}{n}
+    \DeclareFontSubstitution{OML}{la@psy}{m}{n}
+    \DeclareMathSymbol{\uppi}{\mathord}{ugrf@m}{`p}
+\else\ifx\vari@uppi s\relax
+    \PackageInfo{varint}{Using Adobe Symbol, scaled 900, for upright Greek}
+    \DeclareFontFamily{OML}{la@psy}{}
+    \DeclareFontShape{OML}{la@psy}{m}{n}{<->s*[.9]psyr}{}
+    \DeclareSymbolFont{ugrf@m}{OML}{la@psy}{m}{n}
+    \DeclareFontSubstitution{OML}{la@psy}{m}{n}
+    \DeclareMathSymbol{\uppi}{\mathord}{ugrf@m}{`p}
+\else\relax\fi\fi\fi
+    \ifdef{\uppi}{\let\pi\uppi}{}
+\fi
+
+\ifx\vari@tau t\relax
+  \DeclareFontFamily{OML}{mt@greek}{\skewchar\font45}
+  \DeclareFontShape{OML}{mt@greek}{m}{it}{
+    <-7> s * [1.1]  mt2mif  <7-9> s * [1.1]  mt2mis  <9-> s * [1.1]  mt2mit}{}
+  \DeclareFontShape{OML}{mt@greek}{b}{it}{
+    <-7> s * [1.1]  mt2bmif <7-9> s * [1.1]  mt2bmis <9-> s * [1.1]  mt2bmit}{}
+  \DeclareFontSubstitution{OML}{mt@greek}{m}{it}
+  \DeclareSymbolFont{mt@greek}{OML}  {mt@greek}{m}{it}
+  \SetSymbolFont{mt@greek}{bold}{OML}{mt@greek}{b}{it}
+  \DeclareMathSymbol{\tau}{\mathalpha}{mt@greek}{"1C}
+\fi
+
+\ifx\vari@upint@ u\relax
+  \def\vari@int@list{int,oint,oiint,barint,idotsint,iint,iiint,oiiint,iiiint}
+  \newrobustcmd*\vari@forcs@a[1]{\csundef{vari@#1op}}
+  \expandafter\forcsvlist\expandafter\vari@forcs@a\expandafter{\vari@int@list}
+  \def\intkern@{\mkern-12mu\mathchoice{\mkern-1mu}{}{}{}}
+  \def\vari@intdots#1{{\cdot}\mkern#1mu{\cdot}\mkern#1mu{\cdot}}
+  \def\intdots@{\mathchoice
+      {\mkern-8mu\vari@intdots{1}\mkern-8mu}
+      {\mkern-6mu\vari@intdots{.25}\mkern-6mu}
+      {\mkern-6mu\vari@intdots{.25}\mkern-6mu}
+      {\mkern-6mu\vari@intdots{.25}\mkern-6mu}}
+  \ifcase\vari@upint\relax % 0
+    \WarningIfLoaded@varint{varint}{esint}
+    \PackageInfo{varint}{Using esint style}
+    \DeclareFontFamily{OMX}{es@int}{}
+    \DeclareFontShape{OMX}{es@int}{m}{n}{<-> esint10}{}
+    \DeclareSymbolFont{es@int}{OMX}{es@int}{m}{n}
+    \DeclareFontSubstitution{OMX}{es@int}{m}{n}
+    \DeclareMathSymbol{\vari@intop}     {\mathop}{es@int}{1}
+    \DeclareMathSymbol{\vari@iintop}    {\mathop}{es@int}{3}
+    \DeclareMathSymbol{\vari@iiintop}   {\mathop}{es@int}{5}
+    \DeclareMathSymbol{\vari@iiiintop}  {\mathop}{es@int}{7}
+    \DeclareMathSymbol{\vari@idotsintop}{\mathop}{es@int}{9}
+    \DeclareMathSymbol{\vari@ointop}    {\mathop}{es@int}{11}
+    \DeclareMathSymbol{\vari@oiintop}   {\mathop}{es@int}{33}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern14mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-20mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}%
+      \int}
+  \or % 1
+    \PackageInfo{varint}{Using euler-int style}
+    \DeclareFontFamily{OMX}{eu@int}{}
+    \DeclareFontShape{OMX}{eu@int}{m}{n}{
+      <-7.5> euex7  <7.5-8.5> euex8  <8.5-9.5> euex9  <9.5-> euex10 }{}
+    \DeclareSymbolFont{eu@int}{OMX}{eu@int}{m}{n}
+    \DeclareFontSubstitution{OMX}{eu@int}{m}{n}
+    \DeclareMathSymbol{\vari@intop}     {\mathop}{eu@int}{82}
+    \DeclareMathSymbol{\vari@ointop}    {\mathop}{eu@int}{72}
+    \def\intkern@{\mkern-7mu}
+    \def\intdots@{\mathchoice
+        {\mkern-6mu\vari@intdots{.25}\mkern-7mu}
+        {\mkern-5mu\vari@intdots{.25}\mkern-5mu}
+        {\mkern-5mu\vari@intdots{.25}\mkern-5mu}
+        {\mkern-5mu\vari@intdots{.25}\mkern-5mu}}
+    \def\ints@b{\mathop\bgroup\let\ilimits@\egroup}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern6mu}\mkern-13mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern6mu}\mkern-13mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern6mu}\mkern-13mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern6mu}\mkern-13mu}%
+      \int}
+    \newrobustcmd*\lowint{\mkern3mu\underline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu\int}
+  \or % 2
+    \PackageInfo{varint}{Using fourier-int style}
+    \DeclareFontFamily{OMX}{fouri@er}{}
+    \DeclareFontShape{OMX}{fouri@er}{m}{n}{<-> s * [.95] fourier-mex}{}
+    \DeclareSymbolFont{fouri@er}{OMX}{fouri@er}{m}{n}
+    \DeclareFontSubstitution{OMX}{fouri@er}{m}{n}
+    \DeclareMathSymbol{\vari@intop}     {\mathop}{fouri@er}{82}
+    \DeclareMathSymbol{\vari@iintop}    {\mathop}{fouri@er}{206}
+    \DeclareMathSymbol{\vari@iiintop}   {\mathop}{fouri@er}{208}
+    \DeclareMathSymbol{\vari@ointop}    {\mathop}{fouri@er}{72}
+    \DeclareMathSymbol{\vari@oiintop}   {\mathop}{fouri@er}{210}
+    \DeclareMathSymbol{\vari@oiiintop}  {\mathop}{fouri@er}{212}
+    \DeclareMathSymbol{\vari@barintop}  {\mathop}{fouri@er}{214}
+    \def\intkern@{\mkern-9mu\mathchoice{\mkern-2mu}{}{}{}}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern11mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-18mu}
+        {\mkern8mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-15mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}%
+      \int}
+    \newrobustcmd*\lowint{\mkern2mu\underline{\vphantom{\vari@intop}\mkern7mu}\mkern-9mu\int}
+  \or % 3
+    \PackageInfo{varint}{Using kepler-int style}
+    \DeclareFontFamily{OMX}{kp@int@i} {}
+    \DeclareFontFamily{OMX}{kp@int@ii}{}
+    \DeclareFontShape{OMX}{kp@int@i} {m} {n}{<-> jkpex}  {}
+    \DeclareFontShape{OMX}{kp@int@i} {b} {n}{<-> jkpbex} {}
+    \DeclareFontShape{OMX}{kp@int@ii}{m} {n}{<-> jkpexa} {}
+    \DeclareFontShape{OMX}{kp@int@ii}{b} {n}{<-> jkpbexa}{}
+    \DeclareSymbolFont{kp@int@i} {OMX}{kp@int@i} {m}{n}
+    \DeclareSymbolFont{kp@int@ii}{OMX}{kp@int@ii}{m}{n}
+    \DeclareFontSubstitution{OMX}{kp@int@i} {m}{n}
+    \DeclareFontSubstitution{OMX}{kp@int@ii}{m}{n}
+    \SetSymbolFont{kp@int@i} {bold}{OMX}{kp@int@i} {b}{n}
+    \SetSymbolFont{kp@int@ii}{bold}{OMX}{kp@int@ii}{b}{n}
+    \DeclareMathSymbol{\vari@intop}     {\mathop}{kp@int@i} {82}
+    \DeclareMathSymbol{\vari@ointop}    {\mathop}{kp@int@i} {72}
+    \DeclareMathSymbol{\vari@iintop}    {\mathop}{kp@int@ii}{33}
+    \DeclareMathSymbol{\vari@iiintop}   {\mathop}{kp@int@ii}{35}
+    \DeclareMathSymbol{\vari@iiiintop}  {\mathop}{kp@int@ii}{37}
+    \DeclareMathSymbol{\vari@idotsintop}{\mathop}{kp@int@ii}{39}
+    \DeclareMathSymbol{\vari@oiintop}   {\mathop}{kp@int@ii}{8}
+    \DeclareMathSymbol{\vari@oiiintop}  {\mathop}{kp@int@ii}{41}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern11mu\overline{\vphantom{\vari@intop}\mkern8mu}\mkern-20mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}%
+      \int}
+  \newrobustcmd*\lowint{\mkern3mu\underline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu\int}
+  \or % 4
+    \PackageInfo{varint}{Using lucida-int style}
+    \DeclareFontFamily{OMX}{ld@int}{}
+    \DeclareFontShape{OMX}{ld@int}{m}{n}{<-> hlcrv}{}
+    \DeclareSymbolFont{ld@int}{OMX}{ld@int}{m}{n}
+    \DeclareFontSubstitution{OMX}{ld@int}{m}{n}
+    \DeclareMathSymbol{\vari@intop}     {\mathop}{ld@int}{82}
+    \DeclareMathSymbol{\vari@ointop}    {\mathop}{ld@int}{72}
+    \DeclareMathSymbol{\vari@oiintop}   {\mathop}{ld@int}{144}
+    \def\intkern@{\mkern-7.4mu\mathchoice{\mkern-.6mu}{}{}{}}
+    \def\intdots@{\mathchoice
+        {\mkern-6mu\vari@intdots{.25}\mkern-7mu}
+        {\mkern-5mu\vari@intdots{.25}\mkern-5mu}
+        {\mkern-5mu\vari@intdots{.25}\mkern-5mu}
+        {\mkern-5mu\vari@intdots{.25}\mkern-5mu}}
+    \def\ints@b{\mathop\bgroup\let\ilimits@\egroup}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern9mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-15mu}
+        {\mkern6mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}
+        {\mkern6mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}
+        {\mkern6mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}%
+      \int}
+    \newrobustcmd*\lowint{\mkern3mu\underline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu\int}
+  \or % 5
+    \PackageInfo{varint}{Using mathabx-int style}
+    \DeclareFontFamily{OMX}{ma@thx}{\hyphenchar\font45}
+    \DeclareFontShape{OMX}{ma@thx}{m}{n}{
+        <-5.5>    s * [.9] mathx5        <5.5-6.5> s * [.9] mathx6
+        <6.5-7.5> s * [.9] mathx7        <7.5-8.5> s * [.9] mathx8
+        <8.5-9.5> s * [.9] mathx9        <9.5-11>  s * [.9] mathx10
+        <11->     s * [.9] mathx12}{}
+    \DeclareSymbolFont{ma@thx}{OMX}{ma@thx}{m}{n}
+    \DeclareFontSubstitution{OMX}{ma@thx}{m}{n}
+    \DeclareMathSymbol{\vari@intop}   {\mathop}{ma@thx}{179}
+    \DeclareMathSymbol{\vari@iintop}  {\mathop}{ma@thx}{180}
+    \DeclareMathSymbol{\vari@iiintop} {\mathop}{ma@thx}{181}
+    \DeclareMathSymbol{\vari@ointop}  {\mathop}{ma@thx}{182}
+    \DeclareMathSymbol{\vari@oiintop} {\mathop}{ma@thx}{183}
+    \DeclareMathSymbol{\vari@oiiintop}{\mathop}{ma@thx}{182}
+    \def\intkern@{\mkern-4mu\mathchoice{\mkern-4mu}{}{}{}}
+    \def\intdots@{\mathchoice
+        {\mkern-6mu\vari@intdots{1}\mkern-7mu}
+        {\mkern-4mu\vari@intdots{.25}\mkern-4mu}
+        {\mkern-4mu\vari@intdots{.25}\mkern-4mu}
+        {\mkern-4mu\vari@intdots{.25}\mkern-4mu}}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern9mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-16mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu}
+        {\mkern3mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu}%
+      \int}
+  \or % 6
+    \PackageInfo{varint}{Using mathdesign-int style}
+    \DeclareFontFamily{OMX}{md@int@i} {}
+    \DeclareFontFamily{OMX}{md@int@ii}{}
+    \DeclareFontShape{OMX}{md@int@i} {m}{n}{<->s * [0.75]  mdputb7v}{}
+    \DeclareFontShape{OMX}{md@int@ii}{m}{n}{<->s * [0.75]  mdputbmb}{}
+    \DeclareSymbolFont{md@int@i} {OMX}{md@int@i} {m}{n}
+    \DeclareSymbolFont{md@int@ii}{OMX}{md@int@ii}{m}{n}
+    \DeclareFontSubstitution{OMX}{md@int@i}{m}{n}
+    \DeclareFontSubstitution{OMX}{md@int@ii}{m}{n}
+    \DeclareMathSymbol{\vari@intop}     {\mathop}{md@int@i}{82}
+    \DeclareMathSymbol{\vari@ointop}    {\mathop}{md@int@i}{72}
+    \DeclareMathSymbol{\vari@oiintop}   {\mathop}{md@int@ii}{134}
+    \DeclareMathSymbol{\vari@oiiintop}  {\mathop}{md@int@ii}{136}
+    \def\intkern@{\mkern-7mu\mathchoice{\mkern-1mu}{}{}{}}
+    \def\intdots@{\mathchoice
+        {\mkern-8mu\vari@intdots{1}\mkern-7mu}
+        {\mkern-6mu\vari@intdots{.25}\mkern-6mu}
+        {\mkern-6mu\vari@intdots{.25}\mkern-6mu}
+        {\mkern-6mu\vari@intdots{.25}\mkern-6mu}}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern9mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-15mu}
+        {\mkern6mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}
+        {\mkern6mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}
+        {\mkern6mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-13mu}%
+      \int}
+    \newrobustcmd*\lowint{\mkern2mu\underline{\vphantom{\vari@intop}\mkern7mu}\mkern-9mu\int}
+  \or % 7
+    \PackageInfo{varint}{Using mtpro2-int style}
+    \DeclareMathVersion{heavy}
+    \providerobustcmd*\heavymath{\@nomath\heavymath\mathversion{heavy}}
+    \DeclareFontFamily{OMX}{mt2@int}{}
+    \DeclareFontShape{OMX}{mt2@int}{m} {n} {<-> mt2exa} {}
+    \DeclareFontShape{OMX}{mt2@int}{b} {n} {<-> mt2bexa}{}
+    \DeclareFontShape{OMX}{mt2@int}{eb}{n} {<-> mt2hexa}{}
+    \DeclareSymbolFont{mt2@int}{OMX}{mt2@int}{m}{n}
+    \DeclareFontSubstitution{OMX}{mt2@int}{m}{n}
+    \SetSymbolFont{mt2@int}{bold} {OMX}{mt2@int}{b} {n}
+    \SetSymbolFont{mt2@int}{heavy}{OMX}{mt2@int}{eb}{n}
+    \DeclareMathSymbol{\vari@intop}   {\mathop}{mt2@int}{82}
+    \DeclareMathSymbol{\vari@ointop}  {\mathop}{mt2@int}{72}
+    \DeclareMathSymbol{\vari@iintop}  {\mathop}{mt2@int}{146}
+    \DeclareMathSymbol{\vari@iiintop} {\mathop}{mt2@int}{148}
+    \DeclareMathSymbol{\vari@oiintop} {\mathop}{mt2@int}{150}
+    \DeclareMathSymbol{\vari@oiiintop}{\mathop}{mt2@int}{152}
+    \DeclareMathSymbol{\vari@barintop}{\mathop}{mt2@int}{170}
+    \def\intkern@{\mkern-10mu\mathchoice{\mkern-3mu}{}{}{}}
+    \newrobustcmd*\upint{\mathchoice
+        {\mkern11mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-19mu}
+        {\mkern8mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-15mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}
+        {\mkern7mu\overline{\vphantom{\vari@intop}\mkern7mu}\mkern-14mu}%
+      \int}
+  \else
+    \relax
+  \fi
+  \def\@X@int#1{\mathchoice
+    {\@XX@int\displaystyle\textstyle{#1}}
+    {\@XX@int\textstyle\scriptstyle{#1}}%
+    {\@XX@int\scriptstyle\scriptscriptstyle{#1}}
+    {\@XX@int\scriptscriptstyle\scriptscriptstyle{#1}}\!\int}
+  \def\@XX@int#1#2#3{{\setbox\z@=\hbox{$#1{#2#3}{\vari@intop}$}\vcenter{\hbox{$#2#3$}}\kern-.49\wd\z@}}
+  \providerobustcmd*\lowint{\mkern3mu\underline{\vphantom{\vari@intop}\mkern7mu}\mkern-10mu\int}
+  \providerobustcmd*\vari@barintop{\@X@int{\bm{-}}}
+  \AfterEndPreamble{%
+    \newrobustcmd*\vari@forcs@b[1]{\csundef{#1}\csletcs{#1op}{vari@#1op}}%
+    \expandafter\forcsvlist\expandafter\vari@forcs@b\expandafter{\vari@int@list}%
+    \newrobustcmd*\int{\DOTSI\vari@intop\ilimits@}%
+    \newrobustcmd*\oint{\DOTSI\vari@ointop\ilimits@}%
+    \newrobustcmd*\barint{\DOTSI\vari@barintop\ilimits@}%
+    \ifundef{\vari@idotsintop}
+      {\newrobustcmd*\idotsint{\DOTSI\MultiIntegral{0}}}
+      {\newrobustcmd*\idotsint{\DOTSI\vari@idotsintop\ilimits@}}%
+    \ifundef{\vari@iintop}
+      {\newrobustcmd*\iint{\DOTSI\MultiIntegral{2}}}
+      {\newrobustcmd*\iint{\DOTSI\vari@iintop\ilimits@}}%
+    \ifundef{\vari@iiintop}
+      {\newrobustcmd*\iiint{\DOTSI\MultiIntegral{3}}}
+      {\newrobustcmd*\iiint{\DOTSI\vari@iiintop\ilimits@}}%
+    \ifundef{\vari@iiiintop}
+      {\newrobustcmd*\iiiint{\DOTSI\MultiIntegral{4}}}
+      {\newrobustcmd*\iiiint{\DOTSI\vari@iiiintop\ilimits@}}%
+    \ifundef{\vari@oiintop}
+      {\newrobustcmd*\oiint{\oint}}
+      {\newrobustcmd*\oiint{\DOTSI\vari@oiintop\ilimits@}}%
+    \ifundef{\vari@oiiintop}
+      {\newrobustcmd*\oiiint{\oint}}
+      {\newrobustcmd*\oiiint{\DOTSI\vari@oiiintop\ilimits@}}%
+  }
+\fi
+
+\ifx\vari@partial p\relax
+  \DeclareFontFamily{OML}{mt@letters}{\skewchar\font45}
+  \DeclareFontShape{OML}{mt@letters}{m}{it}{<-7> mt2mif   <7-9> mt2mis   <9-> mt2mit}{}
+  \DeclareFontShape{OML}{mt@letters}{b}{it}{<-7> mt2bmif  <7-9> mt2bmis  <9-> mt2bmit}{}
+  \DeclareFontSubstitution{OML}{mt@letters}{m}{it}
+  \DeclareSymbolFont{mt@letters}{OML}  {mt@letters}{m}{it}
+  \SetSymbolFont{mt@letters}{bold}{OML}{mt@letters}{b}{it}
+  \DeclareMathSymbol{\partial}{\mathord}{mt@letters}{"40}
+\else\ifx\vari@partial l\relax
+  \DeclareFontFamily{OML}{lu@letters}{\skewchar\font=127}
+  \DeclareFontShape{OML}{lu@letters}{m}{it}{<->hlcrim}{}
+  \DeclareFontShape{OML}{lu@letters}{b}{it}{<->hlcdim}{}
+  \DeclareFontSubstitution{OML}{lu@letters}{m}{it}
+  \DeclareSymbolFont{lu@letters}{OML}  {lu@letters}{m}{it}
+  \SetSymbolFont{lu@letters}{bold}{OML}{lu@letters}{b}{it}
+  \DeclareMathSymbol{\partial}{\mathord}{lu@letters}{"40}
+\fi\fi
+
+\ifx\vari@mathscr m\relax
+  \WarningIfLoaded@varint{varint}{mathrsfs}
+  \DeclareFontFamily{OMS}{mdput@scr}{\skewchar\font=48}
+  \DeclareFontShape{OMS}{mdput@scr}{m} {n}{<-> s    * [0.92]  mdputr7y} {}
+  \DeclareFontShape{OMS}{mdput@scr}{b} {n}{<-> s    * [0.92]  mdputb7y} {}
+  \DeclareFontShape{OMS}{mdput@scr}{bx}{n}{<-> ssub * mdput@scr/b/n}    {}
+  \DeclareFontSubstitution{OMS}{mdput@scr}{m}{n}
+  \DeclareSymbolFont{vari@scr}{OMS}{mdput@scr}{m}{n}
+  \SetSymbolFont{vari@scr}{bold}{OMS}{mdput@scr}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathscr}{vari@scr}
+\else\ifx\vari@mathscr f\relax
+  \WarningIfLoaded@varint{varint}{mathrsfs}
+  \DeclareFontFamily{OMS}{fourier@scr}{\skewchar\font=48}
+  \DeclareFontShape{OMS}{fourier@scr}{m} {n}{<-> futsy}{}
+  \DeclareFontShape{OMS}{fourier@scr}{b} {n}{<-> s    * [0.92]  mdputb7y} {}
+  \DeclareFontShape{OMS}{fourier@scr}{bx}{n}{<-> ssub * fourier@scr/b/n}  {}
+  \DeclareFontSubstitution{OMS}{fourier@scr}{m}{n}
+  \DeclareSymbolFont{vari@scr}{OMS}{fourier@scr}{m}{n}
+  \SetSymbolFont{vari@scr}{bold}{OMS}{fourier@scr}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathscr}{vari@scr}
+\fi\fi
+
+\ifx\vari@mathbb b\relax
+  \DeclareFontFamily{OMS}{mt2hr@bb}{}
+  \DeclareFontShape{OMS}{mt2hr@bb}{m} {n} {<-7> mt2hrbf  <7-9> mt2hrbs  <9-> mt2hrbt} {}
+  \DeclareFontShape{OMS}{mt2hr@bb}{m} {it}{<-7> mt2hbif  <7-9> mt2hbis  <9-> mt2hbit} {}
+  \DeclareFontShape{OMS}{mt2hr@bb}{b} {n} {<-7> mt2hrbdf <7-9> mt2hrbds <9-> mt2hrbdt}{}
+  \DeclareFontShape{OMS}{mt2hr@bb}{bx}{n} {<-> ssub * mt2hr@bb/b/n}{}
+  \DeclareFontSubstitution{OMS}{mt2hr@bb}{m}{n}
+  \DeclareSymbolFont{vari@bb}{OMS}{mt2hr@bb}{m}{n}
+  \DeclareSymbolFont{vari@bbsl}{OMS}{mt2hr@bb}{m}{it}
+  \SetSymbolFont{vari@bb}{bold}{OMS}{mt2hr@bb}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathbb}{vari@bb}
+  \DeclareSymbolFontAlphabet{\varmathbb}{vari@bbsl}
+\fi
+
+\ifx\vari@mathcal m\relax
+  \DeclareFontFamily{OMS}{mt2ms@cal}{}
+  \DeclareFontShape{OMS}{mt2ms@cal}{m} {n}{<-7> mt2msf  <7-9> mt2mss  <9-> mt2mst} {}
+  \DeclareFontShape{OMS}{mt2ms@cal}{b} {n}{<-7> mt2bmsf <7-9> mt2bmss <9-> mt2bmst}{}
+  \DeclareFontShape{OMS}{mt2ms@cal}{bx}{n}{<->  ssub * mt2ms@cal/b/n}{}
+  \DeclareFontSubstitution{OMS}{mt2ms@cal}{m}{n}
+  \DeclareSymbolFont{vari@cal}{OMS}{mt2ms@cal}{m}{n}
+  \SetSymbolFont{vari@cal}{bold}{OMS}{mt2ms@cal}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathcal}{vari@cal}
+\fi
+
+\ifx\vari@mathfrak m\relax
+  \DeclareFontFamily{OMS}{mt2mf@frak}{}
+  \DeclareFontShape{OMS}{mt2mf@frak}{m} {n} {<-7> mt2mff  <7-9> mt2mfs  <9-> mt2mft} {}
+  \DeclareFontShape{OMS}{mt2mf@frak}{b} {n} {<-7> mt2bmff <7-9> mt2bmfs <9-> mt2bmft}{}
+  \DeclareFontShape{OMS}{mt2mf@frak}{bx}{n} {<->  ssub * mt2mf@frak/b/n}{}
+  \DeclareFontSubstitution{OMS}{mt2mf@frak}{m}{n}
+  \DeclareSymbolFont{vari@frak}{OMS}{mt2mf@frak}{m}{n}
+  \SetSymbolFont{vari@frak}{bold}{OMS}{mt2mf@frak}{b}{n}
+  \DeclareSymbolFontAlphabet{\mathfrak}{vari@frak}
+\fi
+
+\ifx\vari@overparen w\relax
+  \DeclareFontFamily{OMX}{mdput@ex}{}
+  \DeclareFontShape{OMX}{mdput@ex}{m} {n}{<-> mdugmr7v}{}
+  \DeclareFontShape{OMX}{mdput@ex}{b} {n}{<-> mdugmm7v}{}
+  \DeclareFontShape{OMX}{mdput@ex}{bx}{n}{<->ssub * mdput@ex/b/n} {}
+  \DeclareSymbolFont{md@ex@}{OMX}  {mdput@ex}{m}{n}
+  \SetSymbolFont{md@ex@}{bold}{OMX}{mdput@ex}{b}{n}
+  \DeclareMathAccent{\overparen}{\mathord}{md@ex@}{243}
+\fi
+
+\ifx\vari@comma c\relax
+  \PackageInfo{varint}{Using Chinese Fullwidth Comma Style}
+  \DeclareFontFamily{OML}{zhc@mma}{}
+  \DeclareFontShape{OML}{zhc@mma}{m} {n}{<-> ZhMathPunct}{}
+  \DeclareFontShape{OML}{zhc@mma}{b} {n}{<-> ZhMathPunctBd}{}
+  \DeclareFontShape{OML}{zhc@mma}{bx}{n}{<->ssub * zhc@mma/b/n}{}
+  \DeclareSymbolFont{zhc@mm@}{OML}  {zhc@mma}{m}{n}
+  \SetSymbolFont{zhc@mm@}{bold}{OML}{zhc@mma}{b}{n}
+  \DeclareFontSubstitution{OML}{zhc@mma}{m}{n}
+  \AtBeginDocument{%
+    \DeclareMathSymbol{,}{\mathpunct}{zhc@mm@}{"0C}%
+    \DeclareMathSymbol{;}{\mathpunct}{zhc@mm@}{"1B}%
+  }
+\fi
+
+\ifx\vari@brace f\relax
+  \DeclareFontFamily{OMS}{f@brace}{\skewchar \font =48}
+  \DeclareFontShape{OMS}{f@brace}{m}{n}{<-> futsy}{}
+  \DeclareFontFamily{OMX}{f@brace}{}
+  \DeclareFontShape{OMX}{f@brace}{m}{n}{<-> s * [.92] fourier-mex}{}
+  \DeclareFontSubstitution{OMS}{f@brace}{m}{n}
+  \DeclareFontSubstitution{OMX}{f@brace}{m}{n}
+  \DeclareSymbolFont{f@bsym}{OMS}{f@brace}{m}{n}
+  \DeclareSymbolFont{f@blsym}{OMX}{f@brace}{m}{n}
+  \DeclareMathDelimiter{\rbrace}{\mathclose}{f@bsym}{103}{f@blsym}{170}
+  \DeclareMathDelimiter{\lbrace}{\mathopen}{f@bsym}{102}{f@blsym}{169}
+  \def\bigggl{\mathopen\biggg}
+  \def\bigggr{\mathclose\biggg}
+  \def\Bigggl{\mathopen\Biggg}
+  \def\Bigggr{\mathclose\Biggg}
+  \AfterEndPreamble{%
+    \protected\def\biggg{\bBigg@{3.5}}%
+    \protected\def\Biggg{\bBigg@{4}}}
+\fi
+
+\endinput
+%%
+%% End of file `varint.sty'. 

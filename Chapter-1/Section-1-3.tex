@@ -1,0 +1,37 @@
+\section{随机变量的独立性}
+
+\paragraph{二维随机变量的独立性} 若二维随机变量 $ (X,Y) $ 对任意实数 $ x,y $ 都有
+$$ P\{ X \leqslant x, Y \leqslant y \} = P\{ X \leqslant x \} P\{ Y \leqslant y \} $$
+即 $$ F(x,y) = F_X(x)F_Y(y) $$
+成立，则称随机变量 $ X $ 与 $ Y $ 是相互独立的。
+
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 当 $ X,Y $ 独立时，由 $ X,Y $ 的边缘分布可以唯一决定 $ (X,Y) $ 的联合分布。
+    可直接推广至两个以上随机变量的相互独立性。
+    \item 二元正态随机变量边缘分布相互独立的充分必要条件为 $$ \rho = 0 $$
+\end{itemize}
+
+\paragraph{$ n $ 维随机变量的独立性} 设 $ X_{1}, X_{2}, \cdots, X_{n} $ 是定义在概率空间 $ \Omega, \mathcal{F}, P $
+上的 $ n $ 个随机变量，若对于任意实数 $ x_{1}, x_{2}, \cdots, x_{n} $ ，有
+$$ P\left\{ X_{1} < x_1, X_{2} < x_2, \cdots, X_{n} < x_n \right\} = 
+P\left\{ X_{1} < x_1 \right\} P\left\{ X_{2} < x_2 \right\} \cdots P\left\{ X_{n} < x_n \right\} $$
+则称 $ X_{1}, X_{2}, \cdots, X_{n} $ 相互独立。联合分布函数
+$$ F(x_{1}, x_{2}, \cdots, x_{n}) = F_1(x_{1}) F_2(x_{2}) \cdots F_n(x_{n}) $$
+
+\subparagraph{充要条件} 
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 离散型： $$ P\left\{ X_{1}=x_1, X_{2}=x_2, \cdots, X_{n}=x_n \right\} = 
+    P\left\{ X_1 = x_1 \right\} P\left\{ X_2 = x_2 \right\} \cdots P\left\{ X_n = x_n \right\}  $$
+    \item 连续型： $$ f(x_{1}, x_{2}, \cdots, x_{n}) = f_1(x_1) f_2(x_2) \cdots f_n(x_n) $$
+\end{itemize}
+
+\subparagraph{性质} 若随机变量 $ X_{1}, X_{2}, \cdots, X_{n} $ 相互独立，则
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 其中任意 $ m(2 \leqslant m \leqslant n) $ 个随机变量也独立
+    \item 他们的函数 $ g_i(X_i) $ 也是随机变量，也相互独立
+    \item 函数 $ g_i(X_{j_{1}^{(i)}}, X_{j_{2}^{(i)}}, \cdots, X_{j_{t_i}^{(i)}}) $ 是随机变量，
+    记 $ A_i = \{j_{1}^{(i)}, j_{2}^{(i)}, \cdots, j_{t_i}^{(i)} \} $ ，
+    若对任意 $ i,j $ 有 $ A_i A_j = \Phi $
+    则 $ g_i(X_{j_{1}^{(i)}}, X_{j_{2}^{(i)}}, \cdots, X_{j_{t_i}^{(i)}}) $ 也是相互独立的。
+    这类函数是非常宽泛的一类函数。
+\end{itemize}
