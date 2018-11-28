@@ -79,3 +79,35 @@ $$ F_Z(z) = P\left\{ Z < z \right\} = P\left\{ g(x,y) < z \right\}
 
 
 \subparagraph{积分转换法}
+
+\paragraph{二元函数积分转换法} 设 $ X_1, X_2 $ 的联合密度函数为 $ f(x_1, x_2) $，若对于函数
+$$ \left\{ \begin{array}{ll}
+    y_1 = g_1(X_1,X_2) \\
+    y_2 = g_2(X_1,X_2)
+\end{array} \right. $$
+如果对任何有界连续的二元函数 $ h = g(y_1, y_2) $ 满足以下条件
+\begin{equation}
+    \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(g_1(x_1, x_2), g_1(x_1, x_2))
+    f(x_1, x_2) \diff x_1, \diff x_2 = \iint_D h(y_1, y_2)p(y_1,y_2) \diff y_1 \diff y_2
+\end{equation}
+则 $ (Y_1,Y_2) $ 的联合密度函数为
+\begin{equation}
+    f_{Y_1,Y_2}(y_1,y_2) = \left\{ \begin{array}{ll}
+        p(y_1, y_2), & (y_1, y_2) \in D \\
+        0, & (y_1, y_2) \notin D
+    \end{array} \right.
+\end{equation}
+
+\paragraph{多元函数积分转换法} 设 $ X_1, X_2, \cdots, X_n $ 的联合密度函数为 $ f(x_1, x_2, \cdots, x_n) $，
+函数 $ y = g(x_1, x_2, \cdots, x_n) $ ，如果对任意有界连续函数 $ h(y) $ 满足以下条件
+\begin{equation}
+    \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(g(x_1, x_2, \cdots, x_n))
+    f(x_1, x_2, \cdots, x_n) \diff x_1, \diff x_2, \cdots, \diff x_n = \int_D h(y)p(y) \diff y
+\end{equation}
+则 $ Y = g(X_1, X_2, \cdots, X_n) $ 的密度函数为
+\begin{equation}
+    f_Y(y) = \left\{ \begin{array}{ll}
+        p(y), & y \in D \\
+        0, & y \notin D
+    \end{array} \right.
+\end{equation}
