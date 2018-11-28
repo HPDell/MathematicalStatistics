@@ -126,5 +126,11 @@
     \begin{equation}
         \phi(t_1, t_2, \cdots, t_n, u_1, u_2, \cdots, u_m) = \phi_1(t_1, t_2, \cdots, t_n) \phi_2(u_1, u_2, \cdots, u_m)
     \end{equation}
-    \item 连续性定理：若特征函数列 $ \{ f_k(t_1, t_2, \cdots, t_n) \} $ 收敛于某个连续函数 $ f(t_1, t_2, \cdots, t_n) $
+    \item 连续性定理：若特征函数列 $ \{ f_k(t_1, t_2, \cdots, t_n) \} $ 收敛于某个连续函数 $ f(t_1, t_2, \cdots, t_n) $ ，
+    则函数 $ f(t_1, t_2, \cdots, t_n) $ 一定为某个分布函数所对应的特征函数。
+    \item 随机向量 $ X = (X_1, X_2, \cdots, X_n) $ 的特征函数为 $ \phi_X(t) $ ，
+    则随机变量 $ Y = \symbf{A}X + \symbf{B} $ 的特征函数是
+    \begin{equation}
+        \phi_Y(t) = \phi_X(\symbf{A}^{\symrm{T}}\symbf{t})e^{\symrm{i}\symbf{t}\symbf{B}}
+    \end{equation}
 \end{itemize}
