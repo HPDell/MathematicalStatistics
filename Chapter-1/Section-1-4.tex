@@ -1,1 +1,81 @@
 \section{随机变量函数的分布}
+
+\subsection{单个随机变量函数的分布}
+
+\paragraph{离散型} 设 $ X $ 是离散型随机变量，且概率函数为
+$$ P\left\{ X = x_i \right\} = p_i, \quad i = 1, 2, \cdots $$
+则 $ Y = f(X) $ 是离散型随机变量，其分布律为
+$$ P\left\{ Y = f(x_i) \right\} = p_i, \quad i = 1, 2, \cdots $$
+其中 $ f(x_i) $ 相同的值的概率应相加。
+
+\paragraph{连续型} 设 $ X $ 为连续型随机变量，其概率密度函数为 $ f(x) $
+
+\subparagraph{反函数法}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 若 $ y = g(x) $ 严格单调，反函数 $ g^{-1}(y) $ 有连续导数，则 $ Y = g(X) $ 是具有如下分布密度的连续型随机变量
+    $$ f_Y(y) = \left\{ \begin{array}{ll}
+        f(g^{-1}(y))\left| (g^{-1}(y))' \right|, & \alpha < y < \beta \\
+        0, & y \leqslant \alpha , y \geqslant \beta
+    \end{array} \right. $$
+    其中
+    \begin{align*}
+        \alpha & = \min \left\{ g(-\infty), g(+\infty) \right\} \\
+        \beta & = \max \left\{ g(-\infty), g(+\infty) \right\}
+    \end{align*}
+    \item 若 $ y = g(x) $ 在 $ I_1, I_2, \cdots $ 不相重叠的区间上逐段严格单调，其反函数分别为 $ h_1(y), h_2(y), \cdots$ ，
+    他们在各自区间上有连续导数，则 $ Y = g(X) $ 是连续型随机变量，其分布密度在相应区间内为
+    $$ f(h_1(y))\left| h'_1(y) \right| + f(h_2(y))\left| h'_2(y) \right| + \cdots $$
+    \item 一般地，有
+    $$ f_Y(y) = \ddfrac{f_X(x_1)}{
+        \left| \frac{\diff y}{\diff x} \right|_{x = x_1}
+    } + \ddfrac{f_X(x_2)}{
+        \left| \frac{\diff y}{\diff x} \right|_{x = x_2}
+    } + \cdots + \ddfrac{f_X(x_n)}{
+        \left| \frac{\diff y}{\diff x} \right|_{x = x_n}
+    } $$
+\end{itemize}
+
+\subparagraph{分布函数微分法} 先用定义求 $ Y $ 的分布函数 $ F_Y(y) $ 再求导得到密度函数 $ f_Y(y) $
+$$ F_Y(y) = P\left\{ Y \leqslant y \right\} = P\left\{ g(X) \leqslant y \right\} = \int_S f_X(x) \diff x $$
+其中 $ S = \left\{ x \left| g(x) \leqslant y \right. \right\} $ 而 $ Y = g(X) $ 的分布密度为
+$$ f_Y(y) = \frac{\diff F_Y(y)}{\diff y} $$
+
+\paragraph{标准化随机变量} 若随机变量 $ X $ 有有限方差 $ DX > 0 $ ，则
+$$ Y = \frac{X - EX}{DX} $$ 满足 $ EY = 0, DY = 1 $ 称为 $ X $ 的标准化随机变量。
+
+\subsection{随机向量函数的分布} 
+
+\paragraph{离散型} 设 $ (X,Y) $ 是离散型随机变量，且概率函数为
+$$ P\left\{ X = x_i, Y = y_i \right\} = p_{ij}, \quad i,j = 1, 2, \cdots $$
+则 $ Z = g(X,Y) $ 是离散型随机变量，其分布律为
+$$ P\left\{ Z = g(x_i,y_i) \right\} = p_{ij}, \quad i,j = 1, 2, \cdots $$
+其中 $ g(x_i,y_i) $ 相同的值的概率应相加。
+
+\paragraph{连续型} 
+
+\subparagraph{分布函数微分法} 设 $ (X,Y) $ 是二位连续性随机变量，其联合概率密度为 $ f(x,y) $ ，
+则 $ Z = g(X,Y) $ 的分布函数为
+$$ F_Z(z) = P\left\{ Z < z \right\} = P\left\{ g(x,y) < z \right\} 
+= \iint_D f(x,y) \diff x \diff y = \iint_{g(x,y) < z} f(x,y) \diff x \diff y $$
+
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item \textbf{和的分布}：设 $ Z = X + Y $ 则 $ Z $ 的密度函数为
+    \begin{equation}
+        f_Z(z) = \int_{-\infty}^{+\infty} f(z-y,y) \diff y = \int_{-\infty}^{+\infty} f(x,z-x) \diff x
+    \end{equation}
+    当 $ X,Y $ 独立时，$ f_Z(z) = f_X(x) * f_Y(y) $ 。
+    \item \textbf{最大最小值的分布}：设 $ M = \max(X_1, X_2, \cdots, X_n) $, $ N = \min(X_1, X_2, \cdots, X_n) $，
+    则 $ M,N $ 的分布函数分别为
+    \begin{align}
+        F_M(z) & = F_{X_1}(z) F_{X_2}(z) \cdots  F_{X_n}(z)\\
+        F_N(z) & = 1 - [1 - F_{X_1}(z)][1 - F_{X_2}(z)] \cdots [1 - F_{X_n}(z)]
+    \end{align}
+    当 $ X_1, X_2, \cdots, X_n $ 独立同分布时，
+    \begin{align}
+        F_M(z) & = [F_{X}(z)]^n \\
+        F_N(z) & = 1 - [1 - F_{X}(z)]^n
+    \end{align}
+\end{itemize}
+
+
+\subparagraph{积分转换法}
