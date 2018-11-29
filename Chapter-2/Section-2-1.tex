@@ -1,0 +1,64 @@
+\section{总体与样本}
+
+\paragraph{总体与个体} 研究对象的全体称为\highlight{总体}，
+总体中所包含的个体的个数称为总体的\highlight{容量}。
+总体中每个成员称为\highlight{个体}。
+
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 由于每个个体的出现是随机的，所以相应的数量指标的出现也带有随机性。
+    从而可以把这种数量指标看作一个随机变量$ X $，因此随机变量$ X $的分布就是该数量指标在总体中的分布。
+    \item 总体就可以用一个随机变量及其分布来描述。因此在理论上可以把总体与概率分布等同起来。
+    统计中，总体这个概念的要旨是：总体就是一个随机变量(向量)或一个概率分布。
+\end{itemize}
+
+\paragraph{样本} 
+总体中抽出若干个体而成的集体，称为\highlight{样本}。样本中所含个体的个数，称为\highlight{样本容量}。
+
+\paragraph{抽样} 统计中，采用的抽样方法是随机抽样法，即子样中每个个体是从总体中随意地取出来的。
+\subparagraph{抽样的分类} 
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item \highlight{重复（返回）抽样}：从总体中抽取个体检查后放回，总体成分不变（分布不变）。
+    样本 $ X_1, X_2, \cdots, X_n $ 相互独立，与总体有相同的分布。
+    \item \highlight{非重复（无返回）抽样}：对有限总体取出样本后改变了总体的成分，所以 $ X_1, X_2, \cdots, X_n $ 不相互独立；
+    对无限总体而言做无返回抽取，并不改变总体的成分， $ X_1, X_2, \cdots, X_n $ 相互独立，与总体有相同的分布。
+\end{itemize}
+
+\subparagraph{常用方法} 简单随机抽样。
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 代表性（随机性）：。 从总体中抽取样本的每一个分量$ X_k $是随机的，每一个个体被抽到的可能性相同。
+    \item 独立同分布性： $ X_1, X_2, \cdots, X_n $ 相互独立，其中每一个分量$ X_k $与所考察的总体有相同的分布。
+\end{itemize}
+
+\subparagraph{样本联合分布} 若总体的分布函数为 $ F(x) $ 、概率密度为 $ f(x) $ ，则其简单随机样本的联合分布函数为
+\begin{equation}
+    F_{X_1, X_2, \cdots, X_n}(x_1, x_2, \cdots, x_n) = F(1) F(2) \cdots F(n)
+\end{equation}
+其简单随机样本的联合概率密度函数为
+\begin{equation}
+    f_{X_1, X_2, \cdots, X_n}(x_1, x_2, \cdots, x_n) = f(1) f(2) \cdots f(n)
+\end{equation}
+
+\paragraph{样本经验分布函数} 在 $ n $ 次独立重复实验中，事件 $ \left\{ X \leqslant x \right\}  $ 发生的频率
+\begin{equation}
+    \hat{F}_n(x;X_1, X_2, \cdots, X_n) = \frac{1}{n} \sum_{i=1}^{n} I(X_i \leqslant x)
+\end{equation}
+具有分布函数的一切性质。是在每个数据点 $ X_i $ 上权重相等的均匀分布的分布函数。
+
+\subparagraph{性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 给定 $ x $， $ \hat{F}_n(x) $ 是一个随机变量： $ n\hat{F}_n(x) $ 服从二项分布 $ b(n, F(x)) $ 
+    \item $ E(\hat{F}_n(x)) = F(x) $
+    \item $ D(\hat{F}_n(x)) = \frac{F(x)(1-F(x))}{n} \rightarrow 0 $
+    \item $ \hat{F}_n(x) \xrightarrow{P} F(x) $
+    \item Dvoretzky-Kiefer-Wolfowitz (DKW)不等式：如果 $ X_1, X_2, \cdots, X_n \sim F $ ，则对任意 $ \epsilon > 0 $
+    \begin{equation}
+        P\left\{ \sup_x \left| \hat{F}_n(x)) - F(x) \right| > \epsilon \right\}  \leqslant 2e^{-2n\epsilon^2}
+    \end{equation}
+\end{itemize}
+
+\subparagraph{格列汶科定理} 当 $ n \rightarrow \infty $ 时， $ \hat{F}_n(x) $ 以概率 $ 1 $ 关于 $ x $ 一致收敛于 $ F(x) $ ，
+即
+\begin{equation}
+    P\left\{ \lim_{n\rightarrow\infty} \sup_{-\infty<x<\infty} \left| \hat{F}_n(x) - F(x) \right| = 0 \right\} = 1
+\end{equation}
+当样本容量 $ n $ 足够大时，对所有的 $ x $,  $ \hat{F}_n(x) $ 与 $ F(x) $ 之差的绝对值都很小，这件事发生的概率为 $ 1 $ 。
