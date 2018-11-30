@@ -1,0 +1,31 @@
+language: bash
+sudo: required
+dist: trusty
+before_install:
+  - curl -L https://github.com/HPDell/travis-texlive/releases/download/2018-11-30_02/texlive.tar.xz | tar -JxC ~
+  - PATH=$HOME/texlive/bin/x86_64-linux:$PATH
+  - wget https://github.com/alif-type/xits/releases/download/v1.200/XITS-1.200.zip -O XITS.zip
+  - unzip XITS.zip
+  - sudo mkdir -p /usr/share/fonts/opentype/
+  - sudo mv ./XITS-1.200/XITS*.otf /usr/share/fonts/opentype/
+  - sudo mkfontscale
+  - sudo mkfontdir
+  - sudo fc-cache -fv
+  - sudo pip install Pygments
+branches:
+  only:
+    - /^v[\d.]+\d$/
+script:
+  - xelatex -synctex=1 -interaction=nonstopmode -shell-escape MathematicalStatistics.tex
+  - xelatex -synctex=1 -interaction=nonstopmode -shell-escape MathematicalStatistics.tex
+  - xelatex -synctex=1 -interaction=nonstopmode -shell-escape MathematicalStatistics.tex
+deploy:
+  provider: release
+  api_key:
+    secure: $GITHUB_TOKEN
+  file: 
+    - MathematicalStatistics.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+  
