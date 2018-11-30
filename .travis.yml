@@ -20,7 +20,7 @@ script:
   - xelatex -synctex=1 -interaction=nonstopmode -shell-escape MathematicalStatistics.tex
   - xelatex -synctex=1 -interaction=nonstopmode -shell-escape MathematicalStatistics.tex
 deploy:
-  provider: release
+  provider: releases
   api_key:
     secure: $GITHUB_TOKEN
   file: 
