@@ -52,16 +52,15 @@ $$ D(X) = E((X - E(X))^2) $$
 \begin{table}[htbp]
     \centering
     \caption{常见分布的期望和方差}
-    \begin{tabular}{llcc} \toprule
-        \multicolumn{2}{c}{分布} & 期望 & 方差 \\\midrule
-        0-1分布 & $ 1(p) $ & $ p $ & $ p(1-p) $ \\\midrule
-        二项分布 & $ b(n,p) $ & $ p $ & $ np(1-p) $ \\\midrule
-        泊松分布 & $ \pi(\lambda) $ & $ \lambda $ & $ \lambda $ \\\midrule
-        均匀分布 & $ U[a,b] $ & $ \ddfrac{b-a}{2} $ & $ \ddfrac{(b-a)^2}{12} $ \\\midrule
-        指数分布 & $ e(\theta) $ & $ \theta $ & $ \theta^2 $ \\\midrule
-        正态分布 & $ N(\mu, \theta^2) $ & $ \mu $ & $ \theta^2 $ \\\bottomrule
-        
-    \end{tabular}
+    \begin{tabularx}{\textwidth}{llYYY} \toprule
+        \multicolumn{2}{c}{分布} & 概率质量（密度）函数 & 期望 & 方差 \\\midrule
+        0-1分布 & $ 1(p) $ &  & $ p $ & $ p(1-p) $ \\\midrule
+        二项分布 & $ b(n,p) $ &  & $ p $ & $ np(1-p) $ \\\midrule
+        泊松分布 & $ \pi(\lambda) $ &  & $ \lambda $ & $ \lambda $ \\\midrule
+        均匀分布 & $ U[a,b] $ &  & $ \ddfrac{b-a}{2} $ & $ \ddfrac{(b-a)^2}{12} $ \\\midrule
+        指数分布 & $ e(\theta) $ &  & $ \theta $ & $ \theta^2 $ \\\midrule
+        正态分布 & $ N(\mu, \theta^2) $ &  & $ \mu $ & $ \theta^2 $ \\\bottomrule
+    \end{tabularx}
 \end{table}
 
 \paragraph{协方差} 设二维随机变量 $ (X,Y) $ 若 $ E((X - E(X))(Y - E(Y))) $ 存在，则称他为 $ X $ 与 $ y $ 的协方差，

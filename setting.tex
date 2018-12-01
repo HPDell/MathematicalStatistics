@@ -56,6 +56,9 @@
 % \usepackage{tikz}
 \usepackage{multicol}
 \usepackage{booktabs}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{Z}{>{\raggedleft\arraybackslash}X}
 
 %------------------------------------------------------------------------------
 % Define new macros
@@ -92,8 +95,6 @@
 \allowdisplaybreaks
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
-\setlength{\abovecaptionskip}{0cm}
-\setlength{\belowcaptionskip}{-0.5\baselineskip}
 \usepackage[inline]{enumitem}
 \setlist{topsep=0pt,partopsep=0pt,parsep=0pt,itemsep=0pt,itemjoin=\quad\quad}
 %% 脚注每页重新标号
@@ -101,3 +102,8 @@
 % \setcounter{secnumdepth}{3}
 % 积分号样式
 \usepackage[fourier]{varint}
+% 表格行距
+\renewcommand\arraystretch{1.3}
+% 题注格式
+\usepackage{caption}
+\captionsetup{labelfont=bf,labelsep=quad}
