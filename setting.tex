@@ -1,6 +1,8 @@
 %------------------------------------------------------------------------------
 % Ctex
 %------------------------------------------------------------------------------
+\newcommand{\paragraphnamebox}[1]{\makebox[2em][l]{#1}}
+\newcommand{\subparagraphnamebox}[1]{\makebox[2em][l]{#1}}
 \setcounter{secnumdepth}{7}
 \ctexset{
     section = {
@@ -9,13 +11,17 @@
     paragraph = {
         name = {(,)},
         number = \arabic{paragraph},
-        numbering = true
+        numbering = true,
+        aftername = {},
+        nameformat = \paragraphnamebox
     },
     subparagraph = {
         name = {(,)},
         number = \roman{subparagraph},
         numbering = true,
-        beforeskip = 0pt
+        beforeskip = 0pt,
+        aftername = {},
+        nameformat = \subparagraphnamebox
     }
 }
 
