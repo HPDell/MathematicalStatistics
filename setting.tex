@@ -80,12 +80,16 @@
     \begin{itemize}[leftmargin=\paritemindent]
 }{
     \end{itemize}
+    \hangafter=1\setlength{\hangindent}{2em}
 }
 \newenvironment{subparitemize}{
     \begin{itemize}[leftmargin=\subparitemindent]
 }{
     \end{itemize}
+    \hangafter=1\setlength{\hangindent}{4em}
 }
+\newcommand{\hparagraph}[1]{\paragraph{#1} \hangafter=1\setlength{\hangindent}{2em}}
+\newcommand{\hsubparagraph}[1]{\subparagraph{#1} \hangafter=1\setlength{\hangindent}{4em}}
 
 %------------------------------------------------------------------------------
 % Format setting

@@ -2,15 +2,15 @@
 
 \subsection{单个随机变量函数的分布}
 
-\paragraph{离散型} 设 $ X $ 是离散型随机变量，且概率函数为
+\hparagraph{离散型} 设 $ X $ 是离散型随机变量，且概率函数为
 $$ P\left\{ X = x_i \right\} = p_i, \quad i = 1, 2, \cdots $$
 则 $ Y = f(X) $ 是离散型随机变量，其分布律为
 $$ P\left\{ Y = f(x_i) \right\} = p_i, \quad i = 1, 2, \cdots $$
 其中 $ f(x_i) $ 相同的值的概率应相加。
 
-\paragraph{连续型} 设 $ X $ 为连续型随机变量，其概率密度函数为 $ f(x) $
+\hparagraph{连续型} 设 $ X $ 为连续型随机变量，其概率密度函数为 $ f(x) $
 
-\subparagraph{反函数法}
+\hsubparagraph{反函数法}
 \begin{itemize}[leftmargin=\subparitemindent]
     \item 若 $ y = g(x) $ 严格单调，反函数 $ g^{-1}(y) $ 有连续导数，则 $ Y = g(X) $ 是具有如下分布密度的连续型随机变量
     $$ f_Y(y) = \left\{ \begin{array}{ll}
@@ -35,25 +35,25 @@ $$ P\left\{ Y = f(x_i) \right\} = p_i, \quad i = 1, 2, \cdots $$
     } $$
 \end{itemize}
 
-\subparagraph{分布函数微分法} 先用定义求 $ Y $ 的分布函数 $ F_Y(y) $ 再求导得到密度函数 $ f_Y(y) $
+\hsubparagraph{分布函数微分法} 先用定义求 $ Y $ 的分布函数 $ F_Y(y) $ 再求导得到密度函数 $ f_Y(y) $
 $$ F_Y(y) = P\left\{ Y \leqslant y \right\} = P\left\{ g(X) \leqslant y \right\} = \int_S f_X(x) \diff x $$
 其中 $ S = \left\{ x \left| g(x) \leqslant y \right. \right\} $ 而 $ Y = g(X) $ 的分布密度为
 $$ f_Y(y) = \frac{\diff F_Y(y)}{\diff y} $$
 
-\paragraph{标准化随机变量} 若随机变量 $ X $ 有有限方差 $ DX > 0 $ ，则
+\hparagraph{标准化随机变量} 若随机变量 $ X $ 有有限方差 $ DX > 0 $ ，则
 $$ Y = \frac{X - EX}{DX} $$ 满足 $ EY = 0, DY = 1 $ 称为 $ X $ 的标准化随机变量。
 
 \subsection{随机向量函数的分布} 
 
-\paragraph{离散型} 设 $ (X,Y) $ 是离散型随机变量，且概率函数为
+\hparagraph{离散型} 设 $ (X,Y) $ 是离散型随机变量，且概率函数为
 $$ P\left\{ X = x_i, Y = y_i \right\} = p_{ij}, \quad i,j = 1, 2, \cdots $$
 则 $ Z = g(X,Y) $ 是离散型随机变量，其分布律为
 $$ P\left\{ Z = g(x_i,y_i) \right\} = p_{ij}, \quad i,j = 1, 2, \cdots $$
 其中 $ g(x_i,y_i) $ 相同的值的概率应相加。
 
-\paragraph{连续型} 
+\hparagraph{连续型} 
 
-\subparagraph{分布函数微分法} 设 $ (X,Y) $ 是二位连续性随机变量，其联合概率密度为 $ f(x,y) $ ，
+\hsubparagraph{分布函数微分法} 设 $ (X,Y) $ 是二位连续性随机变量，其联合概率密度为 $ f(x,y) $ ，
 则 $ Z = g(X,Y) $ 的分布函数为
 $$ F_Z(z) = P\left\{ Z < z \right\} = P\left\{ g(x,y) < z \right\} 
 = \iint_D f(x,y) \diff x \diff y = \iint_{g(x,y) < z} f(x,y) \diff x \diff y $$
@@ -78,36 +78,40 @@ $$ F_Z(z) = P\left\{ Z < z \right\} = P\left\{ g(x,y) < z \right\}
 \end{itemize}
 
 
-\subparagraph{积分转换法}
+\hsubparagraph{积分转换法}
 
-\paragraph{二元函数积分转换法} 设 $ X_1, X_2 $ 的联合密度函数为 $ f(x_1, x_2) $，若对于函数
-$$ \left\{ \begin{array}{ll}
-    y_1 = g_1(X_1,X_2) \\
-    y_2 = g_2(X_1,X_2)
-\end{array} \right. $$
-如果对任何有界连续的二元函数 $ h = g(y_1, y_2) $ 满足以下条件
-\begin{equation}
-    \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(g_1(x_1, x_2), g_1(x_1, x_2))
-    f(x_1, x_2) \diff x_1 \diff x_2 = \iint_D h(y_1, y_2)p(y_1,y_2) \diff y_1 \diff y_2
-\end{equation}
-则 $ (Y_1,Y_2) $ 的联合密度函数为
-\begin{equation}
-    f_{Y_1,Y_2}(y_1,y_2) = \left\{ \begin{array}{ll}
-        p(y_1, y_2), & (y_1, y_2) \in D \\
-        0, & (y_1, y_2) \notin D
-    \end{array} \right.
-\end{equation}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item \textbf{二元函数积分转换法}： 设 $ X_1, X_2 $ 的联合密度函数为 $ f(x_1, x_2) $，若对于函数
+    $$ \left\{ \begin{array}{ll}
+        y_1 = g_1(X_1,X_2) \\
+        y_2 = g_2(X_1,X_2)
+    \end{array} \right. $$
+    如果对任何有界连续的二元函数 $ h = g(y_1, y_2) $ 满足以下条件
+    \begin{equation}
+        \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(g_1(x_1, x_2), g_1(x_1, x_2))
+        f(x_1, x_2) \diff x_1 \diff x_2 = \iint_D h(y_1, y_2)p(y_1,y_2) \diff y_1 \diff y_2
+    \end{equation}
+    则 $ (Y_1,Y_2) $ 的联合密度函数为
+    \begin{equation}
+        f_{Y_1,Y_2}(y_1,y_2) = \left\{ \begin{array}{ll}
+            p(y_1, y_2), & (y_1, y_2) \in D \\
+            0, & (y_1, y_2) \notin D
+        \end{array} \right.
+    \end{equation}
 
-\paragraph{多元函数积分转换法} 设 $ X_1, X_2, \cdots, X_n $ 的联合密度函数为 $ f(x_1, x_2, \cdots, x_n) $，
-函数 $ y = g(x_1, x_2, \cdots, x_n) $ ，如果对任意有界连续函数 $ h(y) $ 满足以下条件
-\begin{equation}
-    \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(g(x_1, x_2, \cdots, x_n))
-    f(x_1, x_2, \cdots, x_n) \diff x_1 \diff x_2 \cdots \diff x_n = \int_D h(y)p(y) \diff y
-\end{equation}
-则 $ Y = g(X_1, X_2, \cdots, X_n) $ 的密度函数为
-\begin{equation}
-    f_Y(y) = \left\{ \begin{array}{ll}
-        p(y), & y \in D \\
-        0, & y \notin D
-    \end{array} \right.
-\end{equation}
+    \item \textbf{多元函数积分转换法}： 设 $ X_1, X_2, \cdots, X_n $ 的联合密度函数为 $ f(x_1, x_2, \cdots, x_n) $，
+    函数 $$ y = g(x_1, x_2, \cdots, x_n) $$ 如果对任意有界连续函数 $ h(y) $ 满足以下条件
+    \begin{equation}
+        \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(g(x_1, x_2, \cdots, x_n))
+        f(x_1, x_2, \cdots, x_n) \diff x_1 \diff x_2 \cdots \diff x_n = \int_D h(y)p(y) \diff y
+    \end{equation}
+    则 $ Y = g(X_1, X_2, \cdots, X_n) $ 的密度函数为
+    \begin{equation}
+        f_Y(y) = \left\{ \begin{array}{ll}
+            p(y), & y \in D \\
+            0, & y \notin D
+        \end{array} \right.
+    \end{equation}
+\end{itemize}
+
+

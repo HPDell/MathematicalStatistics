@@ -2,7 +2,7 @@
 
 \subsection{数学期望}
 
-\paragraph{随机变量的数学期望} 设随机变量 $ X $ 的分布函数为 $ F_X(x) $ ，若积分
+\hparagraph{随机变量的数学期望} 设随机变量 $ X $ 的分布函数为 $ F_X(x) $ ，若积分
 $$ \int_{-\infty}^{+\infty} x \diff F(x) $$ 绝对收敛，
 则该积分值为随机变量 $ X $ 的期望，记为 $ E(X) $ 。
 \begin{itemize}[leftmargin=\paritemindent]
@@ -12,7 +12,7 @@ $$ \int_{-\infty}^{+\infty} x \diff F(x) $$ 绝对收敛，
     $$ E(X) = \int_{-\infty}^{\infty} x f(x) \diff x $$
 \end{itemize}
 
-\paragraph{随机变量函数的数学期望} 设随机变量 $ Y $ 时随机变量 $ X $ 的函数 $ Y = g(X) $ ，
+\hparagraph{随机变量函数的数学期望} 设随机变量 $ Y $ 时随机变量 $ X $ 的函数 $ Y = g(X) $ ，
 随机变量 $ X $ 的分布函数为 $ F_X(x) $ ，则
 $$ E(Y) = \int_{-\infty}^{\infty} g(x) \diff F(x) $$
 \begin{itemize}[leftmargin=\paritemindent]
@@ -22,20 +22,20 @@ $$ E(Y) = \int_{-\infty}^{\infty} g(x) \diff F(x) $$
     $$ E(Y) = \int_{-\infty}^{\infty} g(x) f(x) \diff x $$
 \end{itemize}
 
-\paragraph{二维随机向量函数的数学期望} 设 $ (X,Y) $ 为二维随机向量，分布函数为 $ F_{X,Y}(x,y) $ ，
+\hparagraph{二维随机向量函数的数学期望} 设 $ (X,Y) $ 为二维随机向量，分布函数为 $ F_{X,Y}(x,y) $ ，
 又函数 $ g(x,y) $ 在 $ R^2 $ 上连续，则 $ Z = g(X,Y) $ 的数学期望为
 $$ E(Z) = E[g(X,Y)] = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x,y) \diff F(x,y) $$
 要求广义二重积分是绝对收敛的。
 
 \subsection{方差、协方差、相关系数}
 
-\paragraph{方差} 设 $ X $ 是一个随机变量，若 $ E((X - E(X))^2) $ 存在，则称
+\hparagraph{方差} 设 $ X $ 是一个随机变量，若 $ E((X - E(X))^2) $ 存在，则称
 $$ D(X) = E((X - E(X))^2) $$
 是 $ X $ 的方差，方差的算术平方根 $ \sqrt{D(X)} = \sigma(X) $ 称为标准差。
 
-\subparagraph{方差的含义} 方差刻划了随机变量的取值对于其数学期望的离散程度。
+\hsubparagraph{方差的含义} 方差刻划了随机变量的取值对于其数学期望的离散程度。
 
-\subparagraph{方差的运算率}
+\hsubparagraph{方差的运算率}
 \begin{itemize}[leftmargin=\subparitemindent]
     \item $ D(X) = E(X^2) - E^2(X) $
     \item $ D(aX + b) = a^2 D(X) $
@@ -63,9 +63,9 @@ $$ D(X) = E((X - E(X))^2) $$
     \end{tabularx}
 \end{table}
 
-\paragraph{协方差} 设二维随机变量 $ (X,Y) $ 若 $ E((X - E(X))(Y - E(Y))) $ 存在，则称他为 $ X $ 与 $ y $ 的协方差，
+\hparagraph{协方差} 设二维随机变量 $ (X,Y) $ 若 $ E((X - E(X))(Y - E(Y))) $ 存在，则称他为 $ X $ 与 $ y $ 的协方差，
 记为 $ \Cov(X,Y) $ 。
-\subparagraph{协方差的性质}
+\hsubparagraph{协方差的性质}
 
 \begin{itemize}[leftmargin=\subparitemindent]
     \item $ \Cov(X,X) = D(X) $
@@ -76,28 +76,28 @@ $$ D(X) = E((X - E(X))^2) $$
     \item $ \Cov(a,Y) = 0 $
 \end{itemize}
 
-\subparagraph{协方差的含义} 协方差的大小在一定程度上反映了 $ X $ 和 $ Y $ 相互间的关系，
+\hsubparagraph{协方差的含义} 协方差的大小在一定程度上反映了 $ X $ 和 $ Y $ 相互间的关系，
 但它还受 $ X $ 与 $ Y $ 本身度量单位的影响。
 
-\paragraph{相关系数} 设 $ D(X) > 0, D(Y) > 0 $ 则称
+\hparagraph{相关系数} 设 $ D(X) > 0, D(Y) > 0 $ 则称
 \begin{equation}
     \rho_{X,Y} = \frac{\Cov(X,Y)}{\sqrt{D(X)}\sqrt{D(Y)}}
 \end{equation}
 为随机变量 $ X $ 和 $ Y $ 的相关系数。
 
-\subparagraph{性质} 
+\hsubparagraph{性质} 
 \begin{itemize}[leftmargin=\subparitemindent]
     \item $ \rho_{X,Y} \leqslant 1 $
     \item $ \rho_{X,Y} = 1 $ 的充分必要条件是 $ X $ 和 $ Y $ 以概率 $ 1 $ 呈线性关系。
 \end{itemize}
 
-\subparagraph{含义} 相关系数是 $ X $ 和 $ Y $ 间线性关系的一种度量
+\hsubparagraph{含义} 相关系数是 $ X $ 和 $ Y $ 间线性关系的一种度量
 \begin{itemize}[leftmargin=\subparitemindent]
     \item $ \left| \rho_{X,Y} \right| \rightarrow 1 $ ， $ X $ 和 $ Y $ 间的线性关系越显著
     \item $ \left| \rho_{X,Y} \right| \rightarrow 0 $ ， $ X $ 和 $ Y $ 间的线性关系越不显著
 \end{itemize}
 
-\subparagraph{四个等价命题}
+\hsubparagraph{四个等价命题}
 \begin{itemize}[leftmargin=\subparitemindent]
     \item $ \rho_{X,Y} = 0 \Leftrightarrow $ $ X $ 和 $ Y $ 不相关
     \item $ E(XY) = E(X)E(Y) $
@@ -105,7 +105,7 @@ $$ D(X) = E((X - E(X))^2) $$
     \item $ D(X \pm Y) = D(X) + D(Y) $
 \end{itemize}
 
-\subparagraph{不相关性与独立性的关系}
+\hsubparagraph{不相关性与独立性的关系}
 \begin{itemize}[leftmargin=\subparitemindent]
     \item 不相关： $ X $ 和 $ Y $ 之间没有线性关系，并不代表没有其它关系；
     \item 独立： $ X $ 和 $ Y $ 之前完全没有任何关系
@@ -115,15 +115,15 @@ $$ D(X) = E((X - E(X))^2) $$
 
 \subsection{矩、协方差矩阵}
 
-\paragraph{矩} 设 $ X $ 和 $ Y $ 是随机变量，有 $ k,l = 1,2,\cdots $ ，则
+\hparagraph{矩} 设 $ X $ 和 $ Y $ 是随机变量，有 $ k,l = 1,2,\cdots $ ，则
 
-\subparagraph{（原点）矩} 若 $ E(X^k) $ 存在，则称它为 $ X $ 的 $ k $ 阶（原点）矩；
-\subparagraph{中心矩} 若 $ E((X - E(X))^k) $ 存在，则称它为  $ X $ 的 $ k $ 阶中心矩；
-\subparagraph{混合（原点）矩} 若 $ E(X^kY^l) $ 存在，则称它为 $ X $ 和 $ Y $ 的 $ k+l $ 阶混合（原点）矩；
-\subparagraph{混合（原点）矩} 若 $ E((X - E(X))^k (Y - E(Y))^l) $ 存在，
+\hsubparagraph{（原点）矩} 若 $ E(X^k) $ 存在，则称它为 $ X $ 的 $ k $ 阶（原点）矩；
+\hsubparagraph{中心矩} 若 $ E((X - E(X))^k) $ 存在，则称它为  $ X $ 的 $ k $ 阶中心矩；
+\hsubparagraph{混合（原点）矩} 若 $ E(X^kY^l) $ 存在，则称它为 $ X $ 和 $ Y $ 的 $ k+l $ 阶混合（原点）矩；
+\hsubparagraph{混合（原点）矩} 若 $ E((X - E(X))^k (Y - E(Y))^l) $ 存在，
 则称它为 $ X $ 和 $ Y $ 的 $ k+l $ 阶混合中心矩；
 
-\paragraph{协方差矩阵} 若 $ n $ 维随机变量的 $ n^2 $ 个二阶中心矩都存在，将他们排列成矩阵形式，
+\hparagraph{协方差矩阵} 若 $ n $ 维随机变量的 $ n^2 $ 个二阶中心矩都存在，将他们排列成矩阵形式，
 称为 $ (X_1, X_2, \cdots, X_n) $ 的协方差矩阵
 \begin{equation}
     \symbf{B} = \begin{bmatrix}
@@ -134,7 +134,7 @@ $$ D(X) = E((X - E(X))^2) $$
     \end{bmatrix}
 \end{equation}
 
-\subparagraph{性质} 
+\hsubparagraph{性质} 
 \begin{itemize}[leftmargin=\subparitemindent]
     \item 对称矩阵
     \item 非负定矩阵。对于任一 $ n $ 元实列向量 $ \symbf{t} $ 有
@@ -143,7 +143,7 @@ $$ D(X) = E((X - E(X))^2) $$
 
 \subsection{两个重要不等式}
 
-\paragraph{切比雪夫不等式} 对任意具有有限方差的随机变量 $ X $ ，都有
+\hparagraph{切比雪夫不等式} 对任意具有有限方差的随机变量 $ X $ ，都有
 对 $ \forall \epsilon > 0 $ 不等式
 \begin{equation}
     P\left\{ \left| X - E(X) \right| \geqslant \epsilon \right\} \geqslant \frac{D(X)}{\epsilon^2}
@@ -153,7 +153,7 @@ $$ D(X) = E((X - E(X))^2) $$
     P\left\{ \left| X - E(X) \right| < \epsilon \right\} \geqslant 1 - \frac{D(X)}{\epsilon^2}
 \end{equation}
 
-\paragraph{A.L.Cauchy－Schwarz不等式} 设随机向量 $ (X,Y) $ 满足 $ E(X^2) < \infty, E(Y^2) < \infty $
+\hparagraph{A.L.Cauchy－Schwarz不等式} 设随机向量 $ (X,Y) $ 满足 $ E(X^2) < \infty, E(Y^2) < \infty $
 则有 $$ \left[ E(XY) \right]^2 \leqslant E(X^2)E(Y^2) $$
 
 \textbf{推论}：

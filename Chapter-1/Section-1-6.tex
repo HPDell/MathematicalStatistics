@@ -1,14 +1,14 @@
 \section{特征函数}
 
-\paragraph{复随机变量} 设 $ X,Y $ 是概率空间 $ \{ \Omega, \mathcal{F}, P \} $
+\hparagraph{复随机变量} 设 $ X,Y $ 是概率空间 $ \{ \Omega, \mathcal{F}, P \} $
 上的实随机变量，则 $ Z = X + \symrm{}{i}Y $ 称为复随机变量。
 
-\subparagraph{独立性} 如果 $ (X_1,Y_1), (X_2,Y_2), \cdots, (X_n,Y_n) $ 互相独立，
+\hsubparagraph{独立性} 如果 $ (X_1,Y_1), (X_2,Y_2), \cdots, (X_n,Y_n) $ 互相独立，
 就称复随机变量 $ X_1 + \symrm{i} Y_1, X_2 + \symrm{i} Y_2, \cdots, X_n + \symrm{i} Y_n $ 互相独立。
 
-\subparagraph{期望} $ E(Z) = E(X) + \symrm{i} E(Y) $
+\hsubparagraph{期望} $ E(Z) = E(X) + \symrm{i} E(Y) $
 
-\paragraph{特征函数} 设 $ X $ 的分布函数为 $ F_X(x) $ 称
+\hparagraph{特征函数} 设 $ X $ 的分布函数为 $ F_X(x) $ 称
 \begin{equation}
     \phi(t) = E(e^{\symrm{i}tX}) = \int_{-\infty}^{\infty}e^{\symrm{i}tx}\diff F(x) = \left\{
     \begin{array}{l}
@@ -19,10 +19,10 @@
 \end{equation}
 为 $ X $ 的特征函数。
 
-\subparagraph{存在性} 因为 $ e^{\symrm{i}tx} = \cos tx + \symrm{i} \sin tx $
+\hsubparagraph{存在性} 因为 $ e^{\symrm{i}tx} = \cos tx + \symrm{i} \sin tx $
 即 $ \left| e^{\symrm{i}tx} \right| = 1 $ 则 $ E(e^{\symrm{i}tx}) $ 总存在。
 
-\subparagraph{性质}
+\hsubparagraph{性质}
 \begin{itemize}[leftmargin=\subparitemindent]
     \item $ \phi(0) = 1 $, $ \left| \phi(t) \right| \leqslant \phi(0) $, $ \phi(-t) = \overline{\phi(t)} $
     \item 特征函数 $ \phi(t) $ 在 $ \mathbb{R} $ 上一致连续
@@ -67,7 +67,7 @@
     \end{equation}
 \end{itemize}
 
-\paragraph{多元特征函数} 若随机向量 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的分布函数为 $ F(x_1, x_2, \cdots, x_n) $ ，
+\hparagraph{多元特征函数} 若随机向量 $ (\xi_1, \xi_2, \cdots, \xi_n) $ 的分布函数为 $ F(x_1, x_2, \cdots, x_n) $ ，
 特征函数为
 \begin{equation}
     \phi(t_1, t_2, \cdots, t_n) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty}
@@ -75,7 +75,7 @@
     = E(e^{\symrm{i}\symbf{t}^{\symrm{T}}X})
 \end{equation}
 
-\subparagraph{性质} 
+\hsubparagraph{性质} 
 \begin{itemize}[leftmargin=\subparitemindent]
     \item 在 $ \mathbb{R}^n $ 中一致连续，且
     \begin{align}
