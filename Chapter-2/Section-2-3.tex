@@ -1,0 +1,85 @@
+\section{三大统计抽样分布}
+
+\hparagraph{$ \chi^2 $分布} 设 $ X_1, X_2, \cdots, X_n $ 互相独立，都服从正态分布 $ N(0,1) $ 则称随机变量
+\begin{equation}
+    \chi^2 = X_{1}^2, X_{2}^2, \cdots, X_{n}^2
+\end{equation}
+所服从的分布为自由度为 $ n $ 的 $ \chi^2 $ 分布。
+
+\hsubparagraph{密度函数} $ \chi^2 $ 分布的密度函数为
+\begin{equation}
+    f(x;n) = \left\{ \begin{array}{ll}
+        \ddfrac{1}{2^{\frac{n}{2}} \Gamma(n/2)} x^{\frac{n}{2} - 1} e^{-\frac{x}{2}} & x \geqslant 0 \\
+        0 & x < 0
+    \end{array} \right.
+\end{equation}
+
+\hsubparagraph{期望和方差} $ E(X) = n, D(X) = 2n $ 。
+
+\hsubparagraph{性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 设 $ X_1, X_2, \cdots, X_n $ 互相独立，都服从正态分布 $ N(0,1) $ 则
+    \begin{equation}
+        \chi^2 = \frac{1}{\sigma^2} \sum_{i=1}^{n}(X_i - \mu)^2 \sim \chi^2(n)
+    \end{equation}
+    \item \highlight{可加性}： 设 $ X_1 \sim \chi^2(n_1), X_2 \sim \chi^2(n_2) $ 且 $ X_1, X_2 $ 互相独立，则
+    \begin{equation}
+        X_1 + X_2 \sim \chi^2(n_1 + n_2)
+    \end{equation}
+    \item 若 $ \chi^2 \sim \chi^2(n) $ 则当 $ n $ 充分大时， $ \frac{X-n}{\sqrt{2n}} $ 的分布近似正态分布 $ N(0,1) $ 。
+\end{itemize}
+
+\hsubparagraph{上分位点} 对于给定的正数 $ \alpha(0 < \alpha < 1) $ 称满足条件
+\begin{equation}
+    P\left\{ \chi^2 > \chi^2_\alpha(n) \right\} = \int_{\chi^2_\alpha(n)}^{\infty} f(y) \diff y = \alpha
+\end{equation}
+的点 $ \chi^2_\alpha(n) $ 称为 $ \chi^2(n) $ 分布的上 $ \alpha $ 分位点。
+
+\hparagraph{$ t $分布} 设 $ X \sim N(0,1),Y \sim \chi^2(n) $ 且 $ X $ 与 $ Y $ 相互独立，则称变量
+\begin{equation}
+    T = \frac{X}{\sqrt{\ddfrac{Y}{n}}}
+\end{equation}
+所服从的分布为自由度为 $ n $ 的 $ t $ 分布，记为 $ T \sim t(n) $ 。
+
+\hsubparagraph{密度函数} $ t $ 分布的密度函数为
+\begin{equation}
+    h(t) = \frac{\Gamma\left(\frac{n+1}{2}\right)}{\Gamma\left(\frac{n}{2}\right)} \left(1 + \frac{t^2}{n}\right)^{-\frac{n+1}{2}}
+    \quad -\infty < t < \infty
+\end{equation}
+
+\hsubparagraph{期望和方差} $ E(t) = 0, D(t) = \frac{n}{n-2} $ 。
+
+\hsubparagraph{性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 密度函数关于 $ t=0 $ 对称，当 $ n $ 充分大时，其图形近似于标准正态分布概率密度的图形。且
+    \begin{equation}
+        \lim_{n \rightarrow \infty} h(t) = \frac{1}{2\pi} e^{-\frac{t^2}{2}}
+    \end{equation}
+    即当 $ n $ 足够大时， $ T \sim N(0,1) $ 。
+\end{itemize}
+
+\hparagraph{$ F $分布} 设 $ X \sim \chi^2(n_1), Y \sim \chi^2(n_2) $ 且 $ X,Y $ 独立，则称统计量
+\begin{equation}
+    F = \frac{X/n_1}{Y/n-2}
+\end{equation}
+服从自由度为 $ n_1,n_2 $ 的 $ F $ 分布， $ n_1 $ 为第一自由度， $ n_2 $ 为第二自由度，记为 $ F \sim F(n_1,n_2) $ 。
+
+\hsubparagraph{密度函数} $ F $ 分布的密度函数为
+\begin{equation}
+    f(y) = \left\{ \begin{array}{ll}
+        \ddfrac{\Gamma\left(\ddfrac{n_1+n_2}{2}\right)}{\Gamma\left(\ddfrac{n_1}{2}\right)\Gamma\left(\ddfrac{n_2}{2}\right)}
+        \left(\frac{n_1}{n_2}\right) ^{\frac{n_1}{2}}(y)^{\frac{n_1}{2} - 1}
+        \left( 1 + \frac{n_1}{n_2}y \right)^{-\frac{n_1+n_2}{2}} & y > 0 \\
+        0 & y \leqslant 0
+    \end{array} \right.
+\end{equation}
+
+\hsubparagraph{期望和方差} $ E(t) = \frac{n_2}{n_2 - 2} $ 。
+
+\hsubparagraph{性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 即它的数学期望并不依赖于第一自由度。
+    \item 若 $ F \sim F(n_1, n_2) $ 则 $ \frac{1}{F} \sim F(n_2, n_1) $
+    \item $ F_{1 - \alpha}(n_1,n_2) = 1 / F_{\alpha}(n_2,n_1) $
+\end{itemize}
+

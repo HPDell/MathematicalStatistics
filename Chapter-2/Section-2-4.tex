@@ -1,0 +1,54 @@
+\section{正态总体抽样分布定理}
+
+\noindent 设总体 $ X $ 的均值为 $ \mu $ ，方差为 $ \sigma^2 $ ， $ X_1, X_2, \cdots, X_n $ 是来自总体的一个样本，则样本均值 $ \bar{X} $
+和样本方差 $ S^2 $ 有
+\begin{align}
+    E(\bar{X}) & = \mu \\
+    D(\bar{X}) & = \frac{\sigma^2}{\mu} \\
+    E(S^2) & = \sigma^2
+\end{align}
+
+\hparagraph{样本均值的分布} 设 $ X_1, X_2, \cdots, X_n $ 是来自正态总体 $ N(\mu, \sigma^2) $ 的样本， $ \bar{X} $ 是样本均值，则有
+\begin{equation}
+    X \sim N\left(\mu, \frac{\sigma^2}{n}\right)
+\end{equation}
+则
+\begin{equation}
+    \frac{\bar{X} - \mu}{\ddfrac{\sigma^2}{\sqrt{n}}} \sim N(0,1)
+\end{equation}
+
+\hparagraph{样本方差的分布} 设 $ X_1, X_2, \cdots, X_n $ 是来自正态总体 $ N(\mu, \sigma^2) $ 的样本， $ \bar{X} $ 是样本均值，
+$ S^2 $ 是样本方差，则有
+\begin{itemize}[leftmargin=\paritemindent]
+    \item \begin{equation}
+        \frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)
+    \end{equation}
+    \item $ \bar{X} $ 与 $ S^2 $ 独立
+\end{itemize}
+
+
+\hparagraph{样本均值的分布} 设 $ X_1, X_2, \cdots, X_n $ 是来自正态总体 $ N(\mu, \sigma^2) $ 的样本， $ \bar{X} $ 是样本均值，
+$ S^2 $ 是样本方差，则有
+\begin{equation}
+    \frac{\bar{X} - \mu}{\ddfrac{S}{\sqrt{n}}} \sim t(n-1)
+\end{equation}
+
+\hparagraph{两总体样本均值差的分布} 设 $ X\sim N(\mu_1, \sigma_{1}^{2}), X\sim N(\mu_2, \sigma_{2}^{2}) $ 且 $ X,Y $ 独立，
+$ X_1, X_2, \cdots, X_n $ 是来自正态总体 $ X $ 的样本，$ Y_1, Y_2, \cdots, Y_n $ 是来自正态总体 $ Y $ 的样本，
+$ \bar{X},\bar{Y} $ 分别是这两个样本的均值，$ S_{1}^{2}, S_{2}^{2} $ 分别是这两个样本的方差，则有
+\begin{align}
+    \frac{S_{1}^{2}/\sigma_{1}^{2}}{S_{2}^{2}/\sigma_{2}^{2}} & \sim F(n_1 - 1,n_2 -1) \\
+    \ddfrac{(\bar{X} - \bar{Y}) - (\mu_1 - \mu_2)}{
+        \sqrt{\frac{(n_1 - 1)S_{1}^{2} + (n_2 - 1)S_{2}^{2}}{n_1 + n_2 - 2}}
+        \sqrt{\frac{1}{n_1} + \frac{1}{n_2}}
+    } & \sim t(n_1 + n_2 - 2)
+\end{align}
+
+\hparagraph{Cochran定理}  设 $ X_1, X_2, \cdots, X_n $ 独立同分布，服从 $ N(0,1) $ ， $ X = (X_1, X_2, \cdots, X_n)^{\symrm{T}} $ ，
+$$ Q = \sum_{i=1}^{n}X_{i}^{2} = \sum_{l=1}^{n}Q_l $$ 是 $ X = (X_1, X_2, \cdots, X_n)^{\symrm{T}} $ 的二次型，
+$ Q = X^{\symrm{T}}A_l X $ 则下述结论成立的充要条件是 $$ n = \sum_{i=1}^{k} n_i $$
+\begin{itemize}[leftmargin=\paritemindent]
+    \item $ Q_1, Q_2, \cdots, Q_k $ 相互独立
+    \item $ Q_l \sim \chi^2(n_l) $
+\end{itemize}
+

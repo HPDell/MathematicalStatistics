@@ -1,13 +1,13 @@
 \section{统计量}
 
-\paragraph{统计量} 不含任何未知参数的样本的函数称为统计量。它是完全由样本决定的量。
+\hparagraph{统计量} 不含任何未知参数的样本的函数称为统计量。它是完全由样本决定的量。
 \begin{itemize}[leftmargin=\paritemindent]
     \item 统计量是随机变量
     \item 设 $ X_1, X_2, \cdots, X_n $ 是来自总体$ X $ 的一个样本， $ x_1, x_2, \cdots, x_n $ 是一个样本的观察值，
     则 $ g(x_1, x_2, \cdots, x_n) $ 也是统计量 $ g(X_1, X_2, \cdots, X_n) $ 的观察值。
 \end{itemize}
 
-\paragraph{常见统计量}
+\hparagraph{常见统计量}
 \begin{itemize}[leftmargin=\paritemindent]
     \item \highlight{样本均值}：
     $$ \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i $$
@@ -27,7 +27,7 @@
     $$ D_n = X_{(n)} - X_{(1)} $$
 \end{itemize}
 
-\paragraph{常见统计量的性质}
+\hparagraph{常见统计量的性质}
 \begin{itemize}[leftmargin=\paritemindent]
     \item $ E(\bar{X}) = E(X) = \mu $
     \item $ D(\bar{X}) = \frac{D(X)}{n} = \frac{\sigma^2}{n} $
@@ -42,7 +42,7 @@
     \end{equation}
 \end{itemize}
 
-\paragraph{统计量的分布} 设总体分布的特征函数为 $ \phi_X(t) $ ，则 $ \bar{X} $ 的特征函数是
+\hparagraph{统计量的分布} 设总体分布的特征函数为 $ \phi_X(t) $ ，则 $ \bar{X} $ 的特征函数是
 \begin{equation}
     \phi_{\bar{X}}(t) = \left(\phi_X\left(\frac{t}{n}\right)\right)^n
 \end{equation}
@@ -51,6 +51,9 @@
     $$ \phi_{\bar{X}}(t) = e^{\symrm{i}\mu t - \frac{1}{2} \frac{\sigma^2}{n} t^2} $$
     \item 泊松分布：
     $$ \phi_{\bar{X}}(t) = \exp \left( n\lambda \left(e^{\symrm{i}t/n} - 1\right) \right) $$
-    \item 指数分布：
+    \item 指数分布： $ \bar{X} \sim \Gamma \left(n-1, \frac{1}{n\lambda}\right) $
+    $$ \phi_{\bar{X}}(t) = \left( 1 - \frac{\symrm{i}t}{n\lambda} \right) $$
     \item 二项分布：
+    $$ \phi_{\bar{X}}(t) = \left( p e^{\symrm{i}t/n} + q \right)^{Nn} $$
 \end{itemize}
+

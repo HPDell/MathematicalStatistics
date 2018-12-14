@@ -32,5 +32,9 @@
 			"\\end{itemize}",
 			"$0"
 		]
+	},
+	"Chi Sqare Distribution": {
+		"prefix": "chisquare",
+		"body": "$ \\chi^2 $ 分布"
 	}
 }
