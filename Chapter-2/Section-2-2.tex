@@ -1,0 +1,59 @@
+\section{统计量}
+
+\hparagraph{统计量} 不含任何未知参数的样本的函数称为统计量。它是完全由样本决定的量。
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 统计量是随机变量
+    \item 设 $ X_1, X_2, \cdots, X_n $ 是来自总体$ X $ 的一个样本， $ x_1, x_2, \cdots, x_n $ 是一个样本的观察值，
+    则 $ g(x_1, x_2, \cdots, x_n) $ 也是统计量 $ g(X_1, X_2, \cdots, X_n) $ 的观察值。
+\end{itemize}
+
+\hparagraph{常见统计量}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item \highlight{样本均值}：
+    $$ \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i $$
+    \item \highlight{样本方差}：
+    $$ S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2 = \frac{1}{n} \left( \sum_{i=1}^{n} X_i^2 - n\bar{X}^2 \right) $$
+    \item \highlight{样本标准差}：
+    $$ S = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2} $$
+    \item \highlight{样本 $ k $ 阶原点矩}：
+    $$ A_k = \frac{1}{n} \sum_{i=1}^{n} X_i^k $$
+    \item \highlight{样本 $ k $ 阶中心矩}：
+    $$ B_k = \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X})^k $$
+    \item \highlight{顺序统计量}：设 $ (x_1, x_2, \cdots, x_n) $ 为样本 $ (X_1, X_2, \cdots, X_n) $ 的一个观察值，
+    且 $ x_{(1)} \leqslant x_{(2)} \leqslant \cdots \leqslant x_{(n)} $ 。当 $ (X_1, X_2, \cdots, X_n) $ 取值为
+    $ (x_1, x_2, \cdots, x_n) $ 时，定义随机变量 $ X_{(k)} = x_{(k)} $ 则称统计量 $ (X_{(1)}, X_{(2)}, \cdots, X_{(n)}) $
+    为顺序统计量。
+    \item \highlight{极差}：
+    $$ D_n = X_{(n)} - X_{(1)} $$
+\end{itemize}
+
+\hparagraph{常见统计量的性质}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item $ E(\bar{X}) = E(X) = \mu $
+    \item $ D(\bar{X}) = \frac{D(X)}{n} = \frac{\sigma^2}{n} $
+    \item $ E(S^2) = D(X) = \sigma^2 $
+    \item 若总体 $ k $ 阶矩 $ E(X^k) = \mu_k $ 存在，则当 $ n \rightarrow \infty $ 时，
+    \begin{equation}
+        A_k = \frac{1}{n} \sum_{i=1}^{n} X_i^k \xrightarrow{P} \mu_k
+    \end{equation}
+    推广
+    \begin{equation}
+        g(A_1, A_2, \cdots, A_n) \xrightarrow{P} g(\mu_1, \mu_2, \cdots, \mu_n)
+    \end{equation}
+\end{itemize}
+
+\hparagraph{统计量的分布} 设总体分布的特征函数为 $ \phi_X(t) $ ，则 $ \bar{X} $ 的特征函数是
+\begin{equation}
+    \phi_{\bar{X}}(t) = \left(\phi_X\left(\frac{t}{n}\right)\right)^n
+\end{equation}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 正态分布： $ \bar{X} \sim N(\mu, \sigma^2 / n) $
+    $$ \phi_{\bar{X}}(t) = e^{\symrm{i}\mu t - \frac{1}{2} \frac{\sigma^2}{n} t^2} $$
+    \item 泊松分布：
+    $$ \phi_{\bar{X}}(t) = \exp \left( n\lambda \left(e^{\symrm{i}t/n} - 1\right) \right) $$
+    \item 指数分布： $ \bar{X} \sim \Gamma \left(n-1, \frac{1}{n\lambda}\right) $
+    $$ \phi_{\bar{X}}(t) = \left( 1 - \frac{\symrm{i}t}{n\lambda} \right) $$
+    \item 二项分布：
+    $$ \phi_{\bar{X}}(t) = \left( p e^{\symrm{i}t/n} + q \right)^{Nn} $$
+\end{itemize}
+
