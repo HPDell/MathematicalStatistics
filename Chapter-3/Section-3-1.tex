@@ -1,0 +1,128 @@
+\section{点估计}
+
+\subsection{点估计的方法}
+
+\hparagraph{点估计} 我们需要构造出适当的样本的函数 $ T(X_1,X_2, \cdots, X_n) $ ，
+每当有了样本，就代入该函数中算出一个值，用来作为 $ \theta $ 的估计值。
+$ T(X_1,X_2, \cdots, X_n) $ 称为参数 $ \theta $ 的点估计量。
+把样本值代入 $ T(X_1,X_2, \cdots, X_n) $ 中，得到 $ \theta $ 的一个车点估计值。
+
+\hparagraph{矩估计} 用样本原点矩估计相应的总体原点矩，又用样本原点矩的连续函数估计相应的总体原点矩的连续函数，这种参数点估计法称为矩估计法。
+
+\hsubparagraph{做法} 设总体的分布函数中含有 $ k $ 个未知参数 $ \theta_1, \theta_2, \cdots, \theta_n $
+那么他的前 $ k $ 阶矩 $ \mu_1, \mu_2, \cdots, \mu_n $ 一般都是这 $ k $ 个参数的函数，记为
+$$ \mu_i = \mu_i(\theta_1, \theta_2, \cdots, \theta_n), \quad i = 1, 2, \cdots, k $$
+从这 $ k $ 个方程中解出
+$$ \theta_i = \theta_j (\mu_1, \mu_2, \cdots, \mu_n) $$
+用各 $ \mu_i $ 的估计量 $ A_i $ 分别代替上式中的各个 $ \mu_i $ 即可得到 $ \theta_i $ 的矩估计量
+$$ \hat{\theta}_i = \theta_j (A_1, A_2, \cdots, A_n) $$
+矩估计量的观察值称为矩估计值。
+
+\hsubparagraph{优点} 简单易行，并不需要事先知道总体是什么分布。
+
+\hsubparagraph{缺点} 当总体类型已知时，没有充分利用分布提供的信息。 一般场合下，矩估计量不具有唯一性。
+矩估计不唯一时处理的原则是尽量使用低阶矩。
+
+\hparagraph{最大似然法} 再一次抽样中，若得到观测值 $ x_1, x_2, \cdots, x_n $ 则选取 $ \hat{\theta}(x_1, x_2, \cdots, x_n) $
+作为 $ \theta $ 的估计值，使得当 $ \theta = \hat{\theta} $ 时，样本出现的概率最大。
+
+\hsubparagraph{做法} 设 $ x_1, x_2, \cdots, x_n $ 是 $ X_1, X_2, \cdots, X_n $ 的一个样本值， $ X $ 的联合分布率是
+$$ \prod_{i=1}^{n} p(x_i;\theta), \theta \in \Theta $$
+事件 $ P\left\{ X_1 = x_1, X_2 = x_2, \cdots, X_n = x_n \right\} $ 发生的概率为
+\begin{align}
+    \begin{split}
+        \label{equ:MaxLikelyEquation}
+        L(\theta) & = L(x_1, x_2, \cdots, x_n;\theta) = \prod_{i=1}^{n} p(x_i;\theta) \\
+        L(\theta) & = L(x_1, x_2, \cdots, x_n;\theta) = \prod_{i=1}^{n} f(x_i;\theta) 
+    \end{split}
+\end{align}
+式(\ref{equ:MaxLikelyEquation})称为样本似然函数。取 $ \hat{\theta} $ 使得
+$$ L(x_1, x_2, \cdots, x_n;\hat{\theta}) = \max_{\theta \in \Theta} L(x_1, x_2, \cdots, x_n;\theta) $$
+一般可由下式求得：
+\begin{equation}
+    \frac{\diff L(\theta)}{\diff \theta} = 0
+\end{equation}
+或
+\begin{equation}
+    \frac{\diff \ln L(\theta)}{\diff \theta} = 0
+\end{equation}
+若又多个参数，可令
+\begin{align}
+    \frac{\diff L(\theta)}{\diff \theta_i} & = 0 & \frac{\diff \ln L(\theta)}{\diff \theta_i} & = 0
+\end{align}
+求解 $ k $ 个方程组求得 $ \theta_1, \theta_2, \cdots, \theta_n $ 的最大似然估计值。
+
+\subsection{估计量的评选标准}
+
+\hparagraph{无偏性} 设 $ \hat{\theta}(X_1, X_2, \cdots, X_n) $ 是未知参数 $ \theta $ 的估计量，若
+\begin{equation}
+    E(\hat{\theta}) = \theta
+\end{equation}
+则称 $ \hat{\theta} $ 为 $ \theta $ 的无偏估计。
+
+\hparagraph{有效性} 设 $ \hat{\theta}_1 = \hat{\theta}_1(X_1, X_2, \cdots, X_n),\hat{\theta}_2 = \hat{\theta}_2(X_1, X_2, \cdots, X_n) $
+均是 $ \theta $ 的无偏估计，若
+\begin{equation}
+    D(\hat{\theta}_1) \leqslant D(\hat{\theta}_2)
+\end{equation}
+则称 $ \hat{\theta}_1 $ 比 $ \hat{\theta}_2 $ 有效。
+
+\hparagraph{最小方差无偏估计} 如果存在 $ \theta $ 的无偏估计量 $ \hat{\theta}_0 $ 使得对于 $ \theta $ 的任一方差存在的无偏估计量
+$ \hat{\theta} $ 都有
+\begin{equation}
+    D(\hat{\theta}_0) \leqslant D(\hat{\theta})
+\end{equation}
+则称 $ \hat{\theta}_0 $ 是 $ \hat{\theta} $ 的最小方差无偏估计量，缩写为 UMVUE 。
+最小方差无偏估计是一种最优估计。基于充分完备统计量的无偏估计一定是UMVUE。
+
+\hparagraph{优效估计} 若无偏估计 $ \hat{\theta}_0 $ 的方差 $ D(\hat{\theta}_0) = I_R $
+则称 $ \hat{\theta}_0 $ 为 $ \theta $ 的优效估计。
+
+\hsubparagraph{Cramer-Rao不等式} 设总体 $ X \sim f(x;\theta) $ ， $ \theta $ 是未知参数， $ X_1, X_2, \cdots, X_n $ 是 $ X $ 的一个简单样本，
+$ \hat{\theta} = \hat{\theta}(X_1, X_2, \cdots, X_n) $ 是 $ \theta $ 的无偏估计，则
+\begin{equation}
+    D(\hat{\theta}) \geqslant \frac{1}{nI(\theta)}
+\end{equation}
+右端称为C-R下界，记为$ I_R $。有时能找到无偏估计使它的方差达到这个下界，有时达不到。
+
+\hsubparagraph{Fisher信息量} 设总体 $ X $ 的概率密度函数为 $ f(x;\theta), \theta \in \Theta $ 且满足下列条件（称为正则条件），
+则称\begin{equation}
+    I(\theta) = E\left(\frac{\partial \ln f(X;\theta)}{\partial \theta}\right)^2
+\end{equation}
+为总体分布的 Fisher 信息量。
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ \Theta $ 是实数轴上的一个开区间；
+    \item 支撑 $ S = \left\{ x \left| f(x;\theta) > 0 \right. \right\} $ 与 $ \theta $ 无关；
+    \item $ \frac{\partial f(x;\theta)}{\partial \theta} $ 存在且对 $ \Theta $ 中一切 $ \theta $ 有 \begin{equation}
+        \frac{\partial}{\partial\theta} \int_{-\infty}^{\infty} f(x;\theta) \diff x
+        = \int_{-\infty}^{\infty} \frac{\partial}{\partial\theta} f(x;\theta) \diff x
+    \end{equation}
+    \item $ E\left(\frac{\partial \ln f(X;\theta)}{\partial \theta}\right)^2 $ 存在。
+\end{itemize}
+
+\hsubparagraph{Fisher信息矩阵} 若 $ \theta $ 为向量，则称
+\begin{equation}
+    I(\theta) = E \left[ 
+        \left( \frac{\partial f(X|\theta)}{\partial\theta} \right)
+        \left( \frac{\partial f(X|\theta)}{\partial\theta} \right)^{\symrm{T}}
+    \right]
+\end{equation}
+为总体分布的Fisher信息矩阵。
+
+\hsubparagraph{Fisher信息量的另一种表达式} 若 $ \theta $ 为标量，
+$ \frac{\partial^2 \ln f(X;\theta)}{\partial \theta^2} $ 存在且满足正则条件，则
+\begin{equation}
+    I(\theta) = - E\left(\frac{\partial^2 \ln f(X;\theta)}{\partial \theta^2}\right)
+\end{equation}
+若 $ \theta $ 为向量，
+$ \frac{\partial^2 \ln f(X;\theta)}{\partial \theta \partial \theta^{\symrm{T}}} $ 存在且满足正则条件，则
+\begin{equation}
+    I(\theta) = - E \left( \frac{\partial^2 \ln f(X;\theta)}{\partial \theta \partial \theta^{\symrm{T}}} \right)
+\end{equation}
+
+\hparagraph{相合性（一致性）} 设 $ \hat{\theta}(X_1, X_2, \cdots, X_n) $ 是参数 $ \theta $ 的估计量，
+若对于任意 $ \theta \in \Theta $ 当 $ n \rightarrow \infty $ 时 $ \hat{\theta}(X_1, X_2, \cdots, X_n) $ 依概率收敛到 $ \theta $，
+则称 $ \hat{\theta} $ 为 $ \theta $ 的相合估计量。即对于任意 $ \epsilon > 0 $ 有
+\begin{equation}
+    \lim_{n\rightarrow\infty} P\left\{ \left| \hat{\theta} - \theta \right| < \epsilon \right\}  = 1, \theta \in \Theta
+\end{equation}

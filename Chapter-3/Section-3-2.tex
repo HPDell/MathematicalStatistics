@@ -1,0 +1,51 @@
+\section{区间估计}
+
+\subsection{置信区间}
+
+\hparagraph{置信区间} 
+
+\hsubparagraph{双侧置信区间} 设 $ \theta $ 是一个待估参数，给定 $ \alpha > 0 $ 若由样本 $ X_1, X_2, \cdots, X_n $ 确定的两个统计量，
+\begin{align*}
+    \underline{\theta} & = \underline{\theta}(X_1, X_2, \cdots, X_n) \\
+    \overline{\theta} & = \overline{\theta}(X_1, X_2, \cdots, X_n)
+\end{align*}
+满足
+\begin{equation}
+    P\left\{ \underline{\theta} < \theta < \overline{\theta} \right\} = 1 - \alpha
+\end{equation}
+则称区间 $ \left(\underline{\theta}, \overline{\theta}\right) $ 是 $ \theta $ 置信水平（置信度）为 $ 1 - \alpha $ 的置信区间。
+$ \underline{\theta} $ 和 $ \overline{\theta} $ 分别称为置信下限和置信上限。
+
+\hsubparagraph{右侧置信区间} 设 $ \theta $ 是一个待估参数，给定 $ \alpha > 0 $ 若由样本 $ X_1, X_2, \cdots, X_n $ 确定的两个统计量，
+\begin{align*}
+    \underline{\theta} & = \underline{\theta}(X_1, X_2, \cdots, X_n)
+\end{align*}
+满足
+\begin{equation}
+    P\left\{ \underline{\theta} < \theta \right\} = 1 - \alpha
+\end{equation}
+则称区间 $ \left(\underline{\theta}, +\infty\right) $ 是 $ \theta $ 置信水平（置信度）为 $ 1 - \alpha $ 的右侧置信区间。
+$ \underline{\theta}$ 称为单侧置信下限。
+
+\hsubparagraph{左侧置信区间} 设 $ \theta $ 是一个待估参数，给定 $ \alpha > 0 $ 若由样本 $ X_1, X_2, \cdots, X_n $ 确定的两个统计量，
+\begin{align*}
+    \overline{\theta} & = \overline{\theta}(X_1, X_2, \cdots, X_n)
+\end{align*}
+满足
+\begin{equation}
+    P\left\{ \theta < \overline{\theta} \right\} = 1 - \alpha
+\end{equation}
+则称区间 $ \left(-\infty, \underline{\theta}\right) $ 是 $ \theta $ 置信水平（置信度）为 $ 1 - \alpha $ 的左侧置信区间。
+$ \underline{\theta}$ 称为单侧置信上限。
+
+\hparagraph{求法}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 寻找参数 $ \theta $ 的一个良好的点估计量 $ T(X_1, X_2, \cdots, X_n) $。
+    \item 寻找参数 $ \theta $ 和估计量 $ T $ 的函数 $ U(T,\theta) $ 且其分布已知。
+    \item 对于给定置信水平 $ 1 - \alpha $ 根据 $ U(T,\theta) $ 的分布，确定常数 $ a,b $ 使得
+    $$ P\left\{ a < U(T,\theta) < b \right\} = 1 - \alpha $$
+    \item 对 $ a < U(T,\theta) < b $ 作等价变形，得到形式 $ \underline{\theta} < \theta < \overline{\theta} $。
+\end{itemize}
+
+\subsection{正态总体均值和方差的区间估计}
+
