@@ -65,6 +65,11 @@
 \usepackage{tabularx}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \newcolumntype{Z}{>{\raggedleft\arraybackslash}X}
+\usepackage{ltxtable}
+\usepackage{makecell}
+\renewcommand{\cellalign}{cl}
+\renewcommand{\theadfont}{\bfseries}
+\newcommand{\mylongtablecell}[1]{\makecell[{{p{0.35\linewidth}}}]{{#1}}}
 
 %------------------------------------------------------------------------------
 % Define new macros
@@ -102,7 +107,7 @@
 %------------------------------------------------------------------------------
 \usepackage[left=1.91cm, right=1.91cm, top=2.54cm, bottom=2.54cm]{geometry}
 \hypersetup{colorlinks=true,bookmarksnumbered=true}
-\allowdisplaybreaks
+% \allowdisplaybreaks
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
 \usepackage[inline]{enumitem}
