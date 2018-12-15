@@ -1,0 +1,85 @@
+% !TeX root = ../MathematicalStatistics.tex
+
+\begin{longtable}{|m{0.1\textwidth}|m{0.1\textwidth}|l|l|}
+	% 表格题注
+	\caption{正态总体均值和方差的区间估计}
+	\label{tab:正态总体均值和方差的区间估计}
+	% 第一页开头
+	\\\hline
+	\thead{待估参数}  & \thead{条件} & \thead{统计量} & \thead{置信区间} \\\hline
+	\endfirsthead
+	% 后续页开头
+	\multicolumn{4}{r}{\kaishu（续表）} \\
+	\hline
+	\thead{待估参数}  & \thead{条件} & \thead{统计量} & \thead{置信区间} \\\hline
+	\endhead
+	% 结尾
+	\endfoot
+	% 最后页结尾
+    \endlastfoot
+
+    $$ \mu $$ & 已知 $ \sigma^2 $
+    & \mylongtablecell{$$ U = \frac{\bar{X} - \mu}{\sigma / \sqrt{\mu}} \sim N(0,1) $$}
+    & \mylongtablecell{$$ \left[\bar{X}-\frac{\sigma}{\sqrt{n}}u_{\frac{\alpha}{2}}, \bar{X}+\frac{\sigma}{\sqrt{n}}u_{\frac{\alpha}{2}}\right] $$}
+    \\\hline
+
+    $$ \mu $$ & 未知 $ \sigma^2 $
+    & \mylongtablecell{$$ T = \frac{\bar{X} - \mu}{S / \sqrt{\mu}} \sim t(n-1) $$}
+    & \mylongtablecell{$$ \left[\bar{X}-\frac{S}{\sqrt{n}}t_{\frac{\alpha}{2}}(n-1), \bar{X}+\frac{S}{\sqrt{n}}t_{\frac{\alpha}{2}}(n-1)\right] $$}
+    \\\hline
+
+    $$ \sigma^2 $$ & 已知 $ \mu $
+    & \mylongtablecell{$$ \chi^2 = \ddfrac{\sum_{i=1}^{n}(X_i - \mu)^2}{\sigma^2} \sim \chi^2(n) $$}
+    & \mylongtablecell{$$ \left[
+        \ddfrac{\sum_{i=1}^{n}(X_i - \mu)^2}{\chi^2_{\frac{\alpha}{2}}(n)},
+        \ddfrac{\sum_{i=1}^{n}(X_i - \mu)^2}{\chi^2_{1-\frac{\alpha}{2}}(n)}
+    \right] $$}
+    \\\hline
+
+    $$ \sigma^2 $$ & 未知 $ \mu $
+    & \mylongtablecell{$$ \chi^2 = \ddfrac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1) $$}
+    & \mylongtablecell{$$ \left[
+        \frac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n)},
+        \frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n)}
+    \right] $$}
+    \\\hline
+
+    $$ \mu_1 - \mu_2 $$ & 已知 $ \sigma_1, \sigma_2 $
+    & \mylongtablecell{$$ U = \ddfrac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} \sim N(0,1) $$}
+    & \mylongtablecell{$$ \begin{array}{c}
+            \left[ (\bar{X}-\bar{Y}) - u_{\frac{\alpha}{2}} \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \right., \\
+            \left. \quad (\bar{X}-\bar{Y}) + u_{\frac{\alpha}{2}} \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \right]
+        \end{array}$$}
+    \\\hline
+
+    $$ \mu_1 - \mu_2 $$ & \makecell[{{p{0.1\textwidth}}}]{$ \sigma_1 = \sigma_2 = \sigma $ \\ $ \sigma $未知}
+    & \mylongtablecell{$$ T = \ddfrac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{S_w\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim t(n_1 + n_2 - 2) $$}
+    & \mylongtablecell{$$ \begin{array}{c}
+            \left[ (\bar{X}-\bar{Y}) - t_{\frac{\alpha}{2}} S_w \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} \right., \\
+            \left. \quad (\bar{X}-\bar{Y}) + t_{\frac{\alpha}{2}} S_w \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} \right]
+        \end{array}$$}
+    \\\hline
+
+    $$ \frac{\sigma_1}{\sigma_2} $$ & 已知 $ \mu_1, \mu_2 $
+    & \mylongtablecell{$$ F = \ddfrac{
+        \ddfrac{\frac{1}{n_1} \sum_{i=1}^{n_1} (X_i - \mu_1)^2}{\frac{1}{n_2} \sum_{i=1}^{n_1} (Y_i - \mu_2)^2}
+    }{\frac{\sigma^2}{\sigma^2}} \sim F(n_1, n_2 ) $$}
+    & \mylongtablecell{$$ \begin{array}{c}
+            \left[ \ddfrac{\frac{1}{n_1} \sum_{i=1}^{n_1} (X_i - \mu_1)^2}{\frac{1}{n_2} \sum_{i=1}^{n_1} (Y_i - \mu_2)^2}
+                \frac{1}{F_{\frac{\alpha}{2}}(n_1,n_2)}
+            \right., \\
+            \qquad \left. \ddfrac{\frac{1}{n_1} \sum_{i=1}^{n_1} (X_i - \mu_1)^2}{\frac{1}{n_2} \sum_{i=1}^{n_1} (Y_i - \mu_2)^2}
+                \frac{1}{F_{1-\frac{\alpha}{2}}(n_1,n_2)}
+            \right]
+        \end{array}$$}
+    \\\hline
+
+    $$ \frac{\sigma_1}{\sigma_2} $$ & 已知 $ \mu_1, \mu_2 $
+    & \mylongtablecell{$$ F = \ddfrac{\frac{S_1^2}{\sigma_1^2}}{\frac{S_2^2}{\sigma_2^2}} \sim F(n_1 - 1, n_2 - 1) $$}
+    & \mylongtablecell{$$ \begin{array}{c}
+            \left[ \ddfrac{S_1^2}{S_2^2} \frac{1}{F_{\frac{\alpha}{2}}(n_1-1,n_2-2)} \right., \\
+            \qquad \left. \ddfrac{S_1^2}{S_2^2} \frac{1}{F_{1-\frac{\alpha}{2}}(n_1-1,n_2-2)} \right]
+        \end{array}$$}
+    \\\hline
+    
+\end{longtable}
