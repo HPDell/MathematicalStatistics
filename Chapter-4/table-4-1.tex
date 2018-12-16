@@ -1,6 +1,6 @@
 % !TeX root = ../MathematicalStatistics.tex
 
-\begin{longtable}{|m{0.1\textwidth}|m{0.1\textwidth}|m{0.1\textwidth}|m{0.35\textwidth}|m{0.25\textwidth}|}
+\begin{longtable}{|m{0.1\textwidth}|>{\centering}m{0.1\textwidth}|>{\centering}m{0.1\textwidth}|m{0.35\textwidth}|m{0.25\textwidth}|}
 	% 表格题注
 	\caption{正态总体均值和方差的假设检验}
 	\label{tab:正态总体均值和方差的假设检验}
@@ -69,37 +69,112 @@
     & \denydomaincell{$$ \chi^2 \geqslant \chi^2_{\alpha}(n) $$}
     \\\hline
 
-    % $$ \sigma^2 $$ & 已知 $ \mu $
-    % & \makecell[{{p{\textwidth}}}]{$$ \chi^2 = \ddfrac{\sum_{i=1}^{n}(X_i - \mu)^2}{\sigma^2} \sim \chi^2(n) $$}
-    % & \makecell[{{p{\textwidth}}}]{$$ \left[
-    %     \ddfrac{\sum_{i=1}^{n}(X_i - \mu)^2}{\chi^2_{\frac{\alpha}{2}}(n)},
-    %     \ddfrac{\sum_{i=1}^{n}(X_i - \mu)^2}{\chi^2_{1-\frac{\alpha}{2}}(n)}
-    % \right] $$}
-    % \\\hline
+    \multirowcell{3}[0cm][c]{$ \sigma^2 $ 检验 \\ $ \mu $ 已知} 
+    & $ \sigma^2 = \sigma^2_0 $
+    & $ \sigma^2 \neq \sigma^2_0 $
+    & \multirowcell{3}[0cm][c]{\teststatiscell{$$ \chi^2 = \frac{(n-1)S^2}{\sigma_0^2} \sim \chi^2(n-1) $$}}
+    & \denydomaincell{\begin{align*}
+        \chi^2 & \leqslant \chi^2_{1-\frac{\alpha}{2}}(n-1), \mbox{或} \\
+        \chi^2 & \geqslant \chi^2_{\frac{\alpha}{2}}(n-1)
+    \end{align*}}
+    \\\cline{2-3}\cline{5-5}
+    & $ \sigma^2 \geqslant \sigma^2_0 $
+    & $ \sigma^2 < \sigma^2_0 $
+    & 
+    & \denydomaincell{$$ \chi^2 \leqslant \chi^2_{1-\alpha}(n-1) $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \sigma^2 \leqslant \sigma^2_0 $
+    & $ \sigma^2 > \sigma^2_0 $
+    & 
+    & \denydomaincell{$$ \chi^2 \geqslant \chi^2_{\alpha}(n-1) $$}
+    \\\hline
 
-    % $$ \sigma^2 $$ & 未知 $ \mu $
-    % & \makecell[{{p{\textwidth}}}]{$$ \chi^2 = \ddfrac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1) $$}
-    % & \makecell[{{p{\textwidth}}}]{$$ \left[
-    %     \frac{(n-1)S^2}{\chi^2_{\frac{\alpha}{2}}(n)},
-    %     \frac{(n-1)S^2}{\chi^2_{1-\frac{\alpha}{2}}(n)}
-    % \right] $$}
-    % \\\hline
+    \multirowcell{3}[0cm][c]{$ \mu_1 - \mu_2 $ 检验 \\ $ \sigma_1, \sigma_2 $ 已知} 
+    & $ \mu_1 = \mu_2 $
+    & $ \mu_1 \neq \mu_2 $
+    & \multirowcell{3}[0cm][c]{\teststatiscell{
+        $$ U=\ddfrac{\bar{X}-\bar{Y}}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}} \sim N(0,1) $$
+      }}
+    & \denydomaincell{$$ \left| U \right| \geqslant z_{\frac{\alpha}{2}} $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \mu_1 = \mu_2 $
+    & $ \mu_1 < \mu_2 $
+    & 
+    & \denydomaincell{$$ U \leqslant -z_{\alpha} $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \mu_1 = \mu_2 $
+    & $ \mu_1 > \mu_2 $
+    & 
+    & \denydomaincell{$$ U \geqslant z_{\alpha} $$}
+    \\\hline
 
-    % $$ \mu_1 - \mu_2 $$ & 已知 $ \sigma_1, \sigma_2 $
-    % & \makecell[{{p{\textwidth}}}]{$$ U = \ddfrac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}}} \sim N(0,1) $$}
-    % & \makecell[{{p{\textwidth}}}]{$$ \begin{array}{c}
-    %         \left[ (\bar{X}-\bar{Y}) - u_{\frac{\alpha}{2}} \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \right., \\
-    %         \left. \quad (\bar{X}-\bar{Y}) + u_{\frac{\alpha}{2}} \sqrt{\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}} \right]
-    %     \end{array}$$}
-    % \\\hline
+    \multirowcell{3}[0cm][c]{$ \mu_1 - \mu_2 $ 检验 \\ $ \sigma_1, \sigma_2 $ 未知} 
+    & $ \mu_1 = \mu_2 $
+    & $ \mu_1 \neq \mu_2 $
+    & \multirowcell{3}[0cm][c]{\teststatiscell{
+        $$ T=\ddfrac{\bar{X}-\bar{Y}}{\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}S_w} \sim T(n_1 + n_2 - 2) $$
+      }}
+    & \denydomaincell{$$ \left| T \right| \geqslant z_{\frac{\alpha}{2}} $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \mu_1 = \mu_2 $
+    & $ \mu_1 < \mu_2 $
+    & 
+    & \denydomaincell{$$ T \leqslant -z_{\alpha} $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \mu_1 = \mu_2 $
+    & $ \mu_1 > \mu_2 $
+    & 
+    & \denydomaincell{$$ T \geqslant z_{\alpha} $$}
+    \\\hline
 
-    % $$ \mu_1 - \mu_2 $$ & \makecell[{{p{0.1\textwidth}}}]{$ \sigma_1 = \sigma_2 = \sigma $ \\ $ \sigma $未知}
-    % & \makecell[{{p{\textwidth}}}]{$$ T = \ddfrac{(\bar{X}-\bar{Y})-(\mu_1-\mu_2)}{S_w\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \sim t(n_1 + n_2 - 2) $$}
-    % & \makecell[{{p{\textwidth}}}]{$$ \begin{array}{c}
-    %         \left[ (\bar{X}-\bar{Y}) - t_{\frac{\alpha}{2}} S_w \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} \right., \\
-    %         \left. \quad (\bar{X}-\bar{Y}) + t_{\frac{\alpha}{2}} S_w \sqrt{\frac{1}{n_1} + \frac{1}{n_2}} \right]
-    %     \end{array}$$}
-    % \\\hline
+    \multirowcell{3}[0cm][c]{$ \displaystyle{\frac{\sigma_1}{\sigma_2}} $ 检验 \\ $ \mu_1, \mu_2 $ 已知} 
+    & $ \sigma_1 = \sigma_2 $
+    & $ \sigma_1 \neq \sigma_2 $
+    & \multirowcell{3}[0cm][c]{\teststatiscell{
+        $$ F = \ddfrac{
+             \frac{1}{n_1} \sum_{i=1}^{n_1} (X_i - \mu_1)^2
+           }{
+              \frac{1}{n_2} \sum_{i=1}^{n_1} (Y_i - \mu_2)^2
+           } \sim F(n_1, n_2 )
+        $$
+      }}
+    & \denydomaincell{\begin{align*}
+        F & \leqslant F_{1-\frac{\alpha}{2}}(n_1, n_2), \mbox{或} \\
+        F & \geqslant F_{\frac{\alpha}{2}}(n_1, n_2)
+    \end{align*}}
+    \\\cline{2-3}\cline{5-5}
+    & $ \sigma_1 = \sigma_2 $
+    & $ \sigma_1 < \sigma_2 $
+    & 
+    & \denydomaincell{$$ F \leqslant F_{1-\alpha}(n_1, n_2) $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \sigma_1 = \sigma_2 $
+    & $ \sigma_1 > \sigma_2 $
+    & 
+    & \denydomaincell{$$ F \geqslant F_{\alpha}(n_1, n_2) $$}
+    \\\hline
+
+    \multirowcell{3}[0cm][c]{$ \displaystyle{\frac{\sigma_1}{\sigma_2}} $ 检验 \\ $ \mu_1, \mu_2 $ 未知} 
+    & $ \sigma_1 = \sigma_2 $
+    & $ \sigma_1 \neq \sigma_2 $
+    & \multirowcell{3}[0cm][c]{\teststatiscell{
+        $$ F = \frac{S_1^2}{S_2^2} \sim F(n_1-1, n_2-1) $$
+      }}
+    & \denydomaincell{\begin{align*}
+        F & \leqslant F_{1-\frac{\alpha}{2}}(n_1-1, n_2-1), \mbox{或} \\
+        F & \geqslant F_{\frac{\alpha}{2}}(n_1-1, n_2-1)
+    \end{align*}}
+    \\\cline{2-3}\cline{5-5}
+    & $ \sigma_1 = \sigma_2 $
+    & $ \sigma_1 < \sigma_2 $
+    & 
+    & \denydomaincell{$$ F \leqslant F_{1-\alpha}(n_1-1, n_2-1) $$}
+    \\\cline{2-3}\cline{5-5}
+    & $ \sigma_1 = \sigma_2 $
+    & $ \sigma_1 > \sigma_2 $
+    & 
+    & \denydomaincell{$$ F \geqslant F_{\alpha}(n_1-1, n_2-1) $$}
+    \\\hline
 
     % $$ \frac{\sigma_1}{\sigma_2} $$ & 已知 $ \mu_1, \mu_2 $
     % & \makecell[{{p{\textwidth}}}]{$$ F = \ddfrac{
