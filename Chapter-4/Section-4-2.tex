@@ -1,0 +1,42 @@
+\section{似然比检验}
+
+\hparagraph{似然比检验} 假设总体的密度函数或概率分布为 $ f(x;\theta) $ ，其中 $ \theta = (\theta_1, \theta_2, \cdots, \theta_n) $
+是 $ k $ 维参数， $ \theta \in \Theta $ 。检验其中的 $ r $ 个参数，有原假设
+$$ H_0 = \theta_1 = \theta_{10}, \theta_2 = \theta_{20}, \cdots, \theta_r = \theta_{r0} $$
+其中 $ \theta_{10}, \theta_{20}, \theta_{r0} $ 是制定的常数。
+似然比定义为
+\begin{equation}
+    LR = \ddfrac{\sup_{H_0} L(\theta)}{\sup_{\theta\in\Theta}L(\theta)} = \frac{L(\tilde{\theta})}{L(\hat{\theta})}
+\end{equation}
+拒绝域为 $ C_1 = \left\{ LR < c \right\} , P\left\{ C_1 | H_0 \right\} \leqslant \alpha $ 。
+
+\begin{itemize}[leftmargin=\paritemindent]
+    \item $ 0 < LR \leqslant 1 $
+    \item $ \hat{\theta} \xrightarrow{P} \theta $
+\end{itemize}
+
+\hparagraph{定理} 当似然函数 $ L(\theta) $ 为三阶可导函数，且 $ \infty_{-\infty}^{\infty} \ln f(x;\theta) \diff x $
+连续可导，则有： $ -2\ln LR $ 的极限分布为 $ \chi^2(r), (n \rightarrow \infty) $ ，
+拒绝域为 $ C_1 = \left\{ \chi^2 = -2\ln LR > \chi_\alpha^2(r) \right\}  $ 。
+
+\hparagraph{Newman-Pearson引理} 原假设和备择假设都是简单假设时，似然比检验是一致最佳检验，
+即由似然比检验法导出的拒绝域，是在同一显著性水平下犯第二类错误最小的拒绝域。
+
+\hparagraph{样本容量 $ n $ 的确定} 原假设和备择假设都是简单假设（即参数只取参数空间的一个点）时，
+寻找最小的样本容量，使得两类错误的概率控制在预制范围内。
+
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 总体方差已知，正态总体均值的右边检验：
+    \begin{equation}
+        n = (\mu_\alpha + \mu_\beta)^2 \frac{\sigma^2}{(\mu_1 - \mu_0)^2}
+    \end{equation}
+    \item 总体方差未知，正态总体均值的右边检验：
+    \begin{equation}
+        n = (t_\alpha(n-1) + t_\beta(n-1))^2 \frac{S^2}{(\mu_1 - \mu_0)^2}
+    \end{equation}
+    \item 总体期望未知，正态总体方差的右边检验：
+    \begin{equation}
+        \chi_{1-\beta}^{2}(n-1) = \frac{\sigma_0^2}{\sigma_1^2}(n-1)
+    \end{equation}
+\end{itemize}
+ 
