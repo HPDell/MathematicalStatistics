@@ -1,0 +1,193 @@
+\section{双因素方差分析}
+
+\subsection{非重复实验双因素方差分析}
+
+\hparagraph{非重复实验双因素方差分析} 有 $ A,B $ 两种因素，因素 $ A $ 有 $ r $ 种水平，因素 $ B $ 有 $ s $ 种水平，
+在每种组合水平 $ A_i × B_j $ 上做了一次实验获得了实验值，结果为 $ X_{ij}, i = 1, 2, ⋯, r , j = 1, 2, ⋯, s $ ，
+$ X_{ij} $ 相互独立。
+$$ \begin{array}{|D|DDDD|D|}\hline
+           & B_1    & B_2    & ⋯ & B_n    & \bar{X}_{i•} \\\hline
+    A_1    & X_{11} & X_{12} & ⋯ & X_{1s} & \bar{X}_{1•} \\
+    A_2    & X_{21} & X_{22} & ⋯ & X_{2s} & \bar{X}_{2•} \\
+    ⋮ & ⋮ & ⋮ & ⋱ & ⋮ & ⋮ \\
+    A_r    & X_{r1} & X_{r2} & ⋯ & X_{rs} & \bar{X}_{r•} \\\hline
+\end{array} $$
+
+\hparagraph{数学模型} 假设总体服从正态分布 $ N(\mu_ij, \sigma^2) $ ，令 $ X_{ij} = \mu_{ij} + \sigma_{ij} $ 
+则 $ \epsilon_{ij} ∼ N(0, \sigma^2) $ ，$ \epsilon_{ij} $ 相互独立。
+令
+\begin{align*}
+    μ & = \frac{1}{rs} \sum_{i=1}^{r} \sum_{j=1}^{s} \mu_{ij} \\
+    \mu_{i •} & = \frac{1}{s} \sum_{j=1}^{s} \mu_{ij} \\
+    \mu_{• j} & = \frac{1}{r} \sum_{i=1}^{r} \mu_{ij} \\
+    \alpha_i & = \mu_{i •} - μ \\ 
+    \beta_j & = \mu_{• j} - μ \\ 
+    \gamma_{ij} & = (\mu_{ij} - \mu) - \alpha_i - \beta_j = \mu_{ij} - \mu_{i •} - \mu_{• j} + μ \\ 
+    \mu_{ij} & = μ + \alpha_i + \beta_j + \gamma_{ij}, i = 1, 2, ⋯, r ; j = 1, 2, ⋯, s \\ 
+    X_{ij} & = \mu_{ij} + \epsilon_{ij} = μ + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ij} , \gamma_{ij} = 0
+\end{align*}
+$ \alpha_i $ 称为因素 $ A $ 在水平 $ A_i $ 的效应， $ \beta_i $ 称为因素 $ B $ 在水平 $ B_i $ 的效应。
+检验假设：
+\begin{align*}
+    H_{01} & : \alpha_1 = \alpha_2 = ⋯ = \alpha_n = 0 \\
+    H_{02} & : \beta_1 = \beta_2 = ⋯ = \beta_n = 0
+\end{align*}
+
+\hparagraph{平方和分解} 
+\begin{align}
+    \begin{split}
+        S_T 
+        & = \sum_{i=1}^{r} \sum_{j=1}^{s} \left(X_{ij} - \bar{X}\right)^2 \\ 
+        & = s \sum_{i=1}^{r} (\bar{X}_{i•} - \bar{X}) + r \sum_{j=1}^{s}\left( \bar{X}_{• j} - \bar{X} \right)^2
+          + \sum_{i=1}^{r} \sum_{j=1}^{s} \left( X_{ij} - \bar{X}_{i•} - \bar{X}_{• j} + \bar{X} \right)^2 \\
+        & = S_A + S_B + S_E
+    \end{split}
+\end{align}
+当 $ H_{01}, H_{02} $ 成立时，
+\begin{align}
+    \frac{S_A}{\sigma^2} & ∼ \chi^2(r-1) \\
+    \frac{S_B}{\sigma^2} & ∼ \chi^2(s-1) \\
+    \frac{S_T}{\sigma^2} & ∼ \chi^2(rs-1) \\
+    \frac{S_E}{\sigma^2} & ∼ \chi^2(rs-r-s+1)
+\end{align}
+
+\hparagraph{均方离差} 
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 因素 $ A $ 引起的均方离差 $$ \bar{S}_A = \frac{S_A}{r-1} $$
+    \item 因素 $ B $ 引起的均方离差 $$ \bar{S}_B = \frac{S_B}{s-1} $$
+    \item 均方误差 $$ \bar{S}_E = \frac{S_E}{(r-1)(s-1)} $$
+\end{itemize}
+
+
+\hparagraph{拒绝域} 给定显著性水平 $ α $ ，检验统计量和拒绝域
+\begin{align}
+    H_{00} & : F_A = \frac{\bar{S}_A}{\bar{S}_E} ∼ F(r-1, (r-1)(s-1)) &
+    F_A ⩾ F_\alpha(r-1, (r-1)(s-1)) \\
+    H_{01} & : F_B = \frac{\bar{S}_B}{\bar{S}_E} ∼ F(r-1, (r-1)(s-1)) &
+    F_B ⩾ F_\alpha(s-1, (r-1)(s-1))
+\end{align}
+
+\hparagraph{方差分析表} 如表\ref{tab:非重复实验双因素方差分析表}所示。
+
+\begin{table}[hbtp]
+    \renewcommand{\arraystretch}{2}
+    \centering
+    \caption{非重复实验双因素方差分析表}
+    \label{tab:非重复实验双因素方差分析表}
+    \begin{tabular}{l|l|l|l|l} \hline
+        方差来源   & 平方和  & 自由度         & 均方                            & $ F $ 值 \\\hline
+        因素 $ A $ & $ S_A $ & $ r-1 $        & $ \ds \bar{S}_A = \frac{S_A}{r-1} $ & $ \ds F_A = \frac{\bar{S}_A}{\bar{S}_E} $ \\
+        因素 $ B $ & $ S_B $ & $ s-1 $        & $ \ds \bar{S}_B = \frac{S_B}{s-1} $ & $ \ds F_B = \frac{\bar{S}_B}{\bar{S}_E} $ \\
+        误差 $ E $ & $ S_E $ & $ (r-1)(s-1) $ & $ \ds \bar{S}_E = \frac{S_E}{n-s} $ & \\
+        总和 $ T $ & $ S_T $ & $ rs-1 $       & & \\\hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{重复实验方差双因素方差分析} 
+
+\hparagraph{重复实验方差双因素方差分析} 有 $ A,B $ 两种因素，因素 $ A $ 有 $ r $ 种水平，因素 $ B $ 有 $ s $ 种水平，
+在每种组合水平 $ A_i × B_j $ 上进行 $ c $ 次实验，结果为
+$ X_{ijk}(i = 1, 2, ⋯, r ; j = 1, 2, ⋯, s ; k = 1, 2, ⋯, c) $ ，
+$ X_{ijk} $ 相互独立。
+$$ \begin{array}{|D|DDDD|D|}\hline
+        & B_1                        & B_2                       & ⋯ & B_n                        & \bar{X}_{i••} \\\hline
+    A_1 & X_{111},X_{112},⋯,X_{11c} & X_{121},X_{122},⋯,X_{12c} & ⋯ & X_{1s1},X_{1s2},⋯,X_{1sc} & \bar{X}_{1••} \\
+    A_2 & X_{211},X_{212},⋯,X_{21c} & X_{221},X_{222},⋯,X_{22c} & ⋯ & X_{2s1},X_{2s2},⋯,X_{2sc} & \bar{X}_{2••} \\
+    ⋮   & ⋮ & ⋮ & ⋱ & ⋮ & ⋮ \\
+    A_r & X_{r11},X_{r12},⋯,X_{r1c} & X_{r21},X_{r22},⋯,X_{r2c} & ⋯ & X_{rs1},X_{rs2},⋯,X_{rsc} & \bar{X}_{r••} \\\hline
+    \bar{X}_{•j•} & \bar{X}_{•1•} & \bar{X}_{•2•} & ⋯ & \bar{X}_{•s•} & \bar{X} \\\hline
+\end{array} $$
+
+\hparagraph{数学模型} 假设总体服从正态分布 $ X_{ijk} N(\mu_ij, \sigma^2) $ ，
+令 $ X_{ijk} = \mu_{ij} + \epsilon_{ijk} = \mu + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ijk} $ ，
+则 $ \epsilon_{ijk} ∼ N(0, \sigma^2) $ ，$ \epsilon_{ijk} $ 相互独立。
+令
+\begin{align*}
+    μ & = \frac{1}{rs} \sum_{i=1}^{r} \sum_{j=1}^{s} \mu_{ij} \\
+    \mu_{i•} & = \frac{1}{s} \sum_{j=1}^{s} \mu_{ij} \\
+    \mu_{•j} & = \frac{1}{r} \sum_{i=1}^{r} \mu_{ij} \\
+    \alpha_i & = \mu_{i•} - μ \\ 
+    \beta_j & = \mu_{•j} - μ \\ 
+    \gamma_{ij} & = (\mu_{ij} - \mu) - \alpha_i - \beta_j = \mu_{ij} - \mu_{i •} - \mu_{• j} + μ \\ 
+    \mu_{ij} & = μ + \alpha_i + \beta_j + \gamma_{ij}, i = 1, 2, ⋯, r ; j = 1, 2, ⋯, s \\ 
+    X_{ij} & = \mu_{ij} + \epsilon_{ij} = μ + \alpha_i + \beta_j + \gamma_{ij} + \epsilon_{ij} , \gamma_{ij} = 0
+\end{align*}
+$ \alpha_i $ 称为因素 $ A $ 在水平 $ A_i $ 的效应， $ \beta_i $ 称为因素 $ B $ 在水平 $ B_i $ 的效应，
+$ \gamma_{ij} $ 称为因素 $ A,B $ 在组合水平 $ A_i \times B_j $ 的交互效应。
+检验假设：
+\begin{align*}
+    H_{01} & : \alpha_1 = \alpha_2 = ⋯ = \alpha_n = 0 \\
+    H_{02} & : \beta_1 = \beta_2 = ⋯ = \beta_n = 0 \\
+    H_{03} & : \gamma_{ij} = 0, i = 1, 2, \cdots, r ; j = 1, 2, \cdots, s
+\end{align*}
+
+\hparagraph{平均数} \begin{align}
+    \bar{X}_{ij•} & = \frac{1}{c} \sum_{k=1}^{c} X_{ijk} \\
+    \bar{X}_{i••} & = \frac{1}{sc} \sum_{j=1}^{s} \sum_{k=1}^{c} X_{ijk} \\
+    \bar{X}_{•j•} & = \frac{1}{rc} \sum_{i=1}^{r} \sum_{k=1}^{c} X_{ijk} \\
+    \bar{X} & = \frac{1}{rsc} \sum_{i=1}^{r} \sum_{j=1}^{s} \sum_{k=1}^{c} X_{ijk}
+\end{align}
+
+\hparagraph{平方和分解}
+\begin{align}
+    \begin{split}
+        S_T 
+        & = \sum_{i=1}^{r} \sum_{j=1}^{s} \sum_{k=1}^{c} \left(X_{ijk} - \bar{X}\right)^2 \\ 
+        & = sc \sum_{i=1}^{r} \left(\bar{X}_{i••} - \bar{X}\right) 
+          + rc \sum_{j=1}^{s}\left( \bar{X}_{•j•} - \bar{X} \right)^2
+          + c\sum_{i=1}^{r} \sum_{j=1}^{s} \left( X_{ij•} - \bar{X}_{i••} - \bar{X}_{•j•} + \bar{X} \right)^2 
+          + \sum_{i=1}^{r} \sum_{j=1}^{s} \sum_{k=1}^{c} (X_{ijk} - \bar{X}_{ij•})^2 \\
+        & = S_A + S_B + S_I + S_E
+    \end{split}
+\end{align}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 因素 $ A $ 的离差平方和
+    $$ S_A = sc \sum_{i=1}^{r} \left(\bar{X}_{i••} - \bar{X}\right)  $$
+    \item 因素 $ A $ 的离差平方和
+    $$ S_B = rc \sum_{j=1}^{s}\left( \bar{X}_{•j•} - \bar{X} \right)^2 $$
+    \item 因素 $ A,B $ 交互作用引起的离差平方和
+    $$ S_I = c\sum_{i=1}^{r} \sum_{j=1}^{s} \left( X_{ij•} - \bar{X}_{i••} - \bar{X}_{•j•} + \bar{X} \right)^2  $$
+    \item 误差平方和
+    $$ S_E = \sum_{i=1}^{r} \sum_{j=1}^{s} \sum_{k=1}^{c} (X_{ijk} - \bar{X}_{ij•})^2 $$
+\end{itemize}
+
+\hparagraph{离差平方和的统计性质} 当 $ H_{01}, H_{02}, H_{03} $ 成立时，
+\begin{align}
+    \frac{S_A}{\sigma^2} & ∼ \chi^2(r-1) \\
+    \frac{S_B}{\sigma^2} & ∼ \chi^2(s-1) \\
+    \frac{S_I}{\sigma^2} & ∼ \chi^2((r-1)(s-1)) \\
+    \frac{S_E}{\sigma^2} & ∼ \chi^2(rs(c-1)) \\
+    \frac{S_T}{\sigma^2} & ∼ \chi^2(rsc-1)
+\end{align}
+
+\hparagraph{均方离差}
+\begin{align}
+    \bar{S}_A & = \frac{S_A}{r-1} \\
+    \bar{S}_B & = \frac{S_A}{s-1} \\
+    \bar{S}_I & = \frac{S_I}{(r-1)(s-1)} \\
+    \bar{S}_E & = \frac{S_E}{rs(c-1)}
+\end{align}
+
+\hparagraph{检验统计量和拒绝域} 
+\begin{align}
+    H_{01} &: F_A = \frac{\bar{S}_A}{\bar{S}_E} \sim F(r-1, rs(c-1)) & F_A & ⩾ F_α(r-1, rs(c-1)) \\
+    H_{02} &: F_B = \frac{\bar{S}_B}{\bar{S}_E} \sim F(s-1, rs(c-1)) & F_A & ⩾ F_α(s-1, rs(c-1)) \\
+    H_{03} &: F_I = \frac{\bar{S}_I}{\bar{S}_E} \sim F((r-1)(s-1), rs(c-1)) & F_A & ⩾ F_α((r-1)(s-1), rs(c-1))
+\end{align}
+
+\hparagraph{方差检验表} 如表 所示。
+
+\begin{table}[hbtp]
+    \renewcommand{\arraystretch}{2}
+    \centering
+    \caption{重复实验双因素方差分析表}
+    \label{tab:重复实验双因素方差分析表}
+    \begin{tabular}{l|l|l|l|l} \hline
+        方差来源       & 平方和  & 自由度         & 均方                                       & $ F $ 值 \\\hline
+        因素 $ A $     & $ S_A $ & $ r-1 $        & $ \ds \bar{S}_A = \frac{S_A}{r-1} $        & $ \ds F_A = \frac{\bar{S}_A}{\bar{S}_E} $ \\
+        因素 $ B $     & $ S_B $ & $ s-1 $        & $ \ds \bar{S}_B = \frac{S_B}{s-1} $        & $ \ds F_B = \frac{\bar{S}_B}{\bar{S}_E} $ \\
+        交互作用 $ I $ & $ S_I $ & $ (r-1)(s-1) $ & $ \ds \bar{S}_I = \frac{S_I}{(r-1)(s-1)} $ & $ \ds F_I = \frac{\bar{S}_I}{\bar{S}_E} $ \\
+        误差 $ E $     & $ S_E $ & $ rs(c-1) $    & $ \ds \bar{S}_E = \frac{S_E}{rs(c-1)} $    & \\
+        总和 $ T $     & $ S_T $ & $ rsc-1 $      &                                            & \\\hline
+    \end{tabular}
+\end{table}

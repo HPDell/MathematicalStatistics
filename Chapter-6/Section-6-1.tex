@@ -1,0 +1,116 @@
+\section{单因素实验的方差分析}
+
+\hparagraph{数学模型} 设在实验中，因素 $ A $ 有 $ S $ 个不同水平 $$ A_1, A_2, \cdots, A_s $$
+在水平下的实验结果 $ X_j \sim N(\mu_j, \sigma^2) (j = 1, 2, \cdots, s) $ 。
+其中 $ \mu_j $ 和 $ \sigma^2 $ 是位置参数。在水平 $ A_j $ 下做 $ n_j $ 次独立实验，得到结果
+$$ \begin{array}{|l|llll|}\hline
+    \mbox{序号} & A_1 & A_2 & \cdots & A_s \\\hline
+    1           & X_{11} & X_{12} & \cdots & X_{1s} \\
+    2           & X_{21} & X_{22} & \cdots & X_{2s} \\
+    3           & X_{31} & X_{32} & \cdots & X_{3s} \\
+    \vdots      & \vdots & \vdots & \ddots & \vdots \\
+    n_j         & X_{n_11} & X_{n_22} & \cdots & X_{n_ss} \\\hline
+    \mbox{均值} & \bar{X}_{•1} & \bar{X}_{•2} & \cdots & \bar{X}_{•s} \\\hline
+\end{array} $$
+$ X_{1j}, X_{2j}, \cdots, X_{n_jj} $ 是来自总体 $ X_j $ 的容量为 $ n_j $ 的一个样本，其观察值为
+$ x_{1j}, x_{2j}, \cdots, x_{n_jj} $ 。检验假设
+\begin{align*}
+    H_0 &: \mu_1 = \mu_2 = \cdots = \mu_s \\
+    H_1 &: \mu_1, \mu_2, \cdots, \mu_n \mbox{不全相等}
+\end{align*}
+由于 $ X_{ij} $ 相互独立，且 $ X_{ij} \sim N(\mu_j,\sigma^2)(i=1, 2, \cdots, n_j; j = 1, 2, \cdots, s) $ ，
+若记 $ \epsilon_{ij} = X_{ij} - \mu_j $ 则 $ \epsilon_{ij} \sim N(0, \sigma^2) $ 且互相独立。
+则有
+\begin{equation}
+    \left\{\begin{array}{l}
+        X_{ij} = \mu_j + \epsilon_{ij} \\
+        \epsilon_{ij} \sim N(0, \sigma^2)
+    \end{array}\right.
+\end{equation}
+其中，$ i = 1, 2, \cdots, n_j $ ， $ j = 1, 2, \cdots, s $ ， $ \mu_j $ 与 $ \sigma^2 $ 均为未知参数。
+
+\hparagraph{线性可加模型} 令
+\begin{equation*}
+    \left\{\begin{array}{>{\displaystyle\arraybackslash}l}
+        \mu = \frac{1}{n} \sum_{j=1}^{s} n_j \mu_j, \quad i = 1, 2, \cdots, m \\
+        \delta_j = \mu_j - \mu , \quad n = \sum_{j=1}^{s} n_j
+    \end{array}\right.
+\end{equation*}
+则 $ \mu $ 是各水平下总体均值的加权平均，称为总平均值；
+$ \delta_i $ 代表了第 $ j $ 水平下的总体均值和平均值的差异，称为 $ A_j $ 的效应，满足
+$$ \sum_{j=1}^{s} n_j \delta_j = 0 $$
+得到
+\begin{equation}
+    \left\{\begin{array}{D}
+        X_{ij} = \mu + \delta_j + \epsilon_{ij} \\
+        \sum_{i=1}^{m} n_j \delta_j = 0
+    \end{array}\right.
+\end{equation}
+其中， $ i = 1, 2, \cdots, n_j $ ， $ j = 1, 2, \cdots, s $ ， $ \epsilon_{ij} \sim N(0, \sigma^2) $ 且相互独立。
+该模型的等价假设为
+\begin{align*}
+    H_0 &: \delta_1, \delta_2, \cdots, \delta_s = 0 \\
+    H_1 &: \exists j, \delta_j \neq 0
+\end{align*}
+
+\hparagraph{总平方和的分解} 总离差平方和为
+\begin{align}
+    \begin{split}
+        S_T 
+        & = \sum_{j=1}^{s} \sum_{i=1}^{n_j} (X_{ij} - \bar{X})^2  \\
+        & = \sum_{j=1}^{s}\sum_{i=1}^{n_j} \left[(X_{ij} - \bar{X}_{•j}) - (\bar{X}_{•j} - \bar{X})\right]^2 \\
+        & = \sum_{j=1}^{s}\sum_{i=1}^{n_j} \left[(X_{ij} - \bar{X}_{•j})\right]^2 
+        - \sum_{j=1}^{s}\sum_{i=1}^{n_j} \left[(\bar{X}_{•j} - \bar{X})\right]^2 \\
+        & = S_E + S_A
+    \end{split}
+\end{align}
+
+\hsubparagraph{组内离差和组间离差}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ S_E $ 组内离差，\begin{equation}
+        S_E = \sum_{j=1}^{s}\sum_{i=1}^{n_j} \left[(X_{ij} - \bar{X}_{•j})\right]^2 
+    \end{equation}反映因素 $ A $ 各水平下的子样均值和样本值之间的差异，是由随机误差引起的，也叫误差平方和。
+    \item $ S_A $ 组间离差，\begin{equation}
+        S_A = \sum_{j=1}^{s}\sum_{i=1}^{n_j} \left[(\bar{X}_{•j} - \bar{X})\right]^2
+        = \sum_{j=1}^{s}n_j \left(\bar{X}_{•j} - \bar{X}\right)^2
+    \end{equation}反映因素 $ A $ 各水平下的子样均值和总平均值之间的差异，也叫因素 $ A $ 效应的平方和。
+\end{itemize}
+
+\hsubparagraph{$ S_T,S_E,S_A $ 的统计特性} \begin{align}
+    \frac{S_T}{\sigma^2} & \sim \chi^2(n-1) \\
+    \frac{S_E}{\sigma^2} & \sim \chi^2(n-s) \\
+    \frac{S_A}{\sigma^2} & \sim \chi^2(s-1) 
+\end{align}
+
+\hparagraph{检验方法} 在 $ H_0: \delta_i = 0 $ 成立的条件下，统计量
+\begin{equation}
+    F = \ddfrac{\hfrac{\frac{S_A}{\sigma^2}}{(s-1)}}{\hfrac{\frac{S_E}{\sigma^2}}{(n-s)}}
+\end{equation}
+有 $ F \sim F(s-1, n-s) $ 。给定 $ \alpha $ 则：
+
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 若 $ F > F_\alpha(s-1, n-s) $ ，则拒绝 $ H_0 $ ；
+    \item 若 $ F < F_\alpha(s-1, n-s) $ ，则接受 $ H_0 $ 。
+\end{itemize}
+
+\hparagraph{一元方差分析表} 如 表\ref{tab:一元方差分析表} 所示
+
+\begin{table}[hbtp]
+    \renewcommand{\arraystretch}{2}
+    \centering
+    \caption{一元方差分析表}
+    \label{tab:一元方差分析表}
+    \begin{tabular}{l|l|l|l|l} \hline
+        方差来源 & 平方和 & 自由度 & 均方 & $ F $值 \\\hline
+        因素 $ A $ & $ S_A $ & $ s-1 $ & $ \displaystyle \bar{S}_A = \frac{S_A}{s-1} $ & $ \displaystyle F = \frac{\bar{S}_A}{\bar{S}_E} $ \\
+        误差 $ E $ & $ S_E $ & $ n-s $ & $ \displaystyle \bar{S}_E = \frac{S_E}{n-s} $ & \\
+        总和 $ T $ & $ S_T $ & $ n-1 $ & & \\\hline
+    \end{tabular}
+\end{table}
+
+\hparagraph{未知参数的估计} 未知参数 $ \mu, \mu_j, \sigma^2 $ 
+\begin{align}
+    \hat{\sigma}^2 & = \frac{S_E}{n-s} \\
+    \hat{\mu} & = \bar{X} \\ 
+    \hat{\mu}_j & = \bar{X}_{•j}
+\end{align}
