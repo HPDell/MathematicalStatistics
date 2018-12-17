@@ -1,0 +1,66 @@
+% !TeX root = ../MathematicalStatistics.tex
+
+\begin{longtable}{|l|l|l|l|}
+	% 表格题注
+	\caption{正态总体均值和方差的假设检验}
+	\label{tab:正态总体均值和方差的假设检验}
+	% 第一页开头
+	\\\hline
+	\thead{类型} & \thead{表达式}  & \thead{变化} & \thead{线性表达式} \\\hline
+	\endfirsthead
+	% 后续页开头
+	\multicolumn{4}{r}{\kaishu（续表）} \\
+	\hline
+	\thead{类型} & \thead{表达式}  & \thead{变化} & \thead{线性表达式} \\\hline
+	\endhead
+	% 结尾
+	\endfoot
+	% 最后页结尾
+    \endlastfoot
+
+    \nonlineartype{双曲线}
+    & \nonlinearexp{$$ \frac{1}{y} = a + \frac{b}{x} $$}
+    & \nonlineartrans{$$ x' = \frac{1}{x}, y' = \frac{1}{y} $$}
+    & \nonlinearlinearexp{$$ y' = a + bx' $$}
+    \\\hline
+
+    \nonlineartype{幂函数}
+    & \nonlinearexp{$$ y = ax^b $$}
+    & \nonlineartrans{$$ \begin{matrix}
+        y' = \ln y, \beta_0 = \ln a, x' = \ln x, \beta_1 = b \\
+        \ln y = \ln a + b \ln x
+    \end{matrix} $$}
+    & \nonlinearlinearexp{$$ y' = \beta_0 + \beta_1 x' $$}
+    \\\hline
+
+    \nonlineartype{指数曲线}
+    & \nonlinearexp{$$ y = ae^{bx} $$}
+    & \nonlineartrans{$$ \begin{matrix}
+        y' = \ln y, a' = \ln a \\
+        \ln y = \ln a + bx
+    \end{matrix} $$}
+    & \nonlinearlinearexp{$$ y' = a' + bx $$}
+    \\\hline
+
+    \nonlineartype{倒指数曲线}
+    & \nonlinearexp{$$ y = ae^{\frac{b}{x}} $$}
+    & \nonlineartrans{$$ \begin{matrix}
+        y' = \ln y, a' = \ln a, x' = \ddfrac{1}{x} \\
+        \ln y = \ln a + \ddfrac{b}{x}
+    \end{matrix} $$}
+    & \nonlinearlinearexp{$$ y' = a' + bx' $$}
+    \\\hline
+
+    \nonlineartype{对数曲线}
+    & \nonlinearexp{$$ y = a + b \ln x $$}
+    & \nonlineartrans{$$ x' = \ln x $$}
+    & \nonlinearlinearexp{$$ y = a + bx' $$}
+    \\\hline
+
+    \nonlineartype{S型(Logistic)曲线}
+    & \nonlinearexp{$$ y = \frac{K}{1 + A e^{-\lambda x}} $$}
+    & \nonlineartrans{$$ y' = \ln \frac{K-y}{y}, a = \ln A $$}
+    & \nonlinearlinearexp{$$ y' = a - \lambda x $$}
+    \\\hline
+    
+\end{longtable}
