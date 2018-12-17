@@ -70,14 +70,18 @@
 \usepackage{makecell}
 % \renewcommand{\cellalign}{cl}
 \renewcommand{\theadfont}{\bfseries}
+% 正态总体均值和方差的区间估计表
 \newcommand{\mylongtablecell}[1]{\makecell[{{p{0.35\linewidth}}}]{{#1}}}
+% 正态总体假设检验表
 \newcommand{\denydomaincell}[1]{\parbox{\hsize minus 0.01em}{{#1}}}
 \newcommand{\teststatiscell}[1]{\parbox{\hsize minus 0.01em}{{#1}}}
-
+% 可线性化的非线性回归表
 \newcommand{\nonlineartype}[1]{\makecell[{{p{0.2\textwidth}}}]{\centering {#1}}}
 \newcommand{\nonlinearexp}[1]{\makecell[{{p{0.15\textwidth}}}]{{#1}}}
 \newcommand{\nonlineartrans}[1]{\makecell[{{p{0.4\textwidth}}}]{{#1}}}
 \newcommand{\nonlinearlinearexp}[1]{\makecell[{{p{0.15\textwidth}}}]{{#1}}}
+% 
+\newcolumntype{D}{>{\displaystyle\arraybackslash}l}
 
 %------------------------------------------------------------------------------
 % Define new macros
