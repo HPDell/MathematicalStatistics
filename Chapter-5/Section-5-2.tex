@@ -1,0 +1,91 @@
+\section{一元回归}
+
+\subsection{一元线性回归}
+
+\hparagraph{一元线性回归模型} \begin{equation}
+    y = \beta_0 + \beta_1 x + \epsilon
+\end{equation}
+
+\hparagraph{一元线性回归方程} \begin{equation}
+    \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
+\end{equation}
+
+\hparagraph{最小二乘估计} 设 $ (x_1, y_1), (x_2, y_2), \cdots, (x_n, y_n) $ 是 $ (x,y) $ 的一组观测值，
+对每个样本观测值 $ (x_i, y_i) $ 考虑 $ y_i $ 与其回归值
+\begin{eqnarray}
+    E(y_i) = \beta_0 + \beta_1 x_i
+\end{eqnarray}
+的离差
+\begin{equation}
+    y_i - E(y_i) = y_i - \beta_0 - \beta_1 x_i
+\end{equation}
+定义离差平方和
+\begin{equation}
+    Q(\beta_0, \beta_1) = \sum_{i=1}^{n} (y_i - E(y_i))^2 = \sum_{i=1}^{n}(y_i - \beta_0 - \beta_1 x)^2
+\end{equation}
+使其最小化。由
+\begin{align*}
+    \left. \frac{\partial Q}{\partial\beta_0} \right|_{(\hat{\beta}_0, \hat{\beta}_1)} & = 0 \\
+    \left. \frac{\partial Q}{\partial\beta_1} \right|_{(\hat{\beta}_0, \hat{\beta}_1)} & = 0
+\end{align*}
+得正规方程组
+\begin{equation}
+    \left\{\begin{array}{l}
+        n\hat{\beta}_0 + n\bar{x} \hat{\beta}_1 = n\bar{y} \\
+        n\bar{x}\hat{\beta_0} + \left( \displaystyle{\sum_{i=1}^{n}x_i^2} \right) \hat{\beta}_1 = \sum_{i=1}^{n}x_iy_i
+    \end{array}\right.
+\end{equation}
+解得
+\begin{align}
+    \hat{\beta}_1 & = \ddfrac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n}(x_i - \bar{x})^2} \\
+    \hat{\beta}_0 & = \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+
+\hsubparagraph{简记} \begin{align}
+    L_{xx} &= \sum_{i=1}^{n} (x_i - \bar{x})^2 = \sum_{i=1}^{n}x_i^2 - n \bar{x}^2 \\
+    L_{xy} &= \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y} \\
+    L_{yy} &= \sum_{i=1}^{n} (y_i - \bar{y})^2 = \sum_{i=1}^{n}y_i^2 - n \bar{y}^2
+\end{align}
+则 \begin{align}
+    \hat{\beta}_1 &= \frac{L_{xy}}{L_{xx}} \\
+    \hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+
+\hsubparagraph{矩阵表示} 记 \begin{align}
+    y & = \begin{pmatrix}
+        y_1 \\ y_2 \\ \vdots \\ y_n
+    \end{pmatrix} &
+    X & = \begin{pmatrix}
+        1 & x_1 \\ 1 & x_2 \\ \vdots & \vdots \\ 1 & x_n
+    \end{pmatrix} &
+    A & = \begin{pmatrix}
+        \hat{\beta}_0 \\ \hat{\beta}_1
+    \end{pmatrix}
+\end{align}
+则一元回归方程的最小二乘解为
+\begin{equation}
+    A = (X^{\symrm{T}}X)^{-1} X^{\symrm{T}}y
+\end{equation}
+
+\hsubparagraph{最小二乘估计量的性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ \hat{\beta}_0, \hat{\beta}_1 $ 都是 $ y_1, y_2, \cdots, y_n $ 的线性组合；
+    \item $ \hat{\beta}_0, \hat{\beta}_1 $ 的最小二乘估计都是无偏的；
+    \item 有 \begin{align}
+        \hat{\beta}_0 & \sim N \left( \beta_0 , \left(\frac{1}{n} + \frac{\bar{x}}{L_{xx}}\right)\sigma^2 \right) \\
+        \hat{\beta}_1 & \sim N \left( \beta_1 , \frac{\sigma^2}{L_{xx}} \right) \\
+        \Cov(\hat{\beta}_0, \hat{\beta}_1) &= - \frac{\bar{x}}{L_{xx}} \sigma^2
+    \end{align}
+    且 $ \hat{\sigma}^2 $ 与 $ \left( \hat{\beta}_0, \hat{\beta}_1 \right) $ 相互独立。
+\end{itemize}
+
+
+\hparagraph{$ \sigma^2 $的估计} $ \sigma^2 $ 的无偏估计为 \begin{equation}
+    \hat{\sigma}^2  = \frac{Q_e}{n-2}
+\end{equation}
+其中 $ Q_e $ 使残差平方和，即因随机因素引起的误差
+\begin{equation}
+    Q_e = \sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = L_{yy} - \hat{\beta}_1 L_{xy}
+\end{equation}
+
+\hparagraph{线性回归方程的显著性检验}
