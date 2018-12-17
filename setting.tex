@@ -74,6 +74,11 @@
 \newcommand{\denydomaincell}[1]{\parbox{\hsize minus 0.01em}{{#1}}}
 \newcommand{\teststatiscell}[1]{\parbox{\hsize minus 0.01em}{{#1}}}
 
+\newcommand{\nonlineartype}[1]{\makecell[{{p{0.2\textwidth}}}]{\centering {#1}}}
+\newcommand{\nonlinearexp}[1]{\makecell[{{p{0.15\textwidth}}}]{{#1}}}
+\newcommand{\nonlineartrans}[1]{\makecell[{{p{0.4\textwidth}}}]{{#1}}}
+\newcommand{\nonlinearlinearexp}[1]{\makecell[{{p{0.15\textwidth}}}]{{#1}}}
+
 %------------------------------------------------------------------------------
 % Define new macros
 %------------------------------------------------------------------------------
@@ -104,6 +109,7 @@
 }
 \newcommand{\hparagraph}[1]{\paragraph{#1} \hangafter=1\setlength{\hangindent}{2em}}
 \newcommand{\hsubparagraph}[1]{\subparagraph{#1} \hangafter=1\setlength{\hangindent}{4em}}
+\newcommand{\hsubparagraphcontinue}{\setlength{\leftskip}{3em}\hangafter=1\setlength{\hangindent}{1em}}
 
 %------------------------------------------------------------------------------
 % Format setting

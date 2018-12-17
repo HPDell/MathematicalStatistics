@@ -1,0 +1,27 @@
+\section{回归分析的基本概念}
+
+\hparagraph{函数关系与相关关系}
+
+\hsubparagraph{函数关系} 变量之间确实存在的，且在数量上表现为确定性的相互依存关系。
+
+\hsubparagraph{相关关系} 变量之间确实存在的，但在数量上表现为不确定的相互依存关系。
+\begin{equation}
+    y = f(x_1, x_2, \cdots, x_k) + \epsilon
+\end{equation}
+其中， $ x_1, x_2, \cdots, x_k $ 称为解释变量（自变量）， $ y $ 称为被解释变量（响应变量、因变量），
+$ \epsilon $ 是其他随即影响因素，通常假设是不可观测的随机误差，是一个随机变量。
+
+\hparagraph{回归分析} 回归分析就是研究相关关系的一种重要的数理统计方法。
+
+\hsubparagraph{分类} 
+
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 当自变量只有两个时，称为一元回归分析；当自变量在两个以上时，称为多元回归分析。
+    \item 变量间成线性关系, 称线性回归；变量间不具有线性关系，称非线性回归。
+\end{itemize}
+
+\hsubparagraph{多元线性回归模型} \begin{equation}
+    y = \beta_0 + \beta_1 x_1, \beta_2 x_2, \cdots, \beta_k x_k + \epsilon
+\end{equation}
+通常假定 $ \epsilon \sim N(0, \sigma^2) $ 。
+

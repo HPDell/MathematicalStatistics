@@ -1,0 +1,196 @@
+\section{一元回归}
+
+\subsection{一元线性回归}
+
+\hparagraph{一元线性回归模型} \begin{equation}
+    y = \beta_0 + \beta_1 x + \epsilon
+\end{equation}
+
+\hparagraph{一元线性回归方程} \begin{equation}
+    \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
+\end{equation}
+
+\hparagraph{最小二乘估计} 设 $ (x_1, y_1), (x_2, y_2), \cdots, (x_n, y_n) $ 是 $ (x,y) $ 的一组观测值，
+对每个样本观测值 $ (x_i, y_i) $ 考虑 $ y_i $ 与其回归值
+\begin{eqnarray}
+    E(y_i) = \beta_0 + \beta_1 x_i
+\end{eqnarray}
+的离差
+\begin{equation}
+    y_i - E(y_i) = y_i - \beta_0 - \beta_1 x_i
+\end{equation}
+定义离差平方和
+\begin{equation}
+    Q(\beta_0, \beta_1) = \sum_{i=1}^{n} (y_i - E(y_i))^2 = \sum_{i=1}^{n}(y_i - \beta_0 - \beta_1 x)^2
+\end{equation}
+使其最小化。由
+\begin{align*}
+    \left. \frac{\partial Q}{\partial\beta_0} \right|_{(\hat{\beta}_0, \hat{\beta}_1)} & = 0 \\
+    \left. \frac{\partial Q}{\partial\beta_1} \right|_{(\hat{\beta}_0, \hat{\beta}_1)} & = 0
+\end{align*}
+得正规方程组
+\begin{equation}
+    \left\{\begin{array}{l}
+        n\hat{\beta}_0 + n\bar{x} \hat{\beta}_1 = n\bar{y} \\
+        n\bar{x}\hat{\beta_0} + \left( \displaystyle{\sum_{i=1}^{n}x_i^2} \right) \hat{\beta}_1 = \sum_{i=1}^{n}x_iy_i
+    \end{array}\right.
+\end{equation}
+解得
+\begin{align}
+    \hat{\beta}_1 & = \ddfrac{\sum_{i=1}^{n}(x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n}(x_i - \bar{x})^2} \\
+    \hat{\beta}_0 & = \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+
+\hsubparagraph{简记} \begin{align}
+    L_{xx} &= \sum_{i=1}^{n} (x_i - \bar{x})^2 = \sum_{i=1}^{n}x_i^2 - n \bar{x}^2 \\
+    L_{xy} &= \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y}) = \sum_{i=1}^{n}x_iy_i - n\bar{x}\bar{y} \\
+    L_{yy} &= \sum_{i=1}^{n} (y_i - \bar{y})^2 = \sum_{i=1}^{n}y_i^2 - n \bar{y}^2
+\end{align}
+则 \begin{align}
+    \hat{\beta}_1 &= \frac{L_{xy}}{L_{xx}} \\
+    \hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x}
+\end{align}
+
+\hsubparagraph{矩阵表示} 记 \begin{align}
+    y & = \begin{pmatrix}
+        y_1 \\ y_2 \\ \vdots \\ y_n
+    \end{pmatrix} &
+    X & = \begin{pmatrix}
+        1 & x_1 \\ 1 & x_2 \\ \vdots & \vdots \\ 1 & x_n
+    \end{pmatrix} &
+    A & = \begin{pmatrix}
+        \hat{\beta}_0 \\ \hat{\beta}_1
+    \end{pmatrix}
+\end{align}
+则一元回归方程的最小二乘解为
+\begin{equation}
+    A = (X^{\symrm{T}}X)^{-1} X^{\symrm{T}}y
+\end{equation}
+
+\hsubparagraph{最小二乘估计量的性质}
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ \hat{\beta}_0, \hat{\beta}_1 $ 都是 $ y_1, y_2, \cdots, y_n $ 的线性组合；
+    \item $ \hat{\beta}_0, \hat{\beta}_1 $ 的最小二乘估计都是无偏的；
+    \item 有 \begin{align}
+        \hat{\beta}_0 & \sim N \left( \beta_0 , \left(\frac{1}{n} + \frac{\bar{x}}{L_{xx}}\right)\sigma^2 \right) \\
+        \hat{\beta}_1 & \sim N \left( \beta_1 , \frac{\sigma^2}{L_{xx}} \right) \\
+        \Cov(\hat{\beta}_0, \hat{\beta}_1) &= - \frac{\bar{x}}{L_{xx}} \sigma^2
+    \end{align}
+    且 $ \hat{\sigma}^2 $ 与 $ \left( \hat{\beta}_0, \hat{\beta}_1 \right) $ 相互独立。
+\end{itemize}
+
+
+\hparagraph{$ \sigma^2 $的估计} $ \sigma^2 $ 的无偏估计为 \begin{equation}
+    \hat{\sigma}^2  = \frac{Q_e}{n-2}
+\end{equation}
+其中 $ Q_e $ 使残差平方和，即因随机因素引起的误差
+\begin{equation}
+    Q_e = \sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n}(y_i - \hat{y}_i)^2 = L_{yy} - \hat{\beta}_1 L_{xy}
+\end{equation}
+
+\hparagraph{线性回归方程的显著性检验}
+\hsubparagraph{$ F $ 检验}  总离差平方和、回归平方和、残差平方和满足 $ S_{\mbox{\small 总}}^{2} = S_{\mbox{\small 回}}^{2} + S_{\mbox{\small 残}}^{2} $ ，
+其中
+\begin{align}
+    S_{\mbox{\small 总}}^{2} & = \sum_{i=1}^{n} (y_i - \bar{y})^2 \\
+    S_{\mbox{\small 回}}^{2} & = \sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2 \\
+    S_{\mbox{\small 残}}^{2} & = \sum_{i=1}^{n} (y_i - \hat{y})^2
+\end{align}
+
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ S_{\mbox{\small 回}}^{2} $ 反映了由于自变量 $x$ 的变化引起的因变量 $y$ 的差异，体现了 $x$ 对 $y$ 的影响；
+    \item $ S_{\mbox{\small 残}}^{2} $ 反映了种种其它因素对 $y$ 的影响，这些因素没有反映在自变量中，它们可作为随机因素看待。
+    \item 当 $ \beta_1 = 0 $ 时， $ S_{\mbox{\small 回}}^{2} $ 与 $ S_{\mbox{\small 残}}^{2} $ 相互独立，且
+    \begin{align*}
+        \frac{S_{\mbox{\small 回}}^{2}}{\sigma^2} & 
+        = \frac{1}{\sigma^2} \sum_{i=1}^{n}(\hat{y}-\bar{y})^2 
+        = \hat{\beta}_1^2 L_{xx} = \hat{\beta}_1 L_{xy} \\
+        & \sim \chi^2(1) \\
+        \frac{S_{\mbox{\small 残}}^{2}}{\sigma^2} & 
+        = \frac{1}{\sigma^2} \sum_{i=1}^{n}(y-\hat{y})^2 
+        = L_{yy} - \hat{\beta}_1 L_{xy} \\
+        & \sim \chi^2(n-2)
+    \end{align*}
+\end{itemize}
+
+\subparagraph*{} {\hsubparagraphcontinue 检验假设 $ H_0 : \beta_1 = 0, H_1 : \beta_1 \neq 0 $ ，统计量
+\begin{equation}
+    F = \frac{(n-1)S_{\mbox{\small 回}}^{2}}{S_{\mbox{\small 残}}^{2}} \sim F(1, n-2)
+\end{equation}
+对于给定的显著性水平 $ \alpha(0 < \alpha < 1) $ ， $ H_0  $ 的拒绝域为
+\begin{equation}
+    F > F_\alpha(1,n-2)
+\end{equation}}
+
+\hsubparagraph{$ t $检验} 检验假设 $ H_0 : \beta_1 = 0, H_1 : \beta_1 \neq 0 $ 。
+当原假设成立时，有 $ \hat{\beta}_1 \sim N\left(0, \frac{\sigma^2}{L_{xx}}\right) $ 即
+$$ \frac{\hat{\beta}_1\sqrt{L_{xx}}}{\sigma} \sim N(0,1) $$
+又有
+$$ \frac{Q_e}{\sigma^2} \sim \chi^2(n-2) $$ 则有
+\begin{equation}
+    t = \ddfrac{
+        \frac{\hat{\beta}_1\sqrt{L_{xx}}}{\sigma}
+    }{
+        \sqrt{\ddfrac{\frac{Q_e}{\sigma^2}}{(n-2)}}
+    } = \frac{\hat{\beta}_1\sqrt{L_{xx}}}{\hat{\sigma}} \sim t(n-2)
+\end{equation}
+拒绝域为 $ \left| t \right| \geqslant t_{\frac{\alpha}{2}}(n-2) $ 。
+
+\hsubparagraph{$ r $ 检验} 相关系数
+\begin{equation}
+    r^2 = \frac{L_{xy}^2}{L_{xx}^2 L_{yy}^2} = \frac{S_{\mbox{\small 回}}}{S_{\mbox{\small 总}}}
+\end{equation}
+$ r^2 $ 越大，说明 $ x $ 的变化引起 $ y $ 的变化就越大。
+
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item $ \left| r \right| \leqslant 1 $ ；
+    \item $ \left| r \right| \neq 0 $ 时，$ y $ 与 $ x $ 具有线性相关关系；
+    \item $ \left| r \right| $ 越大，变量 $ y $ 与 $ x $ 之前的线性相关程度越强。
+\end{itemize}
+
+\hparagraph{回归系数的区间估计} 
+
+\hsubparagraph{$ \hat{\beta}_1 $} 置信水平为 $ 1- \alpha $ 的置信区间为
+\begin{equation}
+    \left( \hat{\beta}_1 - \frac{\hat{\sigma}}{\sqrt{L_{xx}}} t_{\frac{\alpha}{2}}(n-2) ,
+    \hat{\beta}_1 + \frac{\hat{\sigma}}{\sqrt{L_{xx}}} t_{\frac{\alpha}{2}}(n-2) \right)
+\end{equation}
+
+\hsubparagraph{$ \hat{\beta}_0 $} 置信水平为 $ 1- \alpha $ 的置信区间为
+\begin{equation}
+    \left( \hat{\beta}_1 - \hat{\sigma} \sqrt{\frac{1}{n} + \frac{\bar{x}^2}{L_{xx}}} t_{\frac{\alpha}{2}}(n-2) ,
+    \hat{\beta}_1 + \hat{\sigma} \sqrt{\frac{1}{n} + \frac{\bar{x}^2}{L_{xx}}} t_{\frac{\alpha}{2}}(n-2) \right)
+\end{equation}
+
+\hparagraph{预测}
+
+\hsubparagraph{单值预测} 对于任意给定的 $ x = x_0 $ ， $ y_0 $ 的预测值为 $ \hat{y}_0 = \hat{\beta}_0 + \hat{\beta}_1 x_0 $ 。
+
+\hsubparagraph{区间预测} 置信水平为 $ 1- \alpha $ 的置信区间为
+\begin{equation}
+    \left(
+        \hat{y}_0 - \hat{\sigma}\sqrt{1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{L_{xx}}} t_{\frac{\alpha}{2}}(n-2),
+        \hat{y}_0 + \hat{\sigma}\sqrt{1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{L_{xx}}} t_{\frac{\alpha}{2}}(n-2)
+    \right)
+\end{equation}
+当 $ n $ 较大时， $ t_{\frac{\alpha}{2}}(n-2) \approx u_{\frac{\alpha}{2}} $ ，
+$ 1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{L_{xx}} \approx 1 $ ，
+则置信水平为 $ 1- \alpha $ 的置信区间为 
+\begin{equation}
+    \left(
+        \hat{y}_0 - \hat{\sigma}u_{\frac{\alpha}{2}},
+        \hat{y}_0 + \hat{\sigma}u_{\frac{\alpha}{2}}
+    \right)
+\end{equation}
+
+\hparagraph{控制} 要求 $ y = \beta_0 + \beta_1 x + \epsilon $ 的值以 $ 1 - \alpha $ 的概率落在指定区间 $ (y', y'') $ 。
+控制 $ x $ 满足以下两个不等式
+\begin{align}
+    \hat{y} - \delta(x') & \geqslant y' \\
+    \hat{y} + \delta(x'') & \leqslant y''
+\end{align}
+成立，则区间 $ (x', x'') $ 就是所求 $ x $ 的控制区间。
+
+\subsection{非线性回归}
+
+\LTXtable{\textwidth}{Chapter-5/Table-5-1.tex}
