@@ -1,0 +1,31 @@
+\section{假设检验}
+
+\hparagraph{参数假设检验} 总体的分布类型已知，对未知参数作 出假设，用总体中的样本检验此项假设是否 成立，就称为参数假设检验。
+
+\hparagraph{非参数假设检验} 对总体分布函数的形式作出假设，用 总体中的样本检验此项假设是否成立，就称 为非参数假设检验。
+
+\hparagraph{基本步骤}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 题出原假设 $ H_0 $ ，确定备择假设 $ H_1 $ ；
+    \item 构造分布已知的合适的统计量；
+    \item 由给定的检验水平 $ \alpha $ ，求出在 $ H_0 $ 成立的条件下的临界值；
+    \item 计算统计量的样本观测值，如果落在拒绝域内，则拒绝原假设；否则，接收原假设。
+\end{itemize}
+
+\hparagraph{假设检验的两类错误} 
+\hsubparagraph{第一类错误（弃真错误）} 原假设为真，而检验结果拒绝原假设。记为 $ \alpha $ 。
+\hsubparagraph{第二类错误（取伪错误）} 原假设为假，而检验结果接受原假设。记为 $ \beta $ 。
+\hsubparagraph{原则} 
+\begin{itemize}[leftmargin=\subparitemindent]
+    \item 在限制 $ \alpha $ 的前提下，使 $ \beta $ 尽可能小。
+    \item 往往把不轻易否定的命题作为原假设
+    \item 通常控制犯第一类错误的概率
+\end{itemize}
+
+\hparagraph{显著性检验} 只对犯第一类错误的概率加以控制，而不考虑犯第二类错误的概率。即求
+$$ P\left\{ \mbox{拒绝}H_0 \left| H_0 \mbox{为真} \right. \right\} \leqslant \alpha $$
+称 $ \alpha $ 为显著性水平。
+
+\section{正态总体参数的假设检验}
+
+\LTXtable{\linewidth}{Chapter-4/table-4-1.tex}

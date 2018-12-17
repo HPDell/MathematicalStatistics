@@ -9,7 +9,6 @@
             "name": "xelatex-full",
             "tools": [
                 "xelatex",
-                "bibtex",
                 "xelatex",
                 "xelatex"
             ]

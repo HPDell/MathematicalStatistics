@@ -1,0 +1,70 @@
+\section{非参数假设检验}
+
+\subsection{分布拟合检验}
+
+\hparagraph{分布拟合检验} 设总体 $ X $ 的实际分布函数为 $ F(x) $ ，它是未知的。
+$ X_1, X_2, \cdots, X_n $ 为来自总体 $ X $ 的样本。根据这个样本来检验总体 $ X $ 的分布函数 $ F(x) $
+是否等于某个给定的分布函数 $ F_0(x) $ ，即检验假设
+\begin{align*}
+    H_0 &: F(x) = F_0(x) \\
+    H_1 &: F(x) \neq F_0(x)
+\end{align*}
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 若总体 $ X $ 为离散型的，则 $ H_0 $ 相当于总体 $ X $ 的分布律为
+    $ P\left\{ X = x_i \right\} , i = 1, 2, \cdots $ 。
+    \item 若总体 $ X $ 为连续型的，则 $ H_0 $ 相当于总体 $ X $ 的概率密度为 $ f(x) $ 。
+\end{itemize}
+
+\hparagraph{$ F(x) $ 不含未知参数} 记 $ \Omega $ 为 $ X $ 的所有可能取值的全体，
+将 $ \Omega $ 分为 $ k $ 个两两互不相交的子集 $ A_1, A_2, \cdots, A_k $ 。
+以 $ f_i(i = 1, 2, \cdots, k) $ 表示样本观察值 $ x_1, x_2, \cdots, x_n $ 中落入 $ A_1, A_2, \cdots, A_k $ 的个数。
+当 $ H_0 $ 为真且 $ n $ 充分大时，统计量
+\begin{equation}
+    \chi^2 = \sum_{i=1}^{k} \frac{(f_i - np_i)^2}{np_{i}} = \sum_{i=1}^{k} \frac{f_i^2}{np_i} - n
+\end{equation}
+近似服从 $ \chi^2(k-1) $ 分布。给定显著性水平，则拒绝域为 $ \chi^2 \geqslant \chi_{\alpha}^{2}(k-1) $ 。
+
+\hparagraph{$ F(x) $ 含有未知参数} 此时, 首先在假设下利用样本求出未知参数的最大似然估计, 以估计值作为参数值, 
+然后再根据 $ H_0 $ 中所假设的 $ X $ 的分布函数 $ F(x) $ 求出 $ p_i $ 的估计值。
+统计量
+\begin{equation*}
+    \chi^2 = \sum_{i=1}^{k} \frac{(f_i - np_i)^2}{np_{i}} = \sum_{i=1}^{k} \frac{f_i^2}{np_i} - n
+\end{equation*}
+近似服从 $ \chi^2(k- r -1) $ 分布,其中 $ r $ 是 $ X $ 的分布函数 $ F(x) $ 包含的未知参数的个数。
+给定显著性水平，则拒绝域为 $ \chi^2 \geqslant \chi_{\alpha}^{2}(k-r-1) $ 。
+
+\hparagraph{样本数据的分类} 运用 $ \chi^2 $ 检验法检验总体分布，把样本数据进行分类时
+\begin{itemize}[leftmargin=\paritemindent]
+    \item 大样本，通常取 $ n \geqslant 50 $ 。
+    \item 各组理论频数 $ np_i \geqslant 5 $ 或 $ n\hat{p}_i \geqslant 5 $ 。
+    \item 一般把数据分成 7 到 14 组，有时为了保证各组 $ np_i \geqslant 5 $ 组数可以少于 7 组。
+\end{itemize}
+
+\subsection{独立性检验} 
+
+\hparagraph{列联表} $ r\times s $ 列联表
+$$ \begin{array}{|l|llll|l|}\hline
+                & B_1         & B_2         & \cdots & B_s         & \mbox{总和}     \\\hline
+    A_1         & n_{11}      & n_{12}      & \cdots & n_{1s}      & n_{1\cdot}      \\
+    A_2         & n_{21}      & n_{22}      & \cdots & n_{2s}      & n_{2\cdot}      \\
+    \vdots      & \vdots      & \vdots      & \ddots & \vdots      & \vdots          \\
+    A_r         & n_{r1}      & n_{r2}      & \cdots & n_{rs}      & n_{r\cdot}      \\\hline
+    \mbox{总和} & n_{\cdot 1} & n_{\cdot 2} & \cdots & n_{\cdot s} & n_{\cdot \cdot} \\\hline
+\end{array} $$
+其中
+\begin{align*}
+    n_{i \cdot} & = \sum_{j=1}^{s} n_{ij} , i = 1, 2, \cdots, r &
+    n_{\cdot j} & = \sum_{i=1}^{r} n_{ij} , j = 1, 2, \cdots, s &
+    n_{\cdot \cdot} & = \sum_{j=1}^{s} n_{\cdot j} = \sum_{i=1}^{r} n_{i\cdot} = \sum_{i=1}^{r} \sum_{j=1}^{s} n_{ij}
+\end{align*}
+
+\hparagraph{$ \chi^2 $ 独立性检验} 假设检验问题 $ H_0 : p_{ij} = p_{i\cdot}\cdot p_{\cdot j} $ 。
+检验统计量
+\begin{equation}
+    \chi^2 = \sum_{i,j} \frac{(n_{ij} - e_{ij})^2}{e_{ij}} = \sum_{i,j} \frac{(n_{ij})^2}{e_{ij}} - n_{\cdot\cdot}
+\end{equation}
+其中
+\begin{equation*}
+    e_{ij} = \frac{n_{i \cdot} \cdot n_{\cdot j}}{n}
+\end{equation*}
+统计量 $ \chi^2 \rightarrow \chi^2((r-1)(s-1)) $ ，当 $ \chi^2 $ 取大值或 $ p $ 值很小的时候，拒绝零假设。
